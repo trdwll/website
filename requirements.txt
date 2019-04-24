@@ -1,0 +1,6 @@
+Django==2.2
+django-taggit
+django-htmlmin
+markdown
+Pillow
+gitpython

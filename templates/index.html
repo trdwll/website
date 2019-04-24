@@ -1,0 +1,75 @@
+{% extends '_base.html' %}
+
+{% block title %}home on the internet{% endblock %}
+
+{% block navbar %}
+<li class="visible-sm active"><a href="#">Home</a></li>
+<li><a href="{% url 'about_page' %}">About</a></li>
+<li><a href="{% url 'blog_home_page' %}">Blog</a></li>
+<li><a href="{% url 'experiments_home_page' %}">Experiments</a></li>
+{% endblock %}
+
+{% block content %}
+{% load static %}
+<section id="home-hero" class="container-fluid wide">
+    <figure>
+        <video class="hidden-sm" preload="auto" autoplay="autoplay" loop="loop" muted="muted" poster="{% static 'media/home-header.jpg' %}">
+            <source src="{% static 'media/home-header.mp4' %}" type="video/mp4">
+            <source src="{% static 'media/home-header.webm' %}" type="video/webm">
+        </video>
+        <div class="mobile-poster"></div>
+    </figure>
+    <div class="content">
+        <div class="container">
+            <div class="person" itemscope="" itemtype="http://schema.org/Person">
+                <h1>Hello World</h1>
+                <p>My name is <span itemprop="name">Russ Treadwell</span> and I go by trdwll. I'm a <span itemprop="jobTitle">Programmer</span> with an interest in games programming.</p>
+            </div>
+            <h2>Aspiring firefighter and soldier.<span>I believe anything is possible.</span></h2>
+        </div>
+    </div>
+</section>
+{% if FEATURED_EXPERIMENTS %}
+<aside id="experiments">
+    <div class="container">
+        <h1>Featured Experiments</h1>
+        <div class="row thin">
+            {% for featured_experiment in FEATURED_EXPERIMENTS %}
+            <div class="col-md-6 col-sm-12">
+                <article itemscope itemtype="http://schema.org/CreativeWork">
+                    <figure>
+                        <img src="{{ featured_experiment.image.url }}" srcset="{{ featured_experiment.image.url }} 2x" alt="" width="720" height="300" itemprop="image"/>
+                    </figure>
+                    <a href="{{ featured_experiment.get_absolute_url }}" class="fill" itemprop="url">{{ featured_experiment.title }}</a>
+                </article>
+            </div>    
+            {% endfor %}                 
+        </div>
+    </div>
+</aside>
+{% endif %}
+{% if RECENT_POSTS %}
+<aside id="blog">
+    <div class="container">
+        <h1>Blog</h1>
+        <div class="row">
+            {% load general_tags%}
+            {% for recent_post in RECENT_POSTS %}
+            <div class="col-md-6">
+                <article itemscope itemtype="http://schema.org/Article">
+                    <figure>
+                        <img src="{{ recent_post.image.url }}" srcset="{{ recent_post.image.url }} 2x" alt="" width="128" height="96" itemprop="thumbnailUrl"/>
+                    </figure>
+                    <h1 itemprop="name">{{ recent_post.title }}</h1>
+                    <h2 itemprop="description">{{ recent_post.description|truncatewords:5 }}</h2>
+                    <time itemprop="dateCreated" content="{{ recent_post.published_date }}">{{ recent_post.published_date }}</time>
+                    <a href="{{ recent_post.get_absolute_url }}" class="fill" itemprop="url">{{ recent_post.title }}</a>
+                </article>
+            </div>
+            {% endfor %}
+        </div>
+        <a href="{% url 'blog_home_page' %}" class="btn btn-default">View Blog</a>
+    </div>
+</aside>
+{% endif %}
+{% endblock %}

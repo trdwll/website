@@ -1,0 +1,24 @@
+{% extends '_base.html' %}
+
+{% block title %}Experiments / {{ EXPERIMENT.title }}{% endblock %}
+
+{% block navbar %}
+<li><a href="{% url 'home_page' %}">Home</a></li>
+<li><a href="{% url 'about_page' %}">About</a></li>
+<li><a href="{% url 'blog_home_page' %}">Blog</a></li>
+<li class="visible-sm active"><a href="{% url 'experiments_home_page' %}">Experiments</a></li>
+{% endblock %}
+
+{% block content %}
+<main itemscope itemtype="http://schema.org/Article">
+    <div class="container">
+        <header>
+            <h1>{{ EXPERIMENT.title }}</h1>
+        </header>
+        <div class="body" itemprop="articleBody">
+            {% load general_tags %}
+            {{ EXPERIMENT.body|markdown|safe }}
+        </div>
+    </div>
+</main>
+{% endblock %}
