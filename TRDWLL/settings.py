@@ -13,7 +13,7 @@ SECRET_KEY = 'pp)6iq_^nw)7k_1%#@v%^srq!zqsvr+ed&rfzfkzi^2+i7h1np'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'trdwll.com']
 
 
 # Application definition
