@@ -1,6 +1,8 @@
 Django==2.2
+bcrypt
 django-taggit
 django-htmlmin
 markdown
 Pillow
 gitpython
+uwsgi
