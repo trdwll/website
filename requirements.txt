@@ -6,3 +6,5 @@ markdown
 Pillow
 gitpython
 uwsgi
+django-otp
+qrcode

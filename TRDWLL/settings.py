@@ -32,6 +32,8 @@ INSTALLED_APPS = [
 
     # 3rd party
     'taggit',
+    'django_otp',
+    'django_otp.plugins.otp_totp',
 ]
 
 MIDDLEWARE = [
@@ -46,6 +48,9 @@ MIDDLEWARE = [
     # 3rd party
     'htmlmin.middleware.HtmlMinifyMiddleware',
     'htmlmin.middleware.MarkRequestMiddleware',
+
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django_otp.middleware.OTPMiddleware',
 ]
 
 ROOT_URLCONF = 'TRDWLL.urls'
@@ -126,6 +131,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = '/media/'
 
 FILE_UPLOAD_PERMISSIONS = 0o644
+
+OTP_TOTP_ISSUER = 'TRDWLL'
 
 if not DEBUG:
     HTML_MINIFY = True
