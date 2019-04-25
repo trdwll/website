@@ -3,6 +3,8 @@ from django.conf import settings
 from django.urls import path, include
 from django.conf.urls.static import static
 
+from django_otp.admin import OTPAdminSite
+
 from .views import HomeView, AboutView
 
 urlpatterns = [
@@ -23,4 +25,4 @@ if settings.DEBUG:
 admin.site.site_header = 'TRDWLL AdminCP'
 admin.site.site_title = 'TRDWLL AdminCP'
 
-# admin.site.__class__ = OTPAdminSite
+admin.site.__class__ = OTPAdminSite
