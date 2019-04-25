@@ -5,4 +5,3 @@
 - Change upload path for blog to Y/M/D/slug/filename
 - Add blog tags
 - Restyle about page
-- Enable OTP for admin

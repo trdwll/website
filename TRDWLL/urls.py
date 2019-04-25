@@ -25,4 +25,5 @@ if settings.DEBUG:
 admin.site.site_header = 'TRDWLL AdminCP'
 admin.site.site_title = 'TRDWLL AdminCP'
 
-admin.site.__class__ = OTPAdminSite
+if not settings.DEBUG:
+    admin.site.__class__ = OTPAdminSite

@@ -24,7 +24,7 @@ class Category(models.Model):
 
 class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blog_author')
-    published_date = models.DateTimeField(auto_now_add=True)
+    published_date = models.DateTimeField()
     title = models.CharField(max_length=200, help_text='Title of the post.')
     body = models.TextField(help_text='The content of the post. (<strong>Markdown Supported</strong>)')
     description = models.CharField(max_length=100, help_text='A short tagline that describes what the reader will be reading about.')
