@@ -127,4 +127,5 @@ MEDIA_URL = '/media/'
 
 FILE_UPLOAD_PERMISSIONS = 0o644
 
-HTML_MINIFY = False
+if not DEBUG:
+    HTML_MINIFY = True
