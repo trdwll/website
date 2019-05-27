@@ -11,7 +11,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'pp)6iq_^nw)7k_1%#@v%^srq!zqsvr+ed&rfzfkzi^2+i7h1np'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'trdwll.com']
 
@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'TRDWLL',
     'blog',
     'experiments',
+    'projects',
 
     # 3rd party
     'taggit',
@@ -112,7 +113,7 @@ LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'America/New_York'
 USE_I18N = True
 USE_L10N = True
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)

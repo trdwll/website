@@ -13,6 +13,7 @@ urlpatterns = [
 
     path('blog/', include('blog.urls'), name='blog_home_page'),
     path('experiments/', include('experiments.urls'), name='experiments_home_page'),
+    path('', include('projects.urls')),
 
     path('admin/', admin.site.urls),
 ]
