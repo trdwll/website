@@ -2,6 +2,7 @@ Django==2.1.8 # 2.1.8 is the requirement for now until I upgrade sqlite on my ma
 bcrypt
 django-taggit
 django-htmlmin
+django-ckeditor
 markdown
 Pillow
 gitpython

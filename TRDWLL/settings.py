@@ -35,6 +35,8 @@ INSTALLED_APPS = [
     'taggit',
     'django_otp',
     'django_otp.plugins.otp_totp',
+    'ckeditor',
+    'ckeditor_uploader',
 ]
 
 MIDDLEWARE = [
@@ -137,3 +139,11 @@ OTP_TOTP_ISSUER = 'TRDWLL'
 
 if not DEBUG:
     HTML_MINIFY = True
+
+CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"
+CKEDITOR_UPLOAD_PATH = "uploads/"
+CKEDITOR_IMAGE_BACKEND = "pillow"
+CKEDITOR_THUMBNAIL_SIZE = (300, 300)
+CKEDITOR_IMAGE_QUALITY = 40
+CKEDITOR_BROWSE_SHOW_DIRS = True
+CKEDITOR_ALLOW_NONIMAGE_FILES = True

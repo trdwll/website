@@ -1,6 +1,8 @@
 from django.db import models
 from django.urls import reverse
 
+from ckeditor_uploader.fields import RichTextUploadingField
+
 
 def experiment_upload_path(instance, filename):
     return 'experiments/%s/%s' % (instance.slug, filename)
@@ -9,10 +11,11 @@ def experiment_upload_path(instance, filename):
 class Experiment(models.Model):
     published_date = models.DateTimeField()
     title = models.CharField(max_length=100, help_text='Title of the post.')
-    body = models.TextField(help_text='The content of the post. (<strong>Markdown Supported</strong>)')
+    body = RichTextUploadingField()
     is_published = models.BooleanField(default=True, help_text='Do you want this post to be published publicly?')
-    is_featured = models.BooleanField(default=False, help_text='Do you want this post to be displayed as a featured post on the homepage?')
+    is_featured = models.BooleanField(default=False, help_text='Do you want this post to be displayed as a featured experiment on the homepage?')
     image = models.ImageField(upload_to=experiment_upload_path)
+    tech_used = models.CharField(max_length=250, help_text='Tech that was used for this experiment.')
     slug = models.SlugField(unique=True)
 
 
