@@ -7,23 +7,60 @@
 <div class="container">
     <header>
         <h1>{{ EXPERIMENT.title }}</h1>
+        <small>{{ EXPERIMENT.description }}</small>
     </header>
+    <br />
     <div class="body">
         <div class="row">
-            <div class="col-6 col-lg-4 themed-grid-col">
-                <div class="card">
-                    <h5 class="card-header">Tech Used</h5>
-                    <div class="card-body">
-                        <p class="card-text">{{ EXPERIMENT.tech_used }}</p>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <h5 class="card-header">Tech Used</h5>
+                                    <div class="card-body">
+                                        <p class="card-text">{{ EXPERIMENT.tech_used }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% if EXPERIMENT.learned_list %}
+                        <br />
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <h5 class="card-header">Things that I learned</h5>
+                                    <div class="card-body">
+                                        <p class="card-text">{{ EXPERIMENT.learned_list|markdown|safe }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% if EXPERIMENT.struggled_list %}
+                        <br />
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <h5 class="card-header">Things that I struggled with</h5>
+                                    <div class="card-body">
+                                        <p class="card-text">{{ EXPERIMENT.struggled_list|markdown|safe }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
                     </div>
-                </div>
-            </div>
-            <div class="col-12 col-sm-6 col-lg-8 themed-grid-col">
-                <div class="card">
-                    <h5 class="card-header">About</h5>
-                    <div class="card-body">
-                        {% comment %} <h5 class="card-title">Special title treatment</h5> {% endcomment %}
-                        <p class="card-text">{{ EXPERIMENT.body|markdown|safe }}</p>
+                    
+                    <div class="col-md-8">
+                        <div class="card">
+                            <h5 class="card-header">About</h5>
+                            <div class="card-body">
+                                {% comment %} <h5 class="card-title">Special title treatment</h5> {% endcomment %}
+                                <p class="card-text">{{ EXPERIMENT.body|markdown|safe }}</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
