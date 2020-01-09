@@ -2,41 +2,32 @@
 
 {% block title %}Experiments / {{ EXPERIMENT.title }}{% endblock %}
 
-{% block navbar %}
-<li><a href="{% url 'home_page' %}">Home</a></li>
-<li><a href="{% url 'about_page' %}">About</a></li>
-<li><a href="{% url 'blog_home_page' %}">Blog</a></li>
-<li class="visible-sm active"><a href="{% url 'experiments_home_page' %}">Experiments</a></li>
-{% endblock %}
-
 {% block content %}
 {% load general_tags %}
-<main itemscope itemtype="http://schema.org/Article">
-    <div class="container">
-        <header>
-            <h1>{{ EXPERIMENT.title }}</h1>
-        </header>
-        <div class="body" itemprop="articleBody">
-            <div class="row">
-                <div class="col-6 col-lg-4 themed-grid-col">
-                    <div class="card">
-                        <h5 class="card-header">Tech Used</h5>
-                        <div class="card-body">
-                            <p class="card-text">{{ EXPERIMENT.tech_used }}</p>
-                        </div>
+<div class="container">
+    <header>
+        <h1>{{ EXPERIMENT.title }}</h1>
+    </header>
+    <div class="body">
+        <div class="row">
+            <div class="col-6 col-lg-4 themed-grid-col">
+                <div class="card">
+                    <h5 class="card-header">Tech Used</h5>
+                    <div class="card-body">
+                        <p class="card-text">{{ EXPERIMENT.tech_used }}</p>
                     </div>
                 </div>
-                <div class="col-12 col-sm-6 col-lg-8 themed-grid-col">
-                    <div class="card">
-                        <h5 class="card-header">About</h5>
-                        <div class="card-body">
-                            {% comment %} <h5 class="card-title">Special title treatment</h5> {% endcomment %}
-                            <p class="card-text">{{ EXPERIMENT.body|markdown|safe }}</p>
-                        </div>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-8 themed-grid-col">
+                <div class="card">
+                    <h5 class="card-header">About</h5>
+                    <div class="card-body">
+                        {% comment %} <h5 class="card-title">Special title treatment</h5> {% endcomment %}
+                        <p class="card-text">{{ EXPERIMENT.body|markdown|safe }}</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</main>
+</div>
 {% endblock %}

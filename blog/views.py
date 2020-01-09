@@ -1,18 +1,7 @@
-from django.shortcuts import render, get_object_or_404, get_list_or_404
-from django.views.generic import View, ListView
+from django.shortcuts import render, get_object_or_404
+from django.views.generic import View
 
 from .models import Post
-
-class BlogHomeView(View):
-    template_name = 'blog/index.html'
-
-    def get(self, request):
-        posts = Post.objects.filter(is_published=True).order_by('published_date')
-
-        return render(request, self.template_name, {
-            'POSTS': posts
-        })
-
 
 class BlogPostView(View):
     template_name = 'blog/post.html'

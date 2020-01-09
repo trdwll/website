@@ -29,7 +29,6 @@ INSTALLED_APPS = [
     'TRDWLL',
     'blog',
     'experiments',
-    'projects',
 
     # 3rd party
     'taggit',

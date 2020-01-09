@@ -2,30 +2,20 @@
 
 {% block title %}Experiments{% endblock %}
 
-{% block navbar %}
-<li><a href="{% url 'home_page' %}">Home</a></li>
-<li><a href="{% url 'about_page' %}">About</a></li>
-<li><a href="{% url 'blog_home_page' %}">Blog</a></li>
-<li class="visible-sm active"><a href="#">Experiments</a></li>
-{% endblock %}
-
 {% block content %}
-<aside id="experiments">
-    <div class="container">
-        <h1>Experiments</h1>
-        
-        <div class="row">
-            {% for experiment in EXPERIMENTS %}
-            <div class="col-md-6 col-sm-12">
-                <article itemscope itemtype="http://schema.org/CreativeWork">
-                    <figure>
-                        <img src="{{ experiment.image.url }}" srcset="{{ experiment.image.url }} 2x" alt="" width="720" height="300" itemprop="image"/>
-                    </figure>								
-                    <a href="{{ experiment.get_absolute_url }}" class="fill" itemprop="url">{{ experiment.title }}</a>
-                </article>
-            </div>
-            {% endfor %}
+<h1>Experiments aka Projects</h1>
+<small>Here are the projects that I've worked on in some capacity whether it be personal or professional. If you want a list of companies that I've worked for then visit my <a href="https://linkedin.com/in/trdwll">Linkedin</a>.</small>
+
+<div class="archive">
+{% for year,experiments in EXPERIMENTS.items %}
+    <h2 class="archive-year">{{year}}</h2>
+    
+    {% for experiment in experiments %}
+        <div class="archive-item">
+            {% comment %} <span class="post-date archive-date">{{ experiment.published_date|date:"F d, Y" }}</span> {% endcomment %}
+            <a href="{% url 'experiment_post_page' slug=experiment.slug %}" class="archive-title">{{ experiment.title }}</a>
         </div>
-    </div>
-</aside>
+    {% endfor %}
+{% endfor %}
+</div>
 {% endblock %}

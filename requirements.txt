@@ -1,4 +1,4 @@
-Django==2.1.8 # 2.1.8 is the requirement for now until I upgrade sqlite on my machine to 2.8.3+
+Django==3.0.2
 bcrypt
 django-taggit
 django-htmlmin

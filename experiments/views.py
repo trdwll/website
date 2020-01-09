@@ -7,11 +7,9 @@ class ExperimentsHomeView(View):
     template_name = 'experiments/index.html'
 
     def get(self, request):
-        experiments = Experiment.objects.filter(is_published=True).order_by('published_date')
+        # experiments = Experiment.objects.filter(is_published=True).order_by('published_date')
 
-        return render(request, self.template_name, {
-            'EXPERIMENTS': experiments,
-        })
+        return render(request, self.template_name)
 
 
 class ExperimentPostView(View):

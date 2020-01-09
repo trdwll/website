@@ -10,10 +10,8 @@ from .views import HomeView, AboutView
 urlpatterns = [
     path('', HomeView.as_view(), name='home_page'),
     path('about/', AboutView.as_view(), name='about_page'),
-
-    path('blog/', include('blog.urls'), name='blog_home_page'),
+    path('blog/', include('blog.urls'), name='blog_page'),
     path('experiments/', include('experiments.urls'), name='experiments_home_page'),
-    path('', include('projects.urls')),
 
     path('admin/', admin.site.urls),
 
