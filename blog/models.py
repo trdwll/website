@@ -33,7 +33,6 @@ class Post(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, help_text='The category that the post will be listed under.')
     tags = TaggableManager(blank=True)
     is_published = models.BooleanField(default=True, help_text='Do you want this post to be published publicly?')
-    image = models.ImageField(upload_to=blog_post_upload_path)
     slug = models.SlugField(unique=True)
 
     def get_absolute_url(self):
