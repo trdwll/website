@@ -6,10 +6,6 @@ from taggit.managers import TaggableManager
 
 from ckeditor_uploader.fields import RichTextUploadingField
 
-def blog_post_upload_path(instance, filename):
-    return 'blog/%s/%s' % (instance.slug, filename)
-
-
 class Category(models.Model):
     title = models.CharField(max_length=100, help_text='Title of the category.')
     slug = models.SlugField(unique=True)

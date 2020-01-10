@@ -37,7 +37,7 @@ class Migration(migrations.Migration):
                 ('body', models.TextField(help_text='The content of the post. (<strong>Markdown Supported</strong>)')),
                 ('description', models.CharField(help_text='A short tagline that describes what the reader will be reading about.', max_length=100)),
                 ('is_published', models.BooleanField(default=True, help_text='Do you want this post to be published publicly?')),
-                ('image', models.ImageField(upload_to=blog.models.blog_post_upload_path)),
+                ('image', models.ImageField()),
                 ('slug', models.SlugField(unique=True)),
                 ('author', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='blog_author', to=settings.AUTH_USER_MODEL)),
                 ('category', models.ForeignKey(help_text='The category that the post will be listed under.', on_delete=django.db.models.deletion.CASCADE, to='blog.Category')),

@@ -4,11 +4,6 @@ from django.urls import reverse
 from ckeditor_uploader.fields import RichTextUploadingField
 from ckeditor.fields import RichTextField
 
-
-def experiment_upload_path(instance, filename):
-    return 'experiments/%s/%s' % (instance.slug, filename)
-
-
 class Experiment(models.Model):
     published_date = models.DateTimeField(help_text='When was this project created?')
     title = models.CharField(max_length=100, help_text='Title of the post.')
