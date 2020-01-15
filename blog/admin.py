@@ -9,6 +9,7 @@ class PostAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title', )}
     search_fields = ['title', 'category', 'tags', 'body']
     list_display = ['title', 'category', 'published_date', 'is_published']
+    ordering = ('-published_date', )
 
     def save_model(self, request, obj, form, change):
         if not obj.pk:
