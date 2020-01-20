@@ -22,3 +22,8 @@ class AboutView(View):
         text = About.objects.all().first()
 
         return render(request, self.template_name, {'about_text': text})
+
+
+class RedirectHomeView(View):
+    def get(self, request):
+        return redirect('home_page')
