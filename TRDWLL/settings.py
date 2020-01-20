@@ -158,9 +158,10 @@ CKEDITOR_CONFIGS = {
             ['TextColor', 'BGColor'],
             ['Outdent', 'Indent', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
             ['Link', 'Unlink'],
-            ['Smiley', 'SpecialChar'], ['Source'],
+            ['Emojione', 'SpecialChar'], ['Source'], # can replace Emojione with Smiley
         ],
         'height': 300,
         'width': 1200, # probably not the smartest as this breaks mobile
+        'extraPlugins': 'emojione',
     }
 }
