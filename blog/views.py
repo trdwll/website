@@ -8,7 +8,12 @@ class BlogPostView(View):
 
     def get(self, request, slug):
         # Get the post object from the database by using the slug
-        post = get_object_or_404(Post.objects.filter(slug=slug, is_published=True))
+
+        if request.user.is_authenticated and request.user.is_superuser:
+            post = get_object_or_404(Post.objects.filter(slug=slug))
+        else:
+            post = get_object_or_404(Post.objects.filter(slug=slug, is_published=True))
+
 
         return render(request, self.template_name, {
             'POST': post
