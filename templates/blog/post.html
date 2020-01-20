@@ -20,4 +20,9 @@
     {% load general_tags %}
     {{ POST.body|markdown|safe }}
 </div>
+{% if not POST.is_published and request.user.is_authenticated and request.user.is_superuser %}
+<div class="alert alert-warning" role="alert">
+  This post is not published. Only staff can view this post currently.
+</div>
+{% endif %}
 {% endblock %}
