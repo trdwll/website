@@ -16,7 +16,7 @@
 <div class="content">
     <h3>{{ POST.title }}</h3>
     <h5 class="date">{{ POST.published_date }}</h5>
-    <p>{{ POST.description }}</p>
+    <p>{{ POST.description }}</p><br />
     {% load general_tags %}
     {{ POST.body|markdown|safe }}
 </div>
