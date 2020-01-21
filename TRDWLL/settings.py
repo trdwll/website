@@ -163,6 +163,6 @@ CKEDITOR_CONFIGS = {
         ],
         'height': 300,
         'width': 1200, # probably not the smartest as this breaks mobile
-        'extraPlugins': ','.join(['codesnippet', 'emojione', 'autolink', 'autogrow', 'preview', 'blockquote', 'showblocks', 'templates']),
+        'extraPlugins': ','.join(['codesnippet', 'emojione', 'autolink', 'autogrow', 'preview', 'blockquote', 'showblocks', 'templates', 'uploadfile']),
     }
 }
