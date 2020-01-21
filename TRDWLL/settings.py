@@ -159,10 +159,10 @@ CKEDITOR_CONFIGS = {
             ['Outdent', 'Indent', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
             ['Link', 'Unlink'], ['CodeSnippet'],
             ['Emojione', 'SpecialChar'], 
-            ['Source', 'Preview'], # can replace Emojione with Smiley
+            ['Source'], # can replace Emojione with Smiley
         ],
         'height': 300,
         'width': 1200, # probably not the smartest as this breaks mobile
-        'extraPlugins': ','.join(['codesnippet', 'emojione', 'autolink', 'autogrow', 'preview', 'blockquote', 'showblocks', 'templates', 'uploadfile']),
+        'extraPlugins': ','.join(['codesnippet', 'emojione', 'autolink', 'autogrow', 'blockquote', 'showblocks', 'templates', 'uploadfile']),
     }
 }
