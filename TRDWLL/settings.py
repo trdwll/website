@@ -152,16 +152,17 @@ CKEDITOR_CONFIGS = {
     'default': {
         'toolbar': 'Custom',
         'toolbar_Custom': [
-            ['Styles', 'Format', 'Bold', 'Italic', 'Underline', 'Strike', '-', 'NumberedList', 'BulletedList', '-', 'SpellChecker', 'Undo', 'Redo'],
-            ['Link', 'Unlink', 'Anchor'],
-            ['Image', 'Flash', 'Table', 'HorizontalRule'],
+            ['Styles', 'Format', 'Bold', 'Italic', 'Underline', 'Strike', '-', 'NumberedList', 'BulletedList', '-', 'Blockquote', 'ShowBlocks', 'Templates'],
+            ['Link', 'Unlink'],
+            ['Image', 'Table', 'HorizontalRule'],
             ['TextColor', 'BGColor'],
             ['Outdent', 'Indent', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
             ['Link', 'Unlink'], ['CodeSnippet'],
-            ['Emojione', 'SpecialChar'], ['Source'], # can replace Emojione with Smiley
+            ['Emojione', 'SpecialChar'], 
+            ['Source', 'Preview'], # can replace Emojione with Smiley
         ],
         'height': 300,
         'width': 1200, # probably not the smartest as this breaks mobile
-        'extraPlugins': ','.join(['codesnippet', 'emojione'])
+        'extraPlugins': ','.join(['codesnippet', 'emojione', 'autolink', 'autogrow', 'preview', 'blockquote', 'showblocks', 'templates']),
     }
 }
