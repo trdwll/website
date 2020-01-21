@@ -2,9 +2,10 @@
 
 {% block title %}{{ POST.title }} &mdash; @trdwll{% endblock %}
 
-{% block navbar %}
-<li><a href="{% url 'home_page' %}">Home</a></li>
-<li><a href="{% url 'about_page' %}">About</a></li>
+{% block head_include %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/vs.min.css" integrity="sha256-iGs2TpBtdfGr1FIgzGyO4CKAD1+2QaDswtMmJwDtHAs=" crossorigin="anonymous" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js" integrity="sha256-1zu+3BnLYV9LdiY85uXMzii3bdrkelyp37e0ZyTAQh0=" crossorigin="anonymous"></script>
+<script>hljs.initHighlightingOnLoad();</script>
 {% endblock %}
 
 {% block content %}

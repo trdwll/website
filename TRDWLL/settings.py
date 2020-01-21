@@ -157,11 +157,11 @@ CKEDITOR_CONFIGS = {
             ['Image', 'Flash', 'Table', 'HorizontalRule'],
             ['TextColor', 'BGColor'],
             ['Outdent', 'Indent', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
-            ['Link', 'Unlink'],
+            ['Link', 'Unlink'], ['CodeSnippet'],
             ['Emojione', 'SpecialChar'], ['Source'], # can replace Emojione with Smiley
         ],
         'height': 300,
         'width': 1200, # probably not the smartest as this breaks mobile
-        'extraPlugins': 'emojione',
+        'extraPlugins': ','.join(['codesnippet', 'emojione'])
     }
 }
