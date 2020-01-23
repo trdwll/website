@@ -7,9 +7,14 @@ class CategoryAdmin(admin.ModelAdmin):
 class PostAdmin(admin.ModelAdmin):
     exclude = ['author']
     prepopulated_fields = {'slug': ('title', )}
-    search_fields = ['title', 'category', 'tags', 'body']
+    search_fields = ['title', 'category', 'body']
     list_display = ['title', 'category', 'published_date', 'is_published']
     ordering = ('-published_date', )
+    fieldsets = (
+        ('Post Information', {
+            'fields': ('published_date', 'is_published', 'title', 'description', 'category', 'slug', 'body', )
+        }),
+    )
 
     def save_model(self, request, obj, form, change):
         if not obj.pk:
