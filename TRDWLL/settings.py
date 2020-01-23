@@ -34,7 +34,6 @@ INSTALLED_APPS = [
     'experiments',
 
     # 3rd party
-    'taggit',
     'django_otp',
     'django_otp.plugins.otp_totp',
     'ckeditor',

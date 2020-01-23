@@ -4,8 +4,6 @@ from django.contrib.auth.models import User
 from django.db.models.signals import pre_save
 from TRDWLL.signals import create_redirect
 
-from taggit.managers import TaggableManager
-
 from ckeditor_uploader.fields import RichTextUploadingField
 
 class Category(models.Model):
@@ -29,7 +27,6 @@ class Post(models.Model):
     body = RichTextUploadingField()
     description = models.CharField(max_length=100, help_text='A short tagline that describes what the reader will be reading about.')
     category = models.ForeignKey(Category, on_delete=models.CASCADE, help_text='The category that the post will be listed under.')
-    tags = TaggableManager(blank=True)
     is_published = models.BooleanField(default=True, help_text='Do you want this post to be published publicly?')
     slug = models.SlugField(unique=True)
 
