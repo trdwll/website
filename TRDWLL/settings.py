@@ -168,5 +168,16 @@ CKEDITOR_CONFIGS = {
         'height': 300,
         'width': 1200, # probably not the smartest as this breaks mobile
         'extraPlugins': ','.join(['codesnippet', 'emojione', 'autolink', 'autogrow', 'blockquote', 'showblocks', 'templates', 'uploadfile', 'preview']),
+    },
+    'experiments_sidebar': {
+        'toolbar': 'Custom',
+        'toolbar_Custom': [
+            ['Bold', 'Italic', 'Underline', 'Strike', '-', 'NumberedList', 'BulletedList'],
+            ['Link', 'Unlink', 'HorizontalRule'],
+            ['TextColor', 'BGColor'],
+            ['Link', 'Unlink'], ['CodeSnippet'],
+            ['Source'],
+        ],
+        'width': 600,
     }
 }

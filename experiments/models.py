@@ -7,14 +7,14 @@ from ckeditor_uploader.fields import RichTextUploadingField
 from ckeditor.fields import RichTextField
 
 class Experiment(models.Model):
-    published_date = models.DateTimeField(help_text='When was this project created?')
+    published_date = models.DateTimeField(help_text='When was this experiment created?')
     title = models.CharField(max_length=100, help_text='Title of the post.')
     description = models.CharField(max_length=500, help_text='The description of the experiment.')
     body = RichTextUploadingField()
     is_published = models.BooleanField(default=True, help_text='Do you want this post to be published publicly?')
     tech_used = models.CharField(max_length=250, help_text='Tech that was used for this experiment.')
-    learned_list = RichTextField(blank=True)
-    struggled_list = RichTextField(blank=True)
+    learned_list = RichTextField(blank=True, help_text='Things that I learned during the development of this experiment?', config_name='experiments_sidebar')
+    struggled_list = RichTextField(blank=True, help_text='Things that I struggled with during the development of this experiment?', config_name='experiments_sidebar')
     slug = models.SlugField(unique=True)
 
     def get_absolute_url(self):
