@@ -1,6 +1,8 @@
 from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
+from django.db.models.signals import pre_save
+from TRDWLL.signals import create_redirect
 
 from taggit.managers import TaggableManager
 
@@ -39,3 +41,6 @@ class Post(models.Model):
 
     class Meta:
         db_table = 'blog_post'
+
+
+pre_save.connect(create_redirect, sender=Post)

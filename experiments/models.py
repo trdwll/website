@@ -1,5 +1,7 @@
 from django.db import models
 from django.urls import reverse
+from django.db.models.signals import pre_save
+from TRDWLL.signals import create_redirect
 
 from ckeditor_uploader.fields import RichTextUploadingField
 from ckeditor.fields import RichTextField
@@ -23,3 +25,6 @@ class Experiment(models.Model):
 
     class Meta:
         db_table = 'experiment_entry'
+
+
+pre_save.connect(create_redirect, sender=Experiment)
