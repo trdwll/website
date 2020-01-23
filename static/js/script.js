@@ -6,6 +6,9 @@ var tags = [
     'The blog of a guy that writes code.',
     'Do you think pigeons have feelings?',
     'This site is open source!',
+    'Built in Django!',
+    'Built with Love!',
+    'Built in the USA!',
 ];
 
 $(document).ready(function() {
