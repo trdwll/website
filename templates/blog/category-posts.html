@@ -1,13 +1,13 @@
 {% extends "_base.html" %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Posts under {{ POSTS_CATEGORY }}{% endblock %}
 
 {% block content %}
-<h1>Blog</h1>
-<small id="home_tagline"></small>
+<h1>Posts under {{ POSTS_CATEGORY }}</h1>
+<small>Some writings under a category.</small>
 
 <div class="archive">
-{% for year,posts in POSTS_HOMEPAGE.items %}
+{% for year,posts in POSTS.items %}
     <h2 class="archive-year">{{ year }}</h2>
     
     {% for post in posts %}

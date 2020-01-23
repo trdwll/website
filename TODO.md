@@ -1,6 +1,6 @@
 # TODO
 
 - Add blog tags
-- Direct uploading of files via AdminCP on post body/Add CKEditor to admin
 - Change file names to a uuid
 - Update emojione
+- Add ability to store additional slugs that redirect to current slug
