@@ -6,6 +6,11 @@ from TRDWLL.signals import create_redirect
 
 from ckeditor_uploader.fields import RichTextUploadingField
 
+# for category separation
+prefix_char = '['
+suffix_char = ']'
+
+
 class Category(models.Model):
     title = models.CharField(max_length=100, help_text='Title of the category.')
     slug = models.SlugField(unique=True)
@@ -36,8 +41,18 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
+    def print_categories(self):
+        """ Get the categories and format them for display """
+        categories = [] 
+
+        for tmp in self.category.all():
+            categories.append(prefix_char+'<a href="'+tmp.get_absolute_url()+'">'+tmp.title+'</a>'+suffix_char)
+
+        return ''.join(categories)
+
     class Meta:
         db_table = 'blog_post'
 
 
 pre_save.connect(create_redirect, sender=Post)
+pre_save.connect(create_redirect, sender=Category)
