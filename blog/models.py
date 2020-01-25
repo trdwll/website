@@ -50,6 +50,9 @@ class Post(models.Model):
 
         return ''.join(categories)
 
+    def categories(self):
+        return ", ".join([str(p.title) for p in self.category.all()])
+
     class Meta:
         db_table = 'blog_post'
 
