@@ -1,19 +1,954 @@
-﻿/*
- Copyright (c) 2003-2019, CKSource - Frederico Knabben. All rights reserved.
- For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
-*/
-(function(){function p(a){var c=a.margin?"margin":a.MARGIN?"MARGIN":!1,d,k;if(c){k=CKEDITOR.tools.style.parse.margin(a[c]);for(d in k)a["margin-"+d]=k[d];delete a[c]}}var f,l=CKEDITOR.tools,n={};CKEDITOR.plugins.pastetools.filters.common=n;n.rules=function(a,c,d){return{elements:{table:function(a){a.filterChildren(d);var b=a.parent,c=b&&b.parent,e,h;if(b.name&&"div"===b.name&&b.attributes.align&&1===l.object.keys(b.attributes).length&&1===b.children.length){a.attributes.align=b.attributes.align;e=
-b.children.splice(0);a.remove();for(h=e.length-1;0<=h;h--)c.add(e[h],b.getIndex());b.remove()}f.convertStyleToPx(a)},tr:function(a){a.attributes={}},td:function(a){var b=a.getAscendant("table"),b=l.parseCssText(b.attributes.style,!0),g=b.background;g&&f.setStyle(a,"background",g,!0);(b=b["background-color"])&&f.setStyle(a,"background-color",b,!0);var b=l.parseCssText(a.attributes.style,!0),g=b.border?CKEDITOR.tools.style.border.fromCssRule(b.border):{},g=l.style.border.splitCssValues(b,g),e=CKEDITOR.tools.clone(b),
-h;for(h in e)0==h.indexOf("border")&&delete e[h];a.attributes.style=CKEDITOR.tools.writeCssText(e);b.background&&(h=CKEDITOR.tools.style.parse.background(b.background),h.color&&(f.setStyle(a,"background-color",h.color,!0),f.setStyle(a,"background","")));for(var m in g)h=b[m]?CKEDITOR.tools.style.border.fromCssRule(b[m]):g[m],"none"===h.style?f.setStyle(a,m,"none"):f.setStyle(a,m,h.toString());f.mapCommonStyles(a);f.convertStyleToPx(a);f.createStyleStack(a,d,c,/margin|text\-align|padding|list\-style\-type|width|height|border|white\-space|vertical\-align|background/i)}}}};
-n.styles={setStyle:function(a,c,d,k){var b=l.parseCssText(a.attributes.style);k&&b[c]||(""===d?delete b[c]:b[c]=d,a.attributes.style=CKEDITOR.tools.writeCssText(b))},convertStyleToPx:function(a){var c=a.attributes.style;c&&(a.attributes.style=c.replace(/\d+(\.\d+)?pt/g,function(a){return CKEDITOR.tools.convertToPx(a)+"px"}))},mapStyles:function(a,c){for(var d in c)if(a.attributes[d]){if("function"===typeof c[d])c[d](a.attributes[d]);else f.setStyle(a,c[d],a.attributes[d]);delete a.attributes[d]}},
-mapCommonStyles:function(a){return f.mapStyles(a,{vAlign:function(c){f.setStyle(a,"vertical-align",c)},width:function(c){f.setStyle(a,"width",c+"px")},height:function(c){f.setStyle(a,"height",c+"px")}})},normalizedStyles:function(a,c){var d="background-color:transparent border-image:none color:windowtext direction:ltr mso- visibility:visible div:border:none".split(" "),k="font-family font font-size color background-color line-height text-decoration".split(" "),b=function(){for(var a=[],b=0;b<arguments.length;b++)arguments[b]&&
-a.push(arguments[b]);return-1!==l.indexOf(d,a.join(":"))},g=!0===CKEDITOR.plugins.pastetools.getConfigValue(c,"removeFontStyles"),e=l.parseCssText(a.attributes.style);"cke:li"==a.name&&(e["TEXT-INDENT"]&&e.MARGIN?(a.attributes["cke-indentation"]=n.lists.getElementIndentation(a),e.MARGIN=e.MARGIN.replace(/(([\w\.]+ ){3,3})[\d\.]+(\w+$)/,"$10$3")):delete e["TEXT-INDENT"],delete e["text-indent"]);for(var h=l.object.keys(e),m=0;m<h.length;m++){var f=h[m].toLowerCase(),r=e[h[m]],t=CKEDITOR.tools.indexOf;
-(g&&-1!==t(k,f.toLowerCase())||b(null,f,r)||b(null,f.replace(/\-.*$/,"-"))||b(null,f)||b(a.name,f,r)||b(a.name,f.replace(/\-.*$/,"-"))||b(a.name,f)||b(r))&&delete e[h[m]]}var u=CKEDITOR.plugins.pastetools.getConfigValue(c,"keepZeroMargins");p(e);(function(){CKEDITOR.tools.array.forEach(["top","right","bottom","left"],function(a){a="margin-"+a;if(a in e){var b=CKEDITOR.tools.convertToPx(e[a]);b||u?e[a]=b?b+"px":0:delete e[a]}})})();return CKEDITOR.tools.writeCssText(e)},createStyleStack:function(a,
-c,d,k){var b=[];a.filterChildren(c);for(c=a.children.length-1;0<=c;c--)b.unshift(a.children[c]),a.children[c].remove();f.sortStyles(a);c=l.parseCssText(f.normalizedStyles(a,d));d=a;var g="span"===a.name,e;for(e in c)if(!e.match(k||/margin((?!-)|-left|-top|-bottom|-right)|text-indent|text-align|width|border|padding/i))if(g)g=!1;else{var h=new CKEDITOR.htmlParser.element("span");h.attributes.style=e+":"+c[e];d.add(h);d=h;delete c[e]}CKEDITOR.tools.isEmpty(c)?delete a.attributes.style:a.attributes.style=
-CKEDITOR.tools.writeCssText(c);for(c=0;c<b.length;c++)d.add(b[c])},sortStyles:function(a){for(var c=["border","border-bottom","font-size","background"],d=l.parseCssText(a.attributes.style),k=l.object.keys(d),b=[],g=[],e=0;e<k.length;e++)-1!==l.indexOf(c,k[e].toLowerCase())?b.push(k[e]):g.push(k[e]);b.sort(function(a,b){var e=l.indexOf(c,a.toLowerCase()),d=l.indexOf(c,b.toLowerCase());return e-d});k=[].concat(b,g);b={};for(e=0;e<k.length;e++)b[k[e]]=d[k[e]];a.attributes.style=CKEDITOR.tools.writeCssText(b)},
-pushStylesLower:function(a,c,d){if(!a.attributes.style||0===a.children.length)return!1;c=c||{};var k={"list-style-type":!0,width:!0,height:!0,border:!0,"border-":!0},b=l.parseCssText(a.attributes.style),g;for(g in b)if(!(g.toLowerCase()in k||k[g.toLowerCase().replace(/\-.*$/,"-")]||g.toLowerCase()in c)){for(var e=!1,h=0;h<a.children.length;h++){var m=a.children[h];if(m.type===CKEDITOR.NODE_TEXT&&d){var q=new CKEDITOR.htmlParser.element("span");q.setHtml(m.value);m.replaceWith(q);m=q}m.type===CKEDITOR.NODE_ELEMENT&&
-(e=!0,f.setStyle(m,g,b[g]))}e&&delete b[g]}a.attributes.style=CKEDITOR.tools.writeCssText(b);return!0},inliner:{filtered:"break-before break-after break-inside page-break page-break-before page-break-after page-break-inside".split(" "),parse:function(a){function c(a){var b=new CKEDITOR.dom.element("style"),c=new CKEDITOR.dom.element("iframe");c.hide();CKEDITOR.document.getBody().append(c);c.$.contentDocument.documentElement.appendChild(b.$);b.$.textContent=a;c.remove();return b.$.sheet}function d(a){var b=
-a.indexOf("{"),c=a.indexOf("}");return k(a.substring(b+1,c),!0)}var k=CKEDITOR.tools.parseCssText,b=f.inliner.filter,g=a.is?a.$.sheet:c(a);a=[];var e;if(g)for(g=g.cssRules,e=0;e<g.length;e++)g[e].type===window.CSSRule.STYLE_RULE&&a.push({selector:g[e].selectorText,styles:b(d(g[e].cssText))});return a},filter:function(a){var c=f.inliner.filtered,d=l.array.indexOf,k={},b;for(b in a)-1===d(c,b)&&(k[b]=a[b]);return k},sort:function(a){return a.sort(function(a){var d=CKEDITOR.tools.array.map(a,function(a){return a.selector});
-return function(a,b){var c=-1!==(""+a.selector).indexOf(".")?1:0,c=(-1!==(""+b.selector).indexOf(".")?1:0)-c;return 0!==c?c:d.indexOf(b.selector)-d.indexOf(a.selector)}}(a))},inline:function(a){var c=f.inliner.parse,d=f.inliner.sort,k=function(a){a=(new DOMParser).parseFromString(a,"text/html");return new CKEDITOR.dom.document(a)}(a);a=k.find("style");d=d(function(a){var d=[],e;for(e=0;e<a.count();e++)d=d.concat(c(a.getItem(e)));return d}(a));CKEDITOR.tools.array.forEach(d,function(a){var c=a.styles;
-a=k.find(a.selector);var e,d,f;p(c);for(f=0;f<a.count();f++)e=a.getItem(f),d=CKEDITOR.tools.parseCssText(e.getAttribute("style")),p(d),d=CKEDITOR.tools.extend({},d,c),e.setAttribute("style",CKEDITOR.tools.writeCssText(d))});return k}}};f=n.styles;n.lists={getElementIndentation:function(a){a=l.parseCssText(a.attributes.style);if(a.margin||a.MARGIN){a.margin=a.margin||a.MARGIN;var c={styles:{margin:a.margin}};CKEDITOR.filter.transformationsTools.splitMarginShorthand(c);a["margin-left"]=c.styles["margin-left"]}return parseInt(l.convertToPx(a["margin-left"]||
-"0px"),10)}};n.elements={replaceWithChildren:function(a){for(var c=a.children.length-1;0<=c;c--)a.children[c].insertAfter(a)}};n.createAttributeStack=function(a,c){var d,f=[];a.filterChildren(c);for(d=a.children.length-1;0<=d;d--)f.unshift(a.children[d]),a.children[d].remove();d=a.attributes;var b=a,g=!0,e;for(e in d)if(g)g=!1;else{var h=new CKEDITOR.htmlParser.element(a.name);h.attributes[e]=d[e];b.add(h);b=h;delete d[e]}for(d=0;d<f.length;d++)b.add(f[d])};n.parseShorthandMargins=p})();
+/**
+ * @license Copyright (c) 2003-2020, CKSource - Frederico Knabben. All rights reserved.
+ * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
+ */
+
+/* globals CKEDITOR */
+
+( function() {
+	'use strict';
+
+	var Style,
+		tools = CKEDITOR.tools,
+		plug = {};
+
+	/**
+	 * A set of common paste filter helpers.
+	 *
+	 * @since 4.13.0
+	 * @private
+	 * @member CKEDITOR.plugins.pastetools.filters
+	 */
+	CKEDITOR.plugins.pastetools.filters.common = plug;
+
+	/**
+	 * Common paste rules.
+	 *
+	 * @since 4.13.0
+	 * @private
+	 * @member CKEDITOR.plugins.pastetools.filters.common
+	 */
+	plug.rules = function( html, editor, filter ) {
+		var availableFonts = getMatchingFonts( editor );
+		return {
+			elements: {
+				'^': function( element ) {
+					removeSuperfluousStyles( element );
+					// Don't use "attributeNames", because those rules are applied after elements.
+					// Normalization is required at the very begininng.
+					normalizeAttributesName( element );
+				},
+
+				'span': function( element ) {
+					if ( element.hasClass( 'Apple-converted-space' ) ) {
+						return new CKEDITOR.htmlParser.text( ' ' );
+					}
+				},
+
+				'table': function( element ) {
+					element.filterChildren( filter );
+
+					var parent = element.parent,
+						root = parent && parent.parent,
+						parentChildren,
+						i;
+
+					// In case parent div has only align attr, move it to the table element (https://dev.ckeditor.com/ticket/16811).
+					if ( parent.name && parent.name === 'div' && parent.attributes.align &&
+						tools.object.keys( parent.attributes ).length === 1 && parent.children.length === 1 ) {
+
+						// If align is the only attribute of parent.
+						element.attributes.align = parent.attributes.align;
+
+						parentChildren = parent.children.splice( 0 );
+
+						element.remove();
+						for ( i = parentChildren.length - 1; i >= 0; i-- ) {
+							root.add( parentChildren[ i ], parent.getIndex() );
+						}
+						parent.remove();
+					}
+
+					Style.convertStyleToPx( element );
+
+				},
+
+				'tr': function( element ) {
+					// Attribues are moved to 'td' elements.
+					element.attributes = {};
+				},
+
+				'td': function( element ) {
+					var ascendant = element.getAscendant( 'table' ),
+						ascendantStyle = tools.parseCssText( ascendant.attributes.style, true );
+
+					// Sometimes the background is set for the whole table - move it to individual cells.
+					var background = ascendantStyle.background;
+					if ( background ) {
+						Style.setStyle( element, 'background', background, true );
+					}
+
+					var backgroundColor = ascendantStyle[ 'background-color' ];
+					if ( backgroundColor ) {
+						Style.setStyle( element, 'background-color', backgroundColor, true );
+					}
+
+					var styles = tools.parseCssText( element.attributes.style, true ),
+						borderStyles = styles.border ? CKEDITOR.tools.style.border.fromCssRule( styles.border ) : {},
+						borders = tools.style.border.splitCssValues( styles, borderStyles ),
+						tmpStyles = CKEDITOR.tools.clone( styles );
+
+					// Drop all border styles before continue,
+					// so there are no leftovers which may conflict with
+					// new border styles.
+					for ( var key in tmpStyles ) {
+						if ( key.indexOf( 'border' ) == 0 ) {
+							delete tmpStyles[ key ];
+						}
+					}
+
+					element.attributes.style = CKEDITOR.tools.writeCssText( tmpStyles );
+
+					// Unify background color property.
+					if ( styles.background ) {
+						var bg = CKEDITOR.tools.style.parse.background( styles.background );
+
+						if ( bg.color ) {
+							Style.setStyle( element, 'background-color', bg.color, true );
+							Style.setStyle( element, 'background', '' );
+						}
+					}
+
+					// Unify border properties.
+					for ( var border in borders ) {
+						var borderStyle = styles[ border ] ?
+							CKEDITOR.tools.style.border.fromCssRule( styles[ border ] )
+							: borders[ border ];
+
+						// No need for redundant shorthand properties if style is disabled.
+						if ( borderStyle.style === 'none' ) {
+							Style.setStyle( element, border, 'none' );
+						} else {
+							Style.setStyle( element, border, borderStyle.toString() );
+						}
+					}
+
+					Style.mapCommonStyles( element );
+
+					Style.convertStyleToPx( element );
+
+					Style.createStyleStack( element, filter, editor,
+						/margin|text\-align|padding|list\-style\-type|width|height|border|white\-space|vertical\-align|background/i );
+				},
+
+				'font': function( element ) {
+					if ( element.attributes.face && availableFonts ) {
+						element.attributes.face = replaceWithMatchingFont( element.attributes.face, availableFonts );
+					}
+				}
+			}
+		};
+	};
+
+	/**
+	 * Namespace containing all the helper functions to work with styles.
+	 *
+	 * @private
+	 * @since 4.13.0
+	 * @member CKEDITOR.plugins.pastetools.filters.common
+	 */
+	plug.styles = {
+		setStyle: function( element, key, value, dontOverwrite ) {
+			var styles = tools.parseCssText( element.attributes.style );
+
+			if ( dontOverwrite && styles[ key ] ) {
+				return;
+			}
+
+			if ( value === '' ) {
+				delete styles[ key ];
+			} else {
+				styles[ key ] = value;
+			}
+
+			element.attributes.style = CKEDITOR.tools.writeCssText( styles );
+		},
+
+		convertStyleToPx: function( element ) {
+			var style = element.attributes.style;
+
+			if ( !style ) {
+				return;
+			}
+
+			element.attributes.style = style.replace( /\d+(\.\d+)?pt/g, function( match ) {
+				return CKEDITOR.tools.convertToPx( match ) + 'px';
+			} );
+		},
+
+		// Map attributes to styles.
+		mapStyles: function( element, attributeStyleMap ) {
+			for ( var attribute in attributeStyleMap ) {
+				if ( element.attributes[ attribute ] ) {
+					if ( typeof attributeStyleMap[ attribute ] === 'function' ) {
+						attributeStyleMap[ attribute ]( element.attributes[ attribute ] );
+					} else {
+						Style.setStyle( element, attributeStyleMap[ attribute ], element.attributes[ attribute ] );
+					}
+					delete element.attributes[ attribute ];
+				}
+			}
+		},
+
+		// Maps common attributes to styles.
+		mapCommonStyles: function( element ) {
+			return Style.mapStyles( element, {
+				vAlign: function( value ) {
+					Style.setStyle( element, 'vertical-align', value );
+				},
+				width: function( value ) {
+					Style.setStyle( element, 'width', fixValue( value ) );
+				},
+				height: function( value ) {
+					Style.setStyle( element, 'height', fixValue( value ) );
+				}
+			} );
+		},
+
+		/**
+		 * Filters Word-specific styles for a given element. It may also filter additional styles
+		 * based on the `editor` configuration.
+		 *
+		 * @private
+		 * @since 4.13.0
+		 * @param {CKEDITOR.htmlParser.element} element
+		 * @param {CKEDITOR.editor} editor
+		 * @member CKEDITOR.plugins.pastetools.filters.common.styles
+		 */
+		normalizedStyles: function( element, editor ) {
+
+			// Some styles and style values are redundant, so delete them.
+			var resetStyles = [
+					'background-color:transparent',
+					'border-image:none',
+					'color:windowtext',
+					'direction:ltr',
+					'mso-',
+					'visibility:visible',
+					'div:border:none' // This one stays because https://dev.ckeditor.com/ticket/6241
+				],
+				textStyles = [
+					'font-family',
+					'font',
+					'font-size',
+					'color',
+					'background-color',
+					'line-height',
+					'text-decoration'
+				],
+				matchStyle = function() {
+					var keys = [];
+					for ( var i = 0; i < arguments.length; i++ ) {
+						if ( arguments[ i ] ) {
+							keys.push( arguments[ i ] );
+						}
+					}
+
+					return tools.indexOf( resetStyles, keys.join( ':' ) ) !== -1;
+				},
+				removeFontStyles = CKEDITOR.plugins.pastetools.getConfigValue( editor, 'removeFontStyles' ) === true;
+
+			var styles = tools.parseCssText( element.attributes.style );
+
+			if ( element.name == 'cke:li' ) {
+
+				// IE8 tries to emulate list indentation with a combination of
+				// text-indent and left margin. Normalize this. Note that IE8 styles are uppercase.
+				if ( styles[ 'TEXT-INDENT' ] && styles.MARGIN ) {
+					element.attributes[ 'cke-indentation' ] = plug.lists.getElementIndentation( element );
+					styles.MARGIN = styles.MARGIN.replace( /(([\w\.]+ ){3,3})[\d\.]+(\w+$)/, '$10$3' );
+				} else {
+					// Remove text indent in other cases, because it works differently with lists in html than in Word.
+					delete styles[ 'TEXT-INDENT' ];
+				}
+				delete styles[ 'text-indent' ];
+			}
+
+			var keys = tools.object.keys( styles );
+
+			for ( var i = 0; i < keys.length; i++ ) {
+				var styleName = keys[ i ].toLowerCase(),
+					styleValue = styles[ keys[ i ] ],
+					indexOf = CKEDITOR.tools.indexOf,
+					toBeRemoved = removeFontStyles && indexOf( textStyles, styleName.toLowerCase() ) !== -1;
+
+				if ( toBeRemoved || matchStyle( null, styleName, styleValue ) ||
+					matchStyle( null, styleName.replace( /\-.*$/, '-' ) ) ||
+					matchStyle( null, styleName ) ||
+					matchStyle( element.name, styleName, styleValue ) ||
+					matchStyle( element.name, styleName.replace( /\-.*$/, '-' ) ) ||
+					matchStyle( element.name, styleName ) ||
+					matchStyle( styleValue )
+				) {
+					delete styles[ keys[ i ] ];
+				}
+			}
+
+			var keepZeroMargins = CKEDITOR.plugins.pastetools.getConfigValue( editor, 'keepZeroMargins' );
+			// Still some elements might have shorthand margins or longhand with zero values.
+			parseShorthandMargins( styles );
+			normalizeMargins();
+
+			return CKEDITOR.tools.writeCssText( styles );
+
+			function normalizeMargins() {
+				var keys = [ 'top', 'right', 'bottom', 'left' ];
+				CKEDITOR.tools.array.forEach( keys, function( key ) {
+					key = 'margin-' + key;
+					if ( !( key in styles ) ) {
+						return;
+					}
+
+					var value = CKEDITOR.tools.convertToPx( styles[ key ] );
+					// We need to get rid of margins, unless they are allowed in config (#2935).
+					if ( value || keepZeroMargins ) {
+						styles[ key ] = value ? value + 'px' : 0;
+					} else {
+						delete styles[ key ];
+					}
+				} );
+			}
+		},
+
+		/**
+		 * Surrounds the element's children with a stack of `<span>` elements, each one having one style
+		 * originally belonging to the element.
+		 *
+		 * @private
+		 * @since 4.13.0
+		 * @param {CKEDITOR.htmlParser.element} element
+		 * @param {CKEDITOR.htmlParser.filter} filter
+		 * @param {CKEDITOR.editor} editor
+		 * @param {RegExp} [skipStyles] All matching style names will not be extracted to the style stack. Defaults
+		 * to `/margin((?!-)|-left|-top|-bottom|-right)|text-indent|text-align|width|border|padding/i`.
+		 * @member CKEDITOR.plugins.pastetools.filters.common.styles
+		 */
+		createStyleStack: function( element, filter, editor, skipStyles ) {
+			var children = [],
+				i;
+
+			element.filterChildren( filter );
+
+			// Store element's children somewhere else.
+			for ( i = element.children.length - 1; i >= 0; i-- ) {
+				children.unshift( element.children[ i ] );
+				element.children[ i ].remove();
+			}
+
+			Style.sortStyles( element );
+
+			// Create a stack of spans with each containing one style.
+			var styles = tools.parseCssText( Style.normalizedStyles( element, editor ) ),
+				innermostElement = element,
+				styleTopmost = element.name === 'span'; // Ensure that the root element retains at least one style.
+
+			for ( var style in styles ) {
+				if ( style.match( skipStyles || /margin((?!-)|-left|-top|-bottom|-right)|text-indent|text-align|width|border|padding/i ) ) {
+					continue;
+				}
+
+				if ( styleTopmost ) {
+					styleTopmost = false;
+					continue;
+				}
+
+				var newElement = new CKEDITOR.htmlParser.element( 'span' );
+
+				newElement.attributes.style = style + ':' + styles[ style ];
+
+				innermostElement.add( newElement );
+				innermostElement = newElement;
+
+				delete styles[ style ];
+			}
+
+			if ( !CKEDITOR.tools.isEmpty( styles ) ) {
+				element.attributes.style = CKEDITOR.tools.writeCssText( styles );
+			} else {
+				delete element.attributes.style;
+			}
+
+			// Add the stored children to the innermost span.
+			for ( i = 0; i < children.length; i++ ) {
+				innermostElement.add( children[ i ] );
+			}
+		},
+
+		// Some styles need to be stacked in a particular order to work properly.
+		sortStyles: function( element ) {
+			var orderedStyles = [
+					'border',
+					'border-bottom',
+					'font-size',
+					'background'
+				],
+				style = tools.parseCssText( element.attributes.style ),
+				keys = tools.object.keys( style ),
+				sortedKeys = [],
+				nonSortedKeys = [];
+
+			// Divide styles into sorted and non-sorted, because Array.prototype.sort()
+			// requires a transitive relation.
+			for ( var i = 0; i < keys.length; i++ ) {
+				if ( tools.indexOf( orderedStyles, keys[ i ].toLowerCase() ) !== -1 ) {
+					sortedKeys.push( keys[ i ] );
+				} else {
+					nonSortedKeys.push( keys[ i ] );
+				}
+			}
+
+			// For styles in orderedStyles[] enforce the same order as in orderedStyles[].
+			sortedKeys.sort( function( a, b ) {
+				var aIndex = tools.indexOf( orderedStyles, a.toLowerCase() );
+				var bIndex = tools.indexOf( orderedStyles, b.toLowerCase() );
+
+				return aIndex - bIndex;
+			} );
+
+			keys = [].concat( sortedKeys, nonSortedKeys );
+
+			var sortedStyles = {};
+
+			for ( i = 0; i < keys.length; i++ ) {
+				sortedStyles[ keys[ i ] ] = style[ keys[ i ] ];
+			}
+
+			element.attributes.style = CKEDITOR.tools.writeCssText( sortedStyles );
+		},
+
+		/**
+		 * Moves the element styles lower in the DOM hierarchy. If `wrapText==true` and the direct child of an element
+		 * is a text node, it will be wrapped in a `<span>` element.
+		 *
+		 * @private
+		 * @since 4.13.0
+		 * @param {CKEDITOR.htmlParser.element} element
+		 * @param {Object} exceptions An object containing style names which should not be moved, e.g. `{ background: true }`.
+		 * @param {Boolean} [wrapText=false] Whether a direct text child of an element should be wrapped into a `<span>` tag
+		 * so that the styles can be moved to it.
+		 * @returns {Boolean} Returns `true` if the styles were successfully moved lower.
+		 * @member CKEDITOR.plugins.pastetools.filters.common.styles
+		 */
+		pushStylesLower: function( element, exceptions, wrapText ) {
+
+			if ( !element.attributes.style ||
+				element.children.length === 0 ) {
+				return false;
+			}
+
+			exceptions = exceptions || {};
+
+			// Entries ending with a dash match styles that start with
+			// the entry name, e.g. 'border-' matches 'border-style', 'border-color' etc.
+			var retainedStyles = {
+				'list-style-type': true,
+				'width': true,
+				'height': true,
+				'border': true,
+				'border-': true
+			};
+
+			var styles = tools.parseCssText( element.attributes.style );
+
+			for ( var style in styles ) {
+				if ( style.toLowerCase() in retainedStyles ||
+					retainedStyles [ style.toLowerCase().replace( /\-.*$/, '-' ) ] ||
+					style.toLowerCase() in exceptions ) {
+					continue;
+				}
+
+				var pushed = false;
+
+				for ( var i = 0; i < element.children.length; i++ ) {
+					var child = element.children[ i ];
+
+					if ( child.type === CKEDITOR.NODE_TEXT && wrapText ) {
+						var wrapper = new CKEDITOR.htmlParser.element( 'span' );
+						wrapper.setHtml( child.value );
+						child.replaceWith( wrapper );
+						child = wrapper;
+					}
+
+					if ( child.type !== CKEDITOR.NODE_ELEMENT ) {
+						continue;
+					}
+
+					pushed = true;
+
+					Style.setStyle( child, style, styles[ style ] );
+				}
+
+				if ( pushed ) {
+					delete styles[ style ];
+				}
+			}
+
+			element.attributes.style = CKEDITOR.tools.writeCssText( styles );
+
+			return true;
+		},
+
+		/**
+		 * Namespace containing the styles inliner.
+		 *
+		 * @since 4.13.0
+		 * @private
+		 * @member CKEDITOR.plugins.pastetools.filters.common.styles
+		 */
+		inliner: {
+			/**
+			 *
+			 * Styles skipped by the styles inliner.
+			 *
+			 * @property {String[]}
+			 * @private
+			 * @since 4.13.0
+			 * @member CKEDITOR.plugins.pastetools.filters.common.styles.inliner
+			 */
+			filtered: [
+				'break-before',
+				'break-after',
+				'break-inside',
+				'page-break',
+				'page-break-before',
+				'page-break-after',
+				'page-break-inside'
+			],
+
+			/**
+			 * Parses the content of the provided `<style>` element.
+			 *
+			 * @param {CKEDITOR.dom.element/String} styles The `<style>` element or CSS text.
+			 * @returns {Array} An array containing parsed styles. Each item (style) is an object containing two properties:
+			 * * selector &ndash; A string representing a CSS selector.
+			 * * styles &ndash; An object containing a list of styles (e.g. `{ margin: 0, text-align: 'left' }`).
+			 * @since 4.13.0
+			 * @private
+			 * @member CKEDITOR.plugins.pastetools.filters.common.styles.inliner
+			 */
+			parse: function( styles ) {
+				var parseCssText = CKEDITOR.tools.parseCssText,
+					filterStyles = Style.inliner.filter,
+					sheet = styles.is ? styles.$.sheet : createIsolatedStylesheet( styles );
+
+				function createIsolatedStylesheet( styles ) {
+					var style = new CKEDITOR.dom.element( 'style' ),
+						iframe = new CKEDITOR.dom.element( 'iframe' );
+
+					iframe.hide();
+					CKEDITOR.document.getBody().append( iframe );
+					iframe.$.contentDocument.documentElement.appendChild( style.$ );
+
+					style.$.textContent = styles;
+					iframe.remove();
+					return style.$.sheet;
+				}
+
+				function getStyles( cssText ) {
+					var startIndex = cssText.indexOf( '{' ),
+						endIndex = cssText.indexOf( '}' );
+
+					return parseCssText( cssText.substring( startIndex + 1, endIndex ), true );
+				}
+
+				var parsedStyles = [],
+					rules,
+					i;
+
+				if ( sheet ) {
+					rules = sheet.cssRules;
+
+					for ( i = 0; i < rules.length; i++ ) {
+						// To detect if the rule contains styles and is not an at-rule, it's enough to check rule's type.
+						if ( rules[ i ].type === window.CSSRule.STYLE_RULE ) {
+							parsedStyles.push( {
+								selector: rules[ i ].selectorText,
+								styles: filterStyles( getStyles( rules[ i ].cssText ) )
+							} );
+						}
+					}
+				}
+				return parsedStyles;
+			},
+
+			/**
+			 * Filters out all unnecessary styles.
+			 *
+			 * @param {Object} stylesObj An object containing parsed CSS declarations
+			 * as property/value pairs (see {@link CKEDITOR.plugins.pastetools.filters.common.styles.inliner#parse}).
+			 * @returns {Object} The `stylesObj` copy with specific styles filtered out.
+			 * @since 4.13.0
+			 * @private
+			 * @member CKEDITOR.plugins.pastetools.filters.common.styles.inliner
+			 */
+			filter: function( stylesObj ) {
+				var toRemove = Style.inliner.filtered,
+					indexOf = tools.array.indexOf,
+					newObj = {},
+					style;
+
+				for ( style in stylesObj ) {
+					if ( indexOf( toRemove, style ) === -1 ) {
+						newObj[ style ] = stylesObj[ style ];
+					}
+				}
+
+				return newObj;
+			},
+
+			/**
+			 * Sorts the given styles array. All rules containing class selectors will have lower indexes than the rest
+			 * of the rules. Selectors with the same priority will be sorted in a reverse order than in the input array.
+			 *
+			 * @param {Array} stylesArray An array of styles as returned from
+			 * {@link CKEDITOR.plugins.pastetools.filters.common.styles.inliner#parse}.
+			 * @returns {Array} Sorted `stylesArray`.
+			 * @since 4.13.0
+			 * @private
+			 * @member CKEDITOR.plugins.pastetools.filters.common.styles.inliner
+			 */
+			sort: function( stylesArray ) {
+
+				// Returns comparison function which sorts all selectors in a way that class selectors are ordered
+				// before the rest of the selectors. The order of the selectors with the same specificity
+				// is reversed so that the most important will be applied first.
+				function getCompareFunction( styles ) {
+					var order = CKEDITOR.tools.array.map( styles, function( item ) {
+						return item.selector;
+					} );
+
+					return function( style1, style2 ) {
+						var value1 = isClassSelector( style1.selector ) ? 1 : 0,
+							value2 = isClassSelector( style2.selector ) ? 1 : 0,
+							result = value2 - value1;
+
+						// If the selectors have same specificity, the latter one should
+						// have higher priority (goes first).
+						return result !== 0 ? result :
+							order.indexOf( style2.selector ) - order.indexOf( style1.selector );
+					};
+				}
+
+				// True if given CSS selector contains a class selector.
+				function isClassSelector( selector ) {
+					return ( '' + selector ).indexOf( '.' ) !== -1;
+				}
+
+				return stylesArray.sort( getCompareFunction( stylesArray ) );
+			},
+
+			/**
+			 * Finds and inlines all the `<style>` elements in a given `html` string and returns a document where
+			 * all the styles are inlined into appropriate elements.
+			 *
+			 * This is needed because sometimes Microsoft Word does not put the style directly into the element, but
+			 * into a generic style sheet.
+			 *
+			 * @param {String} html An HTML string to be parsed.
+			 * @returns {CKEDITOR.dom.document}
+			 * @since 4.13.0
+			 * @private
+			 * @member CKEDITOR.plugins.pastetools.filters.common.styles.inliner
+			 */
+			inline: function( html ) {
+				var parseStyles = Style.inliner.parse,
+					sortStyles = Style.inliner.sort,
+					document = createTempDocument( html ),
+					stylesTags = document.find( 'style' ),
+					stylesArray = sortStyles( parseStyleTags( stylesTags ) );
+
+				function createTempDocument( html ) {
+					var parser = new DOMParser(),
+						document = parser.parseFromString( html, 'text/html' );
+
+					return new CKEDITOR.dom.document( document );
+				}
+
+				function parseStyleTags( stylesTags ) {
+					var styles = [],
+						i;
+
+					for ( i = 0; i < stylesTags.count(); i++ ) {
+						styles = styles.concat( parseStyles( stylesTags.getItem( i ) ) );
+					}
+
+					return styles;
+				}
+
+				function applyStyle( document, selector, style ) {
+					var elements = document.find( selector ),
+						element,
+						oldStyle,
+						newStyle,
+						i;
+
+					parseShorthandMargins( style );
+
+					for ( i = 0; i < elements.count(); i++ ) {
+						element = elements.getItem( i );
+
+						oldStyle = CKEDITOR.tools.parseCssText( element.getAttribute( 'style' ) );
+
+						parseShorthandMargins( oldStyle );
+						// The styles are applied with decreasing priority so we do not want
+						// to overwrite the existing properties.
+						newStyle = CKEDITOR.tools.extend( {}, oldStyle, style );
+						element.setAttribute( 'style', CKEDITOR.tools.writeCssText( newStyle ) );
+					}
+				}
+
+				CKEDITOR.tools.array.forEach( stylesArray, function( style ) {
+					applyStyle( document, style.selector, style.styles );
+				} );
+
+				return document;
+			}
+		}
+	};
+	Style = plug.styles;
+
+	plug.lists = {
+		getElementIndentation: function( element ) {
+			var style = tools.parseCssText( element.attributes.style );
+
+			if ( style.margin || style.MARGIN ) {
+				style.margin = style.margin || style.MARGIN;
+				var fakeElement = {
+					styles: {
+						margin: style.margin
+					}
+				};
+				CKEDITOR.filter.transformationsTools.splitMarginShorthand( fakeElement );
+				style[ 'margin-left' ] = fakeElement.styles[ 'margin-left' ];
+			}
+
+			return parseInt( tools.convertToPx( style[ 'margin-left' ] || '0px' ), 10 );
+		}
+	};
+
+	/**
+	 * Namespace containing all the helper functions to work with elements.
+	 *
+	 * @private
+	 * @since 4.13.0
+	 * @member CKEDITOR.plugins.pastetools.filters.common
+	 */
+	plug.elements = {
+		/**
+		 * Replaces an element with its children.
+		 *
+		 * This function is customized to work inside filters.
+		 *
+		 * @private
+		 * @since 4.13.0
+		 * @param {CKEDITOR.htmlParser.element} element
+		 * @member CKEDITOR.plugins.pastetools.filters.common.elements
+		 */
+		replaceWithChildren: function( element ) {
+			for ( var i = element.children.length - 1; i >= 0; i-- ) {
+				element.children[ i ].insertAfter( element );
+			}
+		}
+	};
+
+	plug.createAttributeStack = createAttributeStack;
+
+	plug.parseShorthandMargins = parseShorthandMargins;
+
+	function fixValue( value ) {
+		// Add 'px' only for values which are not ended with %
+		var endsWithPercent = /%$/;
+
+		return endsWithPercent.test( value ) ? value : value + 'px';
+	}
+
+	// Same as createStyleStack, but instead of styles - stack attributes.
+	function createAttributeStack( element, filter ) {
+		var i,
+			children = [];
+
+		element.filterChildren( filter );
+
+		// Store element's children somewhere else.
+		for ( i = element.children.length - 1; i >= 0; i-- ) {
+			children.unshift( element.children[ i ] );
+			element.children[ i ].remove();
+		}
+
+		// Create a stack of spans with each containing one style.
+		var attributes = element.attributes,
+			innermostElement = element,
+			topmost = true;
+
+		for ( var attribute in attributes ) {
+
+			if ( topmost ) {
+				topmost = false;
+				continue;
+			}
+
+			var newElement = new CKEDITOR.htmlParser.element( element.name );
+
+			newElement.attributes[ attribute ] = attributes[ attribute ];
+
+			innermostElement.add( newElement );
+			innermostElement = newElement;
+
+			delete attributes[ attribute ];
+		}
+
+		// Add the stored children to the innermost span.
+		for ( i = 0; i < children.length; i++ ) {
+			innermostElement.add( children[ i ] );
+		}
+	}
+
+	function parseShorthandMargins( style ) {
+		var marginCase = style.margin ? 'margin' : style.MARGIN ? 'MARGIN' : false,
+			key, margin;
+		if ( marginCase ) {
+			margin = CKEDITOR.tools.style.parse.margin( style[ marginCase ] );
+			for ( key in margin ) {
+				style[ 'margin-' + key ] = margin[ key ];
+			}
+			delete style[ marginCase ];
+		}
+	}
+
+	function removeSuperfluousStyles( element ) {
+		var resetStyles = [
+				'background-color:transparent',
+				'background:transparent',
+				'background-color:none',
+				'background:none',
+				'background-position:initial initial',
+				'background-repeat:initial initial',
+				'caret-color',
+				'font-family:-webkit-standard',
+				'font-variant-caps',
+				'letter-spacing:normal',
+				'orphans',
+				'widows',
+				'text-transform:none',
+				'word-spacing:0px',
+				'-webkit-text-size-adjust:auto',
+				'-webkit-text-stroke-width:0px',
+				'text-indent:0px',
+				'margin-bottom:0in'
+			];
+
+		var styles = CKEDITOR.tools.parseCssText( element.attributes.style ),
+			styleName,
+			styleString;
+
+		for ( styleName in styles ) {
+			styleString = styleName + ':' + styles[ styleName ];
+
+			if ( CKEDITOR.tools.array.some( resetStyles, function( val ) {
+				return styleString.substring( 0, val.length ).toLowerCase() === val;
+			} ) ) {
+				delete styles[ styleName ];
+				continue;
+			}
+		}
+
+		styles = CKEDITOR.tools.writeCssText( styles );
+
+		if ( styles !== '' ) {
+			element.attributes.style = styles;
+		} else {
+			delete element.attributes.style;
+		}
+	}
+
+	function getMatchingFonts( editor ) {
+		var fontNames = editor.config.font_names,
+			validNames = [];
+
+		if ( !fontNames || !fontNames.length ) {
+			return false;
+		}
+
+		validNames = CKEDITOR.tools.array.map( fontNames.split( ';' ), function( value ) {
+			// Font can have a short name at the begining. It's necessary to remove it, to apply correct style.
+			if ( value.indexOf( '/' ) === -1 ) {
+				return value;
+			}
+
+			return value.split( '/' )[ 1 ];
+		} );
+
+		return validNames.length ? validNames : false;
+	}
+
+	function replaceWithMatchingFont( fontValue, availableFonts ) {
+		var fontParts = fontValue.split( ',' ),
+			matchingFont = CKEDITOR.tools.array.find( availableFonts, function( font ) {
+				for ( var i = 0; i < fontParts.length; i++ ) {
+					if ( font.indexOf( CKEDITOR.tools.trim( fontParts[ i ] ) ) === -1 ) {
+						return false;
+					}
+				}
+
+				return true;
+			} );
+
+		return matchingFont || fontValue;
+	}
+
+	function normalizeAttributesName( element ) {
+		if ( element.attributes.bgcolor ) {
+			var styles = CKEDITOR.tools.parseCssText( element.attributes.style );
+
+			if ( !styles[ 'background-color' ] ) {
+				styles[ 'background-color' ] = element.attributes.bgcolor;
+
+				element.attributes.style = CKEDITOR.tools.writeCssText( styles );
+			}
+		}
+	}
+
+	/**
+	 * Whether to ignore all font-related formatting styles, including:
+	 *
+	 * * font size,
+	 * * font family,
+	 * * font foreground and background color.
+	 *
+	 * ```js
+	 *	config.pasteTools_removeFontStyles = true;
+	 * ```
+	 *
+	 * **Important note:** This configuration option is deprecated.
+	 * Either configure a proper {@glink guide/dev_advanced_content_filter Advanced Content Filter} for the editor
+	 * or use the {@link CKEDITOR.editor#afterPasteFromWord} event.
+	 *
+	 * @deprecated 4.13.0
+	 * @since 4.13.0
+	 * @cfg {Boolean} [pasteTools_removeFontStyles=false]
+	 * @member CKEDITOR.config
+	 */
+
+	/**
+	 * Whether the `margin` style of a pasted element that equals to 0 should be removed.
+	 *
+	 * ```js
+	 *	// Disable removing `margin:0`, `margin-left:0`, etc.
+	 *	config.pasteTools_keepZeroMargins = true;
+	 * ```
+	 *
+	 * @since 4.13.0
+	 * @cfg {Boolean} [pasteTools_keepZeroMargins=false]
+	 * @member CKEDITOR.config
+	 */
+} )();

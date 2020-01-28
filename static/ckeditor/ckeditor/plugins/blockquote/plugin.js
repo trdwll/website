@@ -1,5 +1,5 @@
 ﻿/**
- * @license Copyright (c) 2003-2019, CKSource - Frederico Knabben. All rights reserved.
+ * @license Copyright (c) 2003-2020, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
  */
 
@@ -223,10 +223,10 @@
 			this.setState( editor.elementPath( firstBlock ).contains( 'blockquote', 1 ) ? CKEDITOR.TRISTATE_ON : CKEDITOR.TRISTATE_OFF );
 		},
 
-		context: 'blockquote class="blockquote"',
+		context: 'blockquote',
 
-		allowedContent: 'blockquote class="blockquote"',
-		requiredContent: 'blockquote class="blockquote"'
+		allowedContent: 'blockquote',
+		requiredContent: 'blockquote'
 	};
 
 	CKEDITOR.plugins.add( 'blockquote', {
