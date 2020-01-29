@@ -1,7 +1,7 @@
 Django==3.0.2
 bcrypt
 django-htmlmin
-django-ckeditor
+git+https://github.com/django-ckeditor/django-ckeditor
 markdown
 Pillow
 gitpython
