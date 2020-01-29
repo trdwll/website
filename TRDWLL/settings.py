@@ -156,17 +156,16 @@ CKEDITOR_CONFIGS = {
         'toolbar': 'Custom',
         'toolbar_Custom': [
             ['Styles', 'Format', 'Bold', 'Italic', 'Underline', 'Strike', '-', 'NumberedList', 'BulletedList', '-', 'Blockquote', 'ShowBlocks', 'Templates'],
-            ['Link', 'Unlink'],
             ['Image', 'Table', 'HorizontalRule'],
             ['TextColor', 'BGColor'],
             ['Outdent', 'Indent', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
-            ['Link', 'Unlink'], ['CodeSnippet'],
+            ['Link', 'Unlink', 'Embed'], ['CodeSnippet'],
             ['Emojione', 'SpecialChar'], 
             ['Source', 'Preview'], # can replace Emojione with Smiley
         ],
         'height': 300,
         'width': 1200, # probably not the smartest as this breaks mobile
-        'extraPlugins': ','.join(['codesnippet', 'emojione', 'autolink', 'autogrow', 'blockquote', 'showblocks', 'templates', 'uploadfile', 'preview']),
+        'extraPlugins': ','.join(['codesnippet', 'emojione', 'autolink', 'autogrow', 'blockquote', 'showblocks', 'templates', 'uploadfile', 'preview', 'embed']),
     },
     'experiments_sidebar': {
         'toolbar': 'Custom',
@@ -174,7 +173,7 @@ CKEDITOR_CONFIGS = {
             ['Bold', 'Italic', 'Underline', 'Strike', '-', 'NumberedList', 'BulletedList'],
             ['Link', 'Unlink', 'HorizontalRule'],
             ['TextColor', 'BGColor'],
-            ['Link', 'Unlink'], ['CodeSnippet'],
+            ['CodeSnippet'],
             ['Source'],
         ],
         'width': 600,
