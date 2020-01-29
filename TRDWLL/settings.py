@@ -159,13 +159,13 @@ CKEDITOR_CONFIGS = {
             ['Image', 'Table', 'HorizontalRule'],
             ['TextColor', 'BGColor'],
             ['Outdent', 'Indent', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
-            ['Link', 'Unlink', 'Embed'], ['CodeSnippet'],
+            ['Link', 'Unlink', 'Html5video'], ['CodeSnippet'],
             ['Emojione', 'SpecialChar'], 
             ['Source', 'Preview'], # can replace Emojione with Smiley
         ],
         'height': 300,
         'width': 1200, # probably not the smartest as this breaks mobile
-        'extraPlugins': ','.join(['codesnippet', 'emojione', 'autolink', 'autogrow', 'blockquote', 'showblocks', 'templates', 'uploadfile', 'preview', 'embed']),
+        'extraPlugins': ','.join(['codesnippet', 'emojione', 'autolink', 'autogrow', 'blockquote', 'showblocks', 'templates', 'uploadfile', 'preview', 'html5video']),
     },
     'experiments_sidebar': {
         'toolbar': 'Custom',
