@@ -1,4 +1,4 @@
-Django==3.0.2
+Django>=3.0.3
 bcrypt
 django-htmlmin
 git+https://github.com/django-ckeditor/django-ckeditor
