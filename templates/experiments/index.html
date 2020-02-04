@@ -7,14 +7,6 @@
 <small>Here are the projects that I've worked on in some capacity whether it be personal or professional. If you want a list of companies that I've worked for then visit my <a href="https://linkedin.com/in/trdwll">Linkedin</a>.</small>
 
 <div class="archive">
-{% for year,experiments in EXPERIMENTS.items %}
-    <h2 class="archive-year">{{ year }}</h2>
-    
-    {% for experiment in experiments %}
-        <div class="archive-item">
-            <a href="{{ experiment.get_absolute_url }}" class="archive-title">{{ experiment.title }}</a>
-        </div>
-    {% endfor %}
-{% endfor %}
+{{ EXPERIMENTS|safe }}
 </div>
 {% endblock %}

@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 from django.db.models.signals import pre_save
 from TRDWLL.signals import create_redirect
 
+from TRDWLL.utils import get_formatted_data
+
 from ckeditor_uploader.fields import RichTextUploadingField
 
 # for category separation
@@ -41,7 +43,7 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
-    def print_categories(self):
+    def get_categories_formatted(self):
         """ Get the categories and format them for display """
         categories = [] 
 
@@ -49,6 +51,20 @@ class Post(models.Model):
             categories.append(prefix_char+'<a href="'+tmp.get_absolute_url()+'">'+tmp.title+'</a>'+suffix_char)
 
         return ''.join(categories)
+
+    def get_posts_formatted():
+        """ Get the posts and format them for display """
+        queried_posts = get_formatted_data(Post.objects.filter(is_published=True).order_by('-published_date'))
+
+        formatted_posts = []
+
+        for year,posts in queried_posts.items():
+            formatted_posts.append('<h2 class="archive-year">'+str(year)+'</h2>')
+
+            for post in posts:
+                formatted_posts.append('<div class="archive-item">'+post.get_categories_formatted()+' <span class="post-date archive-date">'+str(post.published_date.strftime('%b %d %Y'))+'</span><a href="'+post.get_absolute_url()+'" class="archive-title">'+post.title+'</a></div>')
+            
+        return ''.join(formatted_posts)
 
     def categories(self):
         return ", ".join([str(p.title) for p in self.category.all()])

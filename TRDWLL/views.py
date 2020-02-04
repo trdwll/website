@@ -8,11 +8,7 @@ class HomeView(View):
     template_name = 'index.html'
 
     def get(self, request):
-        # post = Post.objects.filter(is_published=True).order_by('-published_date')[0]
-
-        # return redirect('blog_post_page', slug=post.slug)
-
-        return render(request, self.template_name)
+        return render(request, self.template_name, {'POSTS': Post.get_posts_formatted()})
 
 
 class AboutView(View):

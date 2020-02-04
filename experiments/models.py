@@ -2,6 +2,7 @@ from django.db import models
 from django.urls import reverse
 from django.db.models.signals import pre_save
 from TRDWLL.signals import create_redirect
+from TRDWLL.utils import get_formatted_data
 
 from ckeditor_uploader.fields import RichTextUploadingField
 from ckeditor.fields import RichTextField
@@ -19,6 +20,20 @@ class Experiment(models.Model):
 
     def get_absolute_url(self):
         return reverse('experiment_post_page', kwargs={'slug': self.slug})
+
+    def get_experiments_formatted():
+        """ Get the posts and format them for display """
+        queried_experiments = get_formatted_data(Experiment.objects.filter(is_published=True).order_by('-published_date'))
+
+        formatted_experiments = []
+
+        for year,experiments in queried_experiments.items():
+            formatted_experiments.append('<h2 class="archive-year">'+str(year)+'</h2>')
+
+            for experiment in experiments:
+                formatted_experiments.append('<div class="archive-item"><a href="'+experiment.get_absolute_url()+'" class="archive-title">'+experiment.title+'</a></div>')
+            
+        return ''.join(formatted_experiments)
 
     def __str__(self):
         return self.title
