@@ -15,6 +15,7 @@ suffix_char = ']'
 
 class Category(models.Model):
     title = models.CharField(max_length=100, help_text='Title of the category.')
+    description = models.CharField(max_length=200, blank=True, help_text='A short description for the category.')
     slug = models.SlugField(unique=True)
 
     def get_absolute_url(self):

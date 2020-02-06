@@ -4,7 +4,7 @@
 
 {% block content %}
 <h1>Posts under {{ POSTS_CATEGORY }}</h1>
-<small>Some writings under a category.</small>
+<small>{{ POSTS_CATEGORY.description }}</small>
 
 <div class="archive">
 {% for year,posts in POSTS.items %}
