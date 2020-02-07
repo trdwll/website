@@ -24,6 +24,20 @@ class Category(models.Model):
     def __str__(self):
         return self.title
 
+    def get_posts_formatted(slug):
+        """ Get the posts and format them for display """
+        queried_posts = get_formatted_data(Post.objects.filter(is_published=True, category=Category.objects.filter(slug=slug).first()).order_by('-published_date'))
+        
+        formatted_posts = []
+
+        for year,posts in queried_posts.items():
+            formatted_posts.append('<h2 class="archive-year">'+str(year)+'</h2>')
+
+            for post in posts:
+                formatted_posts.append('<div class="archive-item"><span class="post-date archive-date">'+str(post.published_date.strftime('%b %d %Y'))+'</span><a href="'+post.get_absolute_url()+'" class="archive-title">'+post.title+'</a></div>')
+            
+        return ''.join(formatted_posts)
+
     class Meta:
         db_table = 'blog_category'
 

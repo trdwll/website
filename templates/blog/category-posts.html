@@ -7,15 +7,6 @@
 <small>{{ POSTS_CATEGORY.description }}</small>
 
 <div class="archive">
-{% for year,posts in POSTS.items %}
-    <h2 class="archive-year">{{ year }}</h2>
-    
-    {% for post in posts %}
-        <div class="archive-item">
-            <span class="post-date archive-date">{{ post.published_date|date:"F d, Y" }}</span>
-            <a href="{{ post.get_absolute_url }}" class="archive-title">{{ post.title }}</a>
-        </div>
-    {% endfor %}
-{% endfor %}
+{{ POSTS|safe }}
 </div>
 {% endblock %}
