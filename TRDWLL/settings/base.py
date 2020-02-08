@@ -1,19 +1,10 @@
 import os
-
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+from os.path import abspath, dirname
+from sys import path
+# Build paths inside the project like this: os.path.join(SITE_ROOT, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'pp)6iq_^nw)7k_1%#@v%^srq!zqsvr+ed&rfzfkzi^2+i7h1np'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'trdwll.com', 'www.trdwll.com']
+PROJECT_ROOT = dirname(dirname(abspath(__file__)))
+SITE_ROOT = dirname(PROJECT_ROOT)
 
 SITE_ID = 1
 
@@ -28,6 +19,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'django.contrib.redirects',
+
+    'analytics',
 
     'TRDWLL',
     'blog',
@@ -50,6 +43,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.contrib.redirects.middleware.RedirectFallbackMiddleware',
 
+    'analytics.middleware.PageViewsMiddleware',
+
     # 3rd party
     'htmlmin.middleware.HtmlMinifyMiddleware',
     'htmlmin.middleware.MarkRequestMiddleware',
@@ -59,11 +54,10 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'TRDWLL.urls'
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [os.path.join(SITE_ROOT, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -87,7 +81,7 @@ WSGI_APPLICATION = 'TRDWLL.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': os.path.join(SITE_ROOT, 'db.sqlite3'),
     }
 }
 
@@ -126,21 +120,18 @@ USE_TZ = False
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
+    os.path.join(SITE_ROOT, "static"),
   #  '/var/www/mydomain.com/public_html/static/',
 ]
-# STATIC_ROOT = os.path.join(BASE_DIR, "static")
+# STATIC_ROOT = os.path.join(SITE_ROOT, "static")
 
 # MEDIA_ROOT = '/var/www/mydomain.com/public_html/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_ROOT = os.path.join(SITE_ROOT, "media")
 MEDIA_URL = '/media/'
 
 FILE_UPLOAD_PERMISSIONS = 0o644
 
 OTP_TOTP_ISSUER = 'TRDWLL'
-
-if not DEBUG:
-    HTML_MINIFY = True
 
 CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"
 CKEDITOR_UPLOAD_PATH = "uploads/"

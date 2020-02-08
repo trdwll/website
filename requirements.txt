@@ -8,3 +8,5 @@ gitpython
 uwsgi
 django-otp
 qrcode
+django-ipware
+ipinfo

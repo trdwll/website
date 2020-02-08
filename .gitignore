@@ -106,3 +106,4 @@ ENV/
 
 # JetBrains
 .idea/
+TRDWLL/settings/prod.py
