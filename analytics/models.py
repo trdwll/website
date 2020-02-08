@@ -37,3 +37,22 @@ class VisitorPageHit(models.Model):
 
     def __str__(self):
         return str(self.page_url)
+
+
+class GlobalPageHitSummary(GlobalPageHit):
+    class Meta:
+        proxy = True
+        verbose_name = 'Global Page Hit Summary'
+        verbose_name_plural = 'Global Page Hits Summary'
+
+class VisitorSummary(Visitor):
+    class Meta:
+        proxy = True
+        verbose_name = 'Visitor Summary'
+        verbose_name_plural = 'Visitors Summary'
+
+class VisitorPageHitSummary(VisitorPageHit):
+    class Meta:
+        proxy = True
+        verbose_name = 'Visitor Page Hit Summary'
+        verbose_name_plural = 'Visitor Page Hits Summary'
