@@ -1,7 +1,6 @@
 from django.contrib import admin
 from django.contrib.admin import SimpleListFilter
 from django.conf import settings
-import os
 
 from .models import GlobalPageHit, Visitor, VisitorPageHit
 
@@ -10,14 +9,15 @@ class PageHitFilter(SimpleListFilter):
     parameter_name = 'pagehit'
 
     def lookups(self, request, model_admin):
-        return [('file', 'File'), ('page', 'Page')]
+        return [('highestcount', 'Highest Count'), ('newest', 'Newest'), ('oldest', 'Oldest')]
 
-    # this queryset using __contains is probably the worst way to verify if it's a file or not - however it does work... for now lol
     def queryset(self, request, queryset):
-        if self.value() == 'file':
-            return queryset.filter(page_url__contains='.')
-        elif self.value() == 'page':
-            return queryset.exclude(page_url__contains='.')
+        if self.value() == 'highestcount':
+            return queryset.order_by('-hit_count')
+        elif self.value() == 'newest':
+            return queryset.order_by('-id')
+        elif self.value() == 'oldest':
+            return queryset.order_by('id')
         else:
             return queryset
 
