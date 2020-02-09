@@ -10,6 +10,8 @@
 {% endblock %}
 
 {% block result_list %}
+{% comment %} 
+TODO: Add a map like Cloudflare and show what countries are the hottest (do a time frame also)
 <div id='map' style='width: 800px; height: 440px;'></div>
 <script>
 mapboxgl.accessToken = 'pk.eyJ1IjoidHJkd2xsIiwiYSI6ImNrNmUybGw4bjF0ZnozbHFmdmp4am5hZjIifQ.T46SE6D2jdX4P5erhrsGBg';
@@ -17,7 +19,7 @@ var map = new mapboxgl.Map({
 container: 'map',
 style: 'mapbox://styles/mapbox/streets-v11'
 });
-</script>
+</script> {% endcomment %}
     
 {% endblock %}
 

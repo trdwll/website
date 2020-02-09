@@ -34,7 +34,7 @@ class PageHitFilter(SimpleListFilter):
 
 @admin.register(GlobalPageHitSummary)
 class GlobalPageHitAdminSummary(admin.ModelAdmin):
-    change_list_template = 'admin/globalpagehitsummary_change_list.html'
+    change_list_template = 'admin/custom/globalpagehitsummary_change_list.html'
 
     def changelist_view(self, request, extra_context=None):
         response = super().changelist_view(
