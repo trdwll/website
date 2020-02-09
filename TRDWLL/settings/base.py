@@ -21,7 +21,7 @@ INSTALLED_APPS = [
     'django.contrib.redirects',
     'django.contrib.humanize',
 
-    'analytics',
+    'django_analytics',
 
     'TRDWLL',
     'blog',
@@ -44,7 +44,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.contrib.redirects.middleware.RedirectFallbackMiddleware',
 
-    'analytics.middleware.PageViewsMiddleware',
+    'django_analytics.middleware.PageViewsMiddleware',
 
     # 3rd party
     'htmlmin.middleware.HtmlMinifyMiddleware',
