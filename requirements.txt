@@ -5,8 +5,8 @@ git+https://github.com/django-ckeditor/django-ckeditor
 markdown
 Pillow
 gitpython
-uwsgi
 django-otp
 qrcode
 django-ipware
 ipinfo
+git+https://github.com/trdwll/django-analytics
