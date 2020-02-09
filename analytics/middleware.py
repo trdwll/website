@@ -12,7 +12,7 @@ class PageViewsMiddleware(object):
 
     def __call__(self, request):
         # If the requested url isn't in the admin panel
-        if not reverse('admin:index') in request.path:
+        if not reverse('admin:index') in request.path or reverse('admin:index') + 'login/' in request.path or request.path == reverse('admin:index'):
             
             # Create the GlobalPageHit
             page_hit, page_hit_created = GlobalPageHit.objects.get_or_create(page_url=request.path)
