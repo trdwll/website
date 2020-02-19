@@ -17,4 +17,4 @@ class BlogPostView(View):
 class BlogCategoryPostView(View):
     template_name = 'blog/category-posts.html'
     def get(self, request, slug):
-        return render(request, self.template_name, {'POSTS': Category.get_posts_formatted(slug), 'POSTS_CATEGORY': Category.objects.filter(slug=slug).first()})
+        return render(request, self.template_name, {'POSTS': Category.get_posts_formatted(slug), 'POSTS_CATEGORY': Category.objects.filter(slug__iexact=slug).first()})

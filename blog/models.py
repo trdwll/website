@@ -26,7 +26,7 @@ class Category(models.Model):
 
     def get_posts_formatted(slug):
         """ Get the posts and format them for display """
-        queried_posts = get_formatted_data(Post.objects.filter(is_published=True, category=Category.objects.filter(slug=slug).first()).order_by('-published_date'))
+        queried_posts = get_formatted_data(Post.objects.filter(is_published=True, category=Category.objects.filter(slug__iexact=slug).first()).order_by('-published_date'))
         
         formatted_posts = []
 
