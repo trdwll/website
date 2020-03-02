@@ -7,11 +7,17 @@ class BlogPostView(View):
     template_name = 'blog/post.html'
 
     def get(self, request, slug):
-        if request.user.is_authenticated and request.user.is_superuser:
-            post = get_object_or_404(Post.objects.filter(slug=slug))
-        else: 
+
+        q = request.GET.get('preview')
+        preview = q is not None and q == 'true'
+        post = get_object_or_404(Post.objects.filter(slug=slug))
+        if preview or request.user.is_authenticated and request.user.is_superuser and post.is_published == False:
+            msg = 'You\'re viewing this post as a preview. Please don\'t share the post with anyone.' if preview else 'This post is not published. Only staff can view this post currently.'
+        else:
             post = get_object_or_404(Post.objects.filter(slug=slug, is_published=True))
-        return render(request, self.template_name, {'POST': post})
+            msg = ''
+
+        return render(request, self.template_name, {'POST': post, 'msg': msg})
 
 
 class BlogCategoryPostView(View):
