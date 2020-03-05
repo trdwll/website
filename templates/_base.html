@@ -10,6 +10,7 @@
         {% load static %}
         <link rel="stylesheet" href="{% static 'css/style.min.css' %}" />
         <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" />
+        <script src="https://kit.fontawesome.com/a5a441f411.js" crossorigin="anonymous"></script>
 
         {% block head_include %}{% endblock %}
     </head>
@@ -37,7 +38,6 @@
             </div>
         </div>
         {% block foot_include %}{% endblock %}
-        <script src="https://kit.fontawesome.com/a5a441f411.js" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js" integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
         <script type="text/javascript" src="{% static 'js/script.min.js' %}"></script>
     </body>

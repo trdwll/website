@@ -92,4 +92,4 @@ blockquote {
   }
   
 .fa-color-red { color: red; }
-.fa-beat{animation:fa-beat 5s ease infinite}@keyframes fa-beat{0%,20%,30%,50%,70%{transform:scale(1)}35%,5%,55%{transform:scale(1.25)}}
+.fa-heart{animation:fapulse 5s ease infinite}@keyframes fapulse{0%,20%,30%,50%,70%{transform:scale(1)}35%,5%,55%{transform:scale(1.25)}}
