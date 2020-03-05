@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         {% load static %}
-        <link rel="stylesheet" href="{% static 'css/style.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/style.min.css' %}" />
         <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" />
 
         {% block head_include %}{% endblock %}
@@ -32,9 +32,7 @@
                 {% block content %}{% endblock %}
             </div>
             
-            <br />
-            <hr />
-            <div class="footer">
+            <div class="footer pt-2 my-md-3 pt-md-3 border-top">
                 {% include '_footer.html' %}
             </div>
         </div>

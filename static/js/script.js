@@ -7,7 +7,9 @@ var tags = [
     'Do you think pigeons have feelings?',
     'This site is open source!',
     'Built in Django!',
+    'Built in Django &amp; Powered by FreeBSD!',
     'Built with Love!',
+    'Built with <i class="fas fa-heart fa-beat fa-color-red"></i>',
     'Built in the USA!',
 ];
 
