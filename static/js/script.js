@@ -9,7 +9,7 @@ var tags = [
     'Built in Django!',
     'Built in Django &amp; Powered by FreeBSD!',
     'Built with Love!',
-    'Built with <i class="fas fa-heart fa-beat fa-color-red"></i>',
+    'Built with <span class="fa-color-red"><i class="fas fa-heart"></i></span>',
     'Built in the USA!',
 ];
 
