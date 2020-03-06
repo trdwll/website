@@ -42,7 +42,7 @@ class Experiment(models.Model):
             # end the row
             formatted_experiments.append('</div><hr />')
 
-        return ''.join(formatted_experiments)
+        return ''.join(formatted_experiments)[:-6] # hacky way to remove the last <hr />, but works... ;)
 
     def __str__(self):
         return self.title
