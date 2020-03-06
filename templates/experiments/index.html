@@ -5,8 +5,12 @@
 {% block content %}
 <h1>Experiments aka Projects</h1>
 <small>Here are some of my personal projects that I've built over the years. If you want a list of companies that I've worked for then visit my <a href="https://linkedin.com/in/trdwll">Linkedin</a>.</small>
-
-<div class="archive">
+<div class="pt-4">
 {{ EXPERIMENTS|safe }}
 </div>
+
+
+{% comment %} <div class="archive">
+{{ EXPERIMENTS|safe }}
+</div> {% endcomment %}
 {% endblock %}
