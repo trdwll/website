@@ -11,7 +11,7 @@ class ExperimentsHomeView(View):
 
 
 class ExperimentPostView(View):
-    template_name = 'experiments/post.html'
+    template_name = 'experiments/experiment.html'
 
     def get(self, request, slug):
         experiment = get_object_or_404(Experiment.objects.filter(is_published=True, slug=slug))
