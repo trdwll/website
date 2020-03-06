@@ -28,7 +28,7 @@ class Experiment(models.Model):
         formatted_experiments = []
 
         for year,experiments in queried_experiments.items():
-            formatted_experiments.append('<h2 class="archive-year pb-2 pt-2">'+str(year)+'</h2><div class="row">')
+            formatted_experiments.append('<h2 class="archive-year">'+str(year)+'</h2><div class="row">')
 
             for experiment in experiments:
                 description = experiment.description[0:117]+'...' if len(experiment.description) > 117 else experiment.description
