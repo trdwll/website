@@ -44,6 +44,23 @@ hr {
 	color: #ccc
 }
 
+h2 span .archive-year {
+	position: relative;
+    background-color: white;
+    padding-right: 10px;
+}
+
+h2:after .archive-year {
+    content:"";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 0.5em;
+    border-top: 1px solid black;
+    z-index: -1;
+}
+
 .archive {
 	padding-top: 1.5rem;
 	margin-bottom: 3rem

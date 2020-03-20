@@ -65,6 +65,7 @@ class Post(models.Model):
         for tmp in self.category.all():
             categories.append(prefix_char+'<a href="'+tmp.get_absolute_url()+'">'+tmp.title+'</a>'+suffix_char)
 
+        categories.sort() # sort the categories to be alphabetical order
         return ''.join(categories)
 
     def get_posts_formatted():
