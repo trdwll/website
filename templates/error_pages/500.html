@@ -1,0 +1,11 @@
+{% extends '_base.html' %}
+
+{% block title %}Server Error - 500{% endblock %}
+
+{% block content %}
+<div class="content">
+    <h2>Server Error</h2>
+    <p>Oh no! The server is broken. Please report this to the <a href="mailto:russ@trdwll.com">webmaster</a>.</p>
+    <p><a href="{% url 'home_page' %}">Go Home</a></p>
+</div>
+{% endblock %}

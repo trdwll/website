@@ -1,0 +1,11 @@
+{% extends '_base.html' %}
+
+{% block title %}Not Found - 404{% endblock %}
+
+{% block content %}
+<div class="content">
+    <h2>Not Found</h2>
+    <p>Yikes! The resource that you're looking for wasn't found.</p>
+    <p><a href="{% url 'home_page' %}">Go Home</a></p>
+</div>
+{% endblock %}

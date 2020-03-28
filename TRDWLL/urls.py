@@ -28,3 +28,10 @@ admin.site.site_title = 'TRDWLL AdminCP'
 
 if not settings.DEBUG:
     admin.site.__class__ = OTPAdminSite
+
+
+# Error pages
+
+handler403 = 'TRDWLL.views.permission_denied_403'
+handler404 = 'TRDWLL.views.not_found_404'
+handler500 = 'TRDWLL.views.server_error_500'

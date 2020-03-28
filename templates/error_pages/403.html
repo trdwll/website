@@ -1,0 +1,11 @@
+{% extends '_base.html' %}
+
+{% block title %}Permission Denied - 403{% endblock %}
+
+{% block content %}
+<div class="content">
+    <h2>Permission Denied</h2>
+    <p>You're unable to view this page at this time.</p>
+    <p><a href="{% url 'home_page' %}">Go Home</a></p>
+</div>
+{% endblock %}
