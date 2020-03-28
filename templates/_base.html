@@ -7,6 +7,12 @@
         <meta name="description" content="Russ 'trdwll' Treadwell's personal website.">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:creator" content="@trdwll" />
+        <meta name="twitter:site" content="https://trdwll.com" />
+
+        {% block meta_tags %}{% endblock %}
+
         {% load static %}
         <link rel="stylesheet" href="{% static 'css/style.min.css' %}" />
         <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" />

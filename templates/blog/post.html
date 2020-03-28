@@ -2,6 +2,13 @@
 
 {% block title %}{{ POST.title }}{% endblock %}
 
+{% block meta_tags %}
+<meta property="og:title" content="{{ POST.title }}" />
+<meta property="og:description" content="{{ POST.description }}" />
+<meta property="og:url" content="https://trdwll.com{{ request.get_full_path }}" />
+{% comment %} Hard coding the url here isn't ideal {% endcomment %}
+{% endblock %}
+
 {% block head_include %}
 <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/styles/vs.min.css">
 <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/highlight.min.js"></script>
