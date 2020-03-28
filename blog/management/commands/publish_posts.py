@@ -1,7 +1,9 @@
 from django.core.management.base import BaseCommand, CommandError
+from django.conf import settings
 from blog.models import Post
 
 from datetime import datetime, timedelta
+import tweepy
 
 
 class Command(BaseCommand):
@@ -24,5 +26,12 @@ class Command(BaseCommand):
 
                 post.is_published = True
                 post.save()
+
+                if settings.POST_TO_TWITTER:
+                    auth = tweepy.OAuthHandler(settings.TWITTER_CONSUMER_KEY, settings.TWITTER_CONSUMER_SECRET) 
+                
+                    auth.set_access_token(settings.TWITTER_ACCESS_TOKEN, settings.TWITTER_ACCESS_TOKEN_SECRET) 
+                    api = tweepy.API(auth) 
+                    api.update_status(status = 'Blog: ' + post.title + '\n\nhttps://trdwll.com'+post.get_absolute_url()) # hardcoding the base url here isn't ideal, but will fix later
             # else:
             #     print('The published_date of post is: ', post.published_date, ' the current time is: ', datetime.now())
