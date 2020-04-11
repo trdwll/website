@@ -2,11 +2,13 @@ from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
 from django.db.models.signals import pre_save
-from TRDWLL.signals import create_redirect
 
+from TRDWLL.signals import create_redirect
 from TRDWLL.utils import get_formatted_data
 
 from ckeditor_uploader.fields import RichTextUploadingField
+
+import operator
 
 # for category separation
 prefix_char = '['
@@ -31,11 +33,12 @@ class Category(models.Model):
         formatted_posts = []
 
         for year,posts in queried_posts.items():
-            formatted_posts.append('<h2 class="archive-year">'+str(year)+'</h2>')
+            formatted_posts.append('<h3>'+str(year)+'</h3><ul class="post-list mb-5">')
 
             for post in posts:
-                formatted_posts.append('<div class="archive-item"><span class="post-date archive-date">'+str(post.published_date.strftime('%b %d %Y'))+'</span><a href="'+post.get_absolute_url()+'" class="archive-title">'+post.title+'</a></div>')
-            
+                formatted_posts.append('<li><span class="post-date archive-date">'+str(post.published_date.strftime('%b %d'))+'</span><a href="'+post.get_absolute_url()+'" class="archive-title">'+post.title+'</a></li>')
+            formatted_posts.append('</ul>')
+        
         return ''.join(formatted_posts)
 
     class Meta:
@@ -58,7 +61,29 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
-    def get_categories_formatted(self):
+    def get_categories_formatted_sidebar():
+        """ Get the categories and format them for display on the sidebar """
+        categories = []
+        cats = {}
+
+        # sort through all categories and add them to a dictionary
+        for tmp in Category.objects.all():
+            count = tmp.post_set.filter(is_published=True).count()
+            if count >= 1:
+                cats.update({tmp:count})
+
+        # sort the dictionary by value
+        cats = dict(sorted(cats.items(), key=operator.itemgetter(1),reverse=True))
+
+        # create the html format for the sidebar
+        categories.append('<h3>Categories</h3><ul class="pl-2">')
+        for k,v in cats.items():
+            categories.append('<li class="list-unstyled"><a href="'+k.get_absolute_url()+'">'+k.title+'</a> <span>('+str(v)+')</span></li>')
+        categories.append('</ul>')
+
+        return ''.join(categories)
+
+    def get_categories_formatted_post(self):
         """ Get the categories and format them for display """
         categories = [] 
 
@@ -75,11 +100,13 @@ class Post(models.Model):
         formatted_posts = []
 
         for year,posts in queried_posts.items():
-            formatted_posts.append('<h2 class="archive-year">'+str(year)+'</h2>')
+            formatted_posts.append('<h3>'+str(year)+'</h3>')
 
+            formatted_posts.append('<ul class="post-list mb-5">')
             for post in posts:
-                formatted_posts.append('<div class="archive-item">'+post.get_categories_formatted()+' <span class="post-date archive-date">'+str(post.published_date.strftime('%b %d %Y'))+'</span><a href="'+post.get_absolute_url()+'" class="archive-title">'+post.title+'</a></div>')
+                formatted_posts.append('<li>'+post.get_categories_formatted_post()+' <span>'+str(post.published_date.strftime('%b %d'))+'</span><a href="'+post.get_absolute_url()+'">'+post.title+'</a></li>')
             
+            formatted_posts.append('</ul>')
         return ''.join(formatted_posts)
 
     def categories(self):

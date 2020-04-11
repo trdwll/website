@@ -9,7 +9,7 @@ class HomeView(View):
     template_name = 'index.html'
 
     def get(self, request):
-        return render(request, self.template_name, {'POSTS': Post.get_posts_formatted()})
+        return render(request, self.template_name, {'POSTS': Post.get_posts_formatted(), 'CATEGORIES': Post.get_categories_formatted_sidebar()})
 
 
 class AboutView(View):

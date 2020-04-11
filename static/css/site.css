@@ -38,57 +38,6 @@ hr {
 	border: 0
 }
 
-.post-date {
-	display: block;
-	margin: -.5rem 0 .5rem;
-	color: #ccc
-}
-
-h2 span .archive-year {
-	position: relative;
-    background-color: white;
-    padding-right: 10px;
-}
-
-h2:after .archive-year {
-    content:"";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 0.5em;
-    border-top: 1px solid black;
-    z-index: -1;
-}
-
-.archive {
-	padding-top: 1.5rem;
-	margin-bottom: 3rem
-}
-
-.archive-item {
-	margin-bottom: 1rem;
-	overflow: auto
-}
-
-.archive-item+.archive-year {
-	margin-top: 2rem
-}
-
-.archive-date {
-	margin-top: 0;
-	margin-bottom: 0
-}
-@media (min-width: 34rem) {
-	.archive-item {
-		margin-bottom: .5rem
-	}
-	.archive-date {
-		float: right;
-		margin-left: 1rem
-	}
-}
-
 blockquote {
 	background: #f9f9f9;
 	border-left: 10px solid #ccc;
@@ -110,3 +59,18 @@ blockquote {
   
 .fa-color-red { color: red; }
 .fa-heart{animation:fapulse 5s ease infinite}@keyframes fapulse{0%,20%,30%,50%,70%{transform:scale(1)}35%,5%,55%{transform:scale(1.25)}}
+
+.post-list {
+    padding-left: 0;
+    list-style: none
+}
+
+.post-list li {
+    display: block;
+    margin-bottom: 5px
+}
+
+.post-list span {
+    float: right;
+    color: #ccc
+}

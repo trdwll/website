@@ -28,7 +28,7 @@ class Experiment(models.Model):
         formatted_experiments = []
 
         for year,experiments in queried_experiments.items():
-            formatted_experiments.append('<h2 class="archive-year">'+str(year)+'</h2><div class="row">')
+            formatted_experiments.append('<h3>'+str(year)+'</h3><div class="row">')
 
             for experiment in experiments:
                 description = experiment.description[0:117]+'...' if len(experiment.description) > 117 else experiment.description
@@ -37,7 +37,6 @@ class Experiment(models.Model):
                     '<div class="card-body"><h5 class="card-title"><a href="'+experiment.get_absolute_url()+'">'+experiment.title+'</a></h5><h6 class="card-subtitle mb-2 text-muted">'+description+'</h6></div>'+
                     '</div>'+ # end card div
                     '</div>') # end col
-                #formatted_experiments.append('<div class="archive-item"><a href="'+experiment.get_absolute_url()+'" class="archive-title">'+experiment.title+'</a></div>')
             
             # end the row
             formatted_experiments.append('</div><hr />')
