@@ -3,6 +3,8 @@
 {% block title %}{{ POST.title }}{% endblock %}
 
 {% block meta_tags %}
+<meta name="twitter:description" content="{{ POST.description }}">
+
 <meta property="og:title" content="{{ POST.title }}" />
 <meta property="og:description" content="{{ POST.description }}" />
 <meta property="og:url" content="https://trdwll.com{{ request.get_full_path }}" />

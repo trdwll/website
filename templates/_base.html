@@ -4,16 +4,19 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>@trdwll &mdash; {% block title %}@trdwll{% endblock %}</title>
-        <meta name="description" content="Russ 'trdwll' Treadwell's personal website.">
+        <meta name="description" content="Russ 'trdwll' Treadwell's personal website. A software engineer with an interest in web development and game development. C++, C#, and Python.">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
+        
+        {% load static %}
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:creator" content="@trdwll" />
         <meta name="twitter:site" content="https://trdwll.com" />
+        <meta name="twitter:image" content="{% static 'img/trdwll_logo.png' %}">
 
-        {% block meta_tags %}{% endblock %}
+        {% block meta_tags %}
+        <meta name="twitter:description" content="Russ 'trdwll' Treadwell's personal website. A software engineer with an interest in web development and game development. C++, C#, and Python.">
+        {% endblock %}
 
-        {% load static %}
         <link rel="stylesheet" href="{% static 'css/style.min.css' %}" />
         <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" />
         <script src="https://kit.fontawesome.com/a5a441f411.js" crossorigin="anonymous"></script>
