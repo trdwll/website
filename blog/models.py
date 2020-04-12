@@ -103,8 +103,9 @@ class Post(models.Model):
             formatted_posts.append('<h3>'+str(year)+'</h3>')
 
             formatted_posts.append('<ul class="post-list mb-5">')
-            for post in posts:
-                formatted_posts.append('<li>'+post.get_categories_formatted_post()+' <span>'+str(post.published_date.strftime('%b %d'))+'</span><a href="'+post.get_absolute_url()+'">'+post.title+'</a></li>')
+            for count, post in enumerate(posts, 1):
+                content = ' class="bg-white"' if count % 2 else ''
+                formatted_posts.append('<li'+content+'>'+post.get_categories_formatted_post()+' <span>'+str(post.published_date.strftime('%b %d'))+'</span><a href="'+post.get_absolute_url()+'">'+post.title+'</a></li>')
             
             formatted_posts.append('</ul>')
         return ''.join(formatted_posts)
