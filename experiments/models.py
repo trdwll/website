@@ -34,7 +34,7 @@ class Experiment(models.Model):
                 description = experiment.description[0:117]+'...' if len(experiment.description) > 117 else experiment.description
                 formatted_experiments.append('<div class="col-md-4 pb-2">'+
                     '<div class="card h-100">'+
-                    '<div class="card-body"><h5 class="card-title"><a href="'+experiment.get_absolute_url()+'">'+experiment.title+'</a></h5><h6 class="card-subtitle mb-2 text-muted">'+description+'</h6></div>'+
+                    '<div class="card-body"><h5 class="card-title" title="'+str(experiment.published_date)+'"><a href="'+experiment.get_absolute_url()+'">'+experiment.title+'</a></h5><h6 class="card-subtitle mb-2 text-muted">'+description+'</h6></div>'+
                     '</div>'+ # end card div
                     '</div>') # end col
             
