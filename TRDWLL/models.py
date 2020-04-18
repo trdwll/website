@@ -10,6 +10,8 @@ class About(models.Model):
 
     class Meta:
         db_table = 'about_entry'
+        verbose_name = 'About'
+        verbose_name_plural = 'About'
 
 
 class Alert(models.Model):
@@ -43,3 +45,6 @@ class Alert(models.Model):
 
     class Meta:
         db_table = 'alert_entry'
+        ordering = ['type']
+        verbose_name = 'Alert'
+        verbose_name_plural = 'Alerts'

@@ -7,9 +7,8 @@ class CategoryAdmin(admin.ModelAdmin):
 class PostAdmin(admin.ModelAdmin):
     exclude = ['author']
     prepopulated_fields = {'slug': ('title', )}
-    search_fields = ['title', 'category', 'body']
+    search_fields = ['title', 'category__title', 'body']
     list_display = ['title', 'categories', 'published_date', 'is_published']
-    ordering = ('-published_date', )
     fieldsets = (
         ('Post Information', {
             'fields': ('published_date', 'is_published', 'title', 'description', 'category', 'slug', 'body', )

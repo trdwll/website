@@ -48,6 +48,9 @@ class Experiment(models.Model):
 
     class Meta:
         db_table = 'experiment_entry'
+        ordering = ['-published_date']
+        verbose_name = 'Experiment'
+        verbose_name_plural = 'Experiments'
 
 
 pre_save.connect(create_redirect, sender=Experiment)

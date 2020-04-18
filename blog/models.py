@@ -43,6 +43,9 @@ class Category(models.Model):
 
     class Meta:
         db_table = 'blog_category'
+        ordering = ['title']
+        verbose_name = 'Category'
+        verbose_name_plural = 'Categories'
 
 
 class Post(models.Model):
@@ -104,8 +107,7 @@ class Post(models.Model):
 
             formatted_posts.append('<ul class="post-list mb-5">')
             for count, post in enumerate(posts, 1):
-                content = ' class="bg-white"' if count % 2 else ''
-                formatted_posts.append('<li'+content+'>'+post.get_categories_formatted_post()+' <span>'+str(post.published_date.strftime('%b %d'))+'</span><a href="'+post.get_absolute_url()+'">'+post.title+'</a></li>')
+                formatted_posts.append('<li'+(' class="bg-white"' if count % 2 else '')+'>'+post.get_categories_formatted_post()+' <span title="'+str(post.published_date)+'">'+str(post.published_date.strftime('%b %d'))+'</span><a href="'+post.get_absolute_url()+'">'+post.title+'</a></li>')
             
             formatted_posts.append('</ul>')
         return ''.join(formatted_posts)
@@ -115,6 +117,9 @@ class Post(models.Model):
 
     class Meta:
         db_table = 'blog_post'
+        ordering = ['-published_date']
+        verbose_name = 'Post'
+        verbose_name_plural = 'Posts'
 
 
 pre_save.connect(create_redirect, sender=Post)
