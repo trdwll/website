@@ -1,13 +1,5 @@
-/**
- * @license Copyright (c) 2003-2020, CKSource - Frederico Knabben. All rights reserved.
- * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
- */
-
-CKEDITOR.plugins.setLang( 'uicolor', 'ar', {
-	title: 'منتقي الألوان',
-	options: 'Color Options', // MISSING
-	highlight: 'Highlight', // MISSING
-	selected: 'Selected Color', // MISSING
-	predefined: 'مجموعات ألوان معرفة مسبقا',
-	config: 'قص السطر إلى الملف config.js'
-} );
+﻿/*
+ Copyright (c) 2003-2015, CKSource - Frederico Knabben. All rights reserved.
+ For licensing, see LICENSE.md or http://ckeditor.com/license
+*/
+CKEDITOR.plugins.setLang("uicolor","ar",{title:"منتقي الألوان",preview:"معاينة مباشرة",config:"قص السطر إلى الملف config.js",predefined:"مجموعات ألوان معرفة مسبقا"});

@@ -1,12 +1,5 @@
-/**
- * @license Copyright (c) 2003-2020, CKSource - Frederico Knabben. All rights reserved.
- * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
- */
-
-CKEDITOR.plugins.setLang( 'placeholder', 'id', {
-	title: 'Properti isian sementara',
-	toolbar: 'Buat isian sementara',
-	name: 'Nama Isian Sementara',
-	invalidName: 'Isian sementara tidak boleh kosong dan tidak boleh mengandung karakter berikut: [, ], <, >',
-	pathName: 'isian sementara'
-} );
+﻿/*
+ Copyright (c) 2003-2015, CKSource - Frederico Knabben. All rights reserved.
+ For licensing, see LICENSE.md or http://ckeditor.com/license
+*/
+CKEDITOR.plugins.setLang("placeholder","id",{title:"Properti isian sementara",toolbar:"Buat isian sementara",name:"Placeholder Name",invalidName:"The placeholder can not be empty and can not contain any of following characters: [, ], <, >",pathName:"placeholder"});
