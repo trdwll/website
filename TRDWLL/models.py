@@ -38,7 +38,7 @@ class Alert(models.Model):
         alerts = [] 
 
         for tmp in Alert.objects.all():
-            if request.get_full_path() == tmp.url or tmp.url is None or tmp.url is '':
+            if request.get_full_path() == tmp.url or tmp.url == None or tmp.url == '':
                 alerts.append('<div class="'+tmp.type+'" role="alert">'+tmp.body+'</div>')
 
         return ''.join(alerts)

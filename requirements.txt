@@ -1,4 +1,4 @@
-Django>=3.0.3
+Django>=3.1
 bcrypt
 django-htmlmin
 markdown
@@ -6,8 +6,6 @@ Pillow
 gitpython
 django-otp
 qrcode
-django-ipware
-ipinfo
 tweepy
 git+https://github.com/trdwll/django-analytics
 git+https://github.com/django-ckeditor/django-ckeditor
