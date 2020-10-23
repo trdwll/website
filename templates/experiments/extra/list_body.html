@@ -1,0 +1,10 @@
+<div class="w-full sm:w-1/2 md:w-1/3 mb-4 px-2">
+    <div class="hover:shadow-lg transition ease-in duration-300 relative bg-white rounded border h-full">
+        <div class="p-4">
+            <h3 class="text-lg font-bold">
+            <a class="stretched-link hover:opacity-50 link-underline" href="{{ experiment.get_absolute_url }}" title="{{ experiment.published_date }}">{{ experiment.title }}</a>
+            {% if experiment.status == "Blank" %}</h3>{% else %}<small class="opacity-50 float-right uppercase text-xs {{ experiment.status }}">{{ experiment.get_status_display }}</small></h3>{% endif %}
+            <p class="opacity-50">{{ experiment.description }}</p>
+        </div>
+    </div>
+</div>

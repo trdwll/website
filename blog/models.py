@@ -2,6 +2,7 @@ from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
 from django.db.models.signals import pre_save
+from django.template.loader import render_to_string
 
 from TRDWLL.signals import create_redirect
 from TRDWLL.utils import get_formatted_data
@@ -9,11 +10,6 @@ from TRDWLL.utils import get_formatted_data
 from ckeditor_uploader.fields import RichTextUploadingField
 
 import operator
-
-# for category separation
-prefix_char = '['
-suffix_char = ']'
-
 
 class Category(models.Model):
     title = models.CharField(max_length=100, help_text='Title of the category.')
@@ -32,14 +28,21 @@ class Category(models.Model):
         
         formatted_posts = []
 
-        for year,posts in queried_posts.items():
-            formatted_posts.append('<h3>'+str(year)+'</h3><ul class="post-list mb-5">')
+        for i, (year,posts) in enumerate(queried_posts.items()):
+            formatted_posts.append(render_to_string('blog/extra/post-home/post_start.html', {'year': year, 'index': i}))
 
-            for post in posts:
-                formatted_posts.append('<li><span class="post-date archive-date">'+str(post.published_date.strftime('%b %d'))+'</span><a href="'+post.get_absolute_url()+'" class="archive-title">'+post.title+'</a></li>')
+            for count, post in enumerate(posts, 1):
+                formatted_posts.append(render_to_string('blog/extra/post-home/post_body.html', {'post': post, 'index': count}))
+            
             formatted_posts.append('</ul>')
-        
         return ''.join(formatted_posts)
+        #     formatted_posts.append()
+
+        #     for post in posts:
+        #         formatted_posts.append('<li><span class="post-date archive-date">'+str(post.published_date.strftime('%b %d'))+'</span><a href="'+post.get_absolute_url()+'" class="archive-title">'+post.title+'</a></li>')
+        #     formatted_posts.append('</ul>')
+        
+        # return ''.join(formatted_posts)
 
     class Meta:
         db_table = 'blog_category'
@@ -79,10 +82,10 @@ class Post(models.Model):
         cats = dict(sorted(cats.items(), key=operator.itemgetter(1),reverse=True))
 
         # create the html format for the sidebar
-        categories.append('<h3>Categories</h3><ul class="pl-2">')
+        categories.append(render_to_string('blog/extra/sidebar/categories_start.html', {}))
         for k,v in cats.items():
-            categories.append('<li class="list-unstyled"><a href="'+k.get_absolute_url()+'">'+k.title+'</a> <span>('+str(v)+')</span></li>')
-        categories.append('</ul>')
+            categories.append(render_to_string('blog/extra/sidebar/categories_body.html', {'category': k, 'category_count': v}))
+        categories.append(render_to_string('blog/extra/sidebar/categories_end.html', {}))
 
         return ''.join(categories)
 
@@ -91,7 +94,7 @@ class Post(models.Model):
         categories = [] 
 
         for tmp in self.category.all():
-            categories.append(prefix_char+'<a href="'+tmp.get_absolute_url()+'">'+tmp.title+'</a>'+suffix_char)
+            categories.append(render_to_string('blog/extra/post-home/categories_list.html', {'category': tmp}))
 
         categories.sort() # sort the categories to be alphabetical order
         return ''.join(categories)
@@ -102,12 +105,11 @@ class Post(models.Model):
 
         formatted_posts = []
 
-        for year,posts in queried_posts.items():
-            formatted_posts.append('<h3>'+str(year)+'</h3>')
+        for i, (year,posts) in enumerate(queried_posts.items()):
+            formatted_posts.append(render_to_string('blog/extra/post-home/post_start.html', {'year': year, 'index': i}))
 
-            formatted_posts.append('<ul class="post-list mb-5">')
             for count, post in enumerate(posts, 1):
-                formatted_posts.append('<li'+(' class="bg-white"' if count % 2 else '')+'>'+post.get_categories_formatted_post()+' <span title="'+str(post.published_date)+'">'+str(post.published_date.strftime('%b %d'))+'</span><a href="'+post.get_absolute_url()+'">'+post.title+'</a></li>')
+                formatted_posts.append(render_to_string('blog/extra/post-home/post_body.html', {'post': post, 'index': count}))
             
             formatted_posts.append('</ul>')
         return ''.join(formatted_posts)

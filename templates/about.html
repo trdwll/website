@@ -3,6 +3,13 @@
 {% block title %}About{% endblock %}
 
 {% block content %}
+
+<div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 pb-10">
+    <div class="lg:text-center">
+		<h3 class="mt-2 text-3xl leading-8 font-normal tracking-tight text-gray-900 sm:text-4xl sm:leading-10">About Me</h3>
+    </div>
+</div>
+
 {% load general_tags %}
 {{ about_text.body|markdown|safe }}
 {% endblock %}

@@ -12,27 +12,34 @@
 {% endblock %}
 
 {% block head_include %}
-<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/styles/vs.min.css">
-<script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/highlight.min.js"></script>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.3.1/styles/vs.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.3.1/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 {% endblock %}
 
 {% block content %}
 {% if msg %}
-<div class="alert alert-warning" role="alert">
-  {{ msg }}
-</div>
+  <strong>{{ msg }}</strong>
 {% endif %}
-<div class="content">
-    <h3>{{ POST.title }}</h3>
-    <h5 class="date">{{ POST.published_date }}</h5>
-    <p>{{ POST.description }}</p><br />
-    {% load general_tags %}
-    {{ POST.body|markdown|safe }}
+
+<div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 pb-10">
+    <div class="lg:text-center">
+		<h3 class="mt-2 text-3xl leading-8 font-normal tracking-tight text-gray-900 sm:text-4xl sm:leading-10">{{ POST.title }}</h3>
+		<p class="mt-4 max-w-2xl text-xl leading-7 text-gray-500 lg:mx-auto">{{ POST.description }}</p>
+    </div>
 </div>
+
+<div>
+	<div class="pb-10">
+		<p class="text-lg">{{ POST.published_date }}</p>
+	</div>
+
+	{% load general_tags %}
+    <p>{{ POST.body|markdown|safe }}</p>
+</div>
+
 {% if msg %}
-<div class="alert alert-warning" role="alert">
-  {{ msg }}
-</div>
+  <strong>{{ msg }}</strong>
 {% endif %}
+
 {% endblock %}

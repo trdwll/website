@@ -9,7 +9,7 @@ class ExperimentAdmin(admin.ModelAdmin):
     ordering = ('-published_date', )
     fieldsets = (
       ('Experiment Information', {
-          'fields': ('published_date', 'is_published', 'title', 'description', 'slug', 'body', )
+          'fields': ('published_date', 'is_published', 'status', 'title', 'description', 'slug', 'body', )
       }),
       ('Sidebar Information', {
           'fields': ('tech_used', ('learned_list', 'struggled_list', ))

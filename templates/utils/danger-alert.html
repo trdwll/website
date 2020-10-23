@@ -1,0 +1,11 @@
+<div class="flex p-4 rounded-md bg-red-300 bg-opacity-25">
+    <div class="mr-3">
+        <div class="text-xl"><i class="fas fa-times-circle fa-xs text-red-600 align-baseline"></i></div>
+    </div>
+
+    <div class="flex-1">
+        <div class="text-xl text-red-900 font-semibold mb-1">{% if title == '' %}Computer says No{% else %}{{ title }}{% endif %}</div>
+        <div class="text-red-800">{{ content }}</div>
+    </div>
+</div>
+<div class="pb-5"></div>

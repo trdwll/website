@@ -4,67 +4,54 @@
 
 {% block content %}
 {% load general_tags %}
-<div class="container">
-    <header>
-        <h1>{{ EXPERIMENT.title }}</h1>
-        <small>{{ EXPERIMENT.description }}</small>
-    </header>
-    <br />
-    <div class="body">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="card">
-                                    <h5 class="card-header">Tech Used</h5>
-                                    <div class="card-body">
-                                        <p class="card-text">{{ EXPERIMENT.tech_used }}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {% if EXPERIMENT.learned_list %}
-                        <br />
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="card">
-                                    <h5 class="card-header">Things that I learned</h5>
-                                    <div class="card-body">
-                                        <p class="card-text">{{ EXPERIMENT.learned_list|markdown|safe }}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {% endif %}
-                        {% if EXPERIMENT.struggled_list %}
-                        <br />
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="card">
-                                    <h5 class="card-header">Things that I struggled with</h5>
-                                    <div class="card-body">
-                                        <p class="card-text">{{ EXPERIMENT.struggled_list|markdown|safe }}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {% endif %}
-                    </div>
-                    
-                    <div class="col-md-8">
-                        <div class="card">
-                            <h5 class="card-header">About</h5>
-                            <div class="card-body">
-                                {% comment %} <h5 class="card-title">Special title treatment</h5> {% endcomment %}
-                                <p class="card-text">{{ EXPERIMENT.body|markdown|safe }}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 pb-10">
+    <div class="lg:text-center">
+		<h3 class="mt-2 text-3xl leading-8 font-normal tracking-tight text-gray-900 sm:text-4xl sm:leading-10">{{ EXPERIMENT.title }}</h3>
+		<p class="mt-4 max-w-2xl text-xl leading-7 text-gray-500 lg:mx-auto">{{ EXPERIMENT.description }}</p>
+    </div>
+</div>
+
+<div class="flex flex-wrap">
+    
+    <div class="w-full md:w-3/4 p-4">
+        <div class="w-full mb-4 px-2">
+            <div class="relative bg-white rounded border h-full">
+                <div class="p-4"><p>{{ EXPERIMENT.body|markdown|safe }}</p></div>
             </div>
         </div>
     </div>
+
+    <div class="w-full md:w-1/4 p-4">
+        <div class="w-full mb-4 px-2">
+            <div class="relative bg-white rounded border h-full">
+                <div class="p-4">
+                    <h3 class="text-lg font-bold">Tech Used</h3>
+                    <p>{{ EXPERIMENT.tech_used }}</p>
+                </div>
+            </div>
+        </div>
+        {% if EXPERIMENT.learned_list %}
+        <div class="w-full mb-4 px-2">
+            <div class="relative bg-white rounded border h-full">
+                <div class="p-4">
+                    <h3 class="text-lg font-bold">Things that I learned</h3>
+                    <p>{{ EXPERIMENT.learned_list|markdown|safe }}</p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% if EXPERIMENT.struggled_list %}
+        <div class="w-full mb-4 px-2">
+            <div class="relative bg-white rounded border h-full">
+                <div class="p-4">
+                    <h3 class="text-lg font-bold">Things I struggled with</h3>
+                    <p>{{ EXPERIMENT.struggled_list|markdown|safe }}</p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
 </div>
+
+
 {% endblock %}

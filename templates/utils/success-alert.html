@@ -1,0 +1,11 @@
+<div class="flex p-4 rounded-md bg-green-300 bg-opacity-25">
+    <div class="mr-3">
+        <div class="text-xl"><i class="fas fa-check-circle fa-xs text-green-600 align-baseline"></i></div>
+    </div>
+
+    <div class="flex-1">
+        <div class="text-xl text-green-900 font-semibold mb-1">{% if title == '' %}Success{% else %}{{ title }}{% endif %}</div>
+        <div class="text-green-800">{{ content }}</div>
+    </div>
+</div>
+<div class="pb-5"></div>
