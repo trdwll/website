@@ -25,7 +25,7 @@ class Category(models.Model):
 
     def get_posts_formatted(slug):
         """ Get the posts and format them for display """
-        queried_posts = get_formatted_data(Post.objects.filter(is_published=True, category=Category.objects.filter(slug__iexact=slug).first()).order_by('-published_date'))
+        queried_posts = get_formatted_data(Post.objects.filter(is_published=True, category=Category.objects.filter(slug__iexact=slug).first()))
         
         formatted_posts = []
 
@@ -83,7 +83,7 @@ class Post(models.Model):
 
     def get_posts_formatted():
         """ Get the posts and format them for display """
-        queried_posts = get_formatted_data(Post.objects.filter(is_published=True).order_by('-published_date'))
+        queried_posts = get_formatted_data(Post.objects.filter(is_published=True))
 
         formatted_posts = []
 
@@ -106,7 +106,7 @@ class Post(models.Model):
     def categories(self):
         return ", ".join([str(p.title) for p in self.category.all()])
 
-    class Meta:
+    class Meta: 
         db_table = 'blog_post'
         ordering = ['-published_date']
         verbose_name = 'Post'

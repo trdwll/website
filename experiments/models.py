@@ -33,7 +33,7 @@ class Experiment(models.Model):
 
     def get_experiments_formatted():
         """ Get the posts and format them for display """
-        queried_experiments = get_formatted_data(Experiment.objects.filter(is_published=True).order_by('-published_date'))
+        queried_experiments = get_formatted_data(Experiment.objects.filter(is_published=True))
 
         formatted_experiments = []
 
