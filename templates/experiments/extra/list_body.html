@@ -4,7 +4,7 @@
             <h3 class="text-lg font-bold">
             <a class="stretched-link hover:opacity-50 link-underline" href="{{ experiment.get_absolute_url }}" title="{{ experiment.published_date }}">{{ experiment.title }}</a>
             {% if experiment.status == "Blank" %}</h3>{% else %}<small class="opacity-50 float-right uppercase text-xs {{ experiment.status }}">{{ experiment.get_status_display }}</small></h3>{% endif %}
-            <p class="opacity-50">{{ description }}</p>
+            <span class="opacity-50">{{ description }}</span>
         </div>
     </div>
 </div>

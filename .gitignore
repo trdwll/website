@@ -107,3 +107,4 @@ ENV/
 # JetBrains
 .idea/
 TRDWLL/settings/prod.py
+static/debug_toolbar
