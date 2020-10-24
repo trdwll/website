@@ -91,10 +91,11 @@ class Post(models.Model):
             formatted_posts.append(render_to_string('blog/extra/post-home/post_start.html', {'year': year, 'index': i, 'post_count': len(posts)}))
 
             for count, post in enumerate(posts, 1):
-
                 categories = [] 
-                for tmp in post.category.all():
-                    categories.append(render_to_string('blog/extra/post-home/categories_list.html', {'category': tmp}))
+                # TODO: By doing this query we're adding a query per post 
+                # at the time of writing this we do 5 queries on home
+                # for tmp in post.category.all():
+                #     categories.append(render_to_string('blog/extra/post-home/categories_list.html', {'category': tmp}))
                 # categories.sort() # sort the categories to be alphabetical order
 
                 formatted_posts.append(render_to_string('blog/extra/post-home/post_body.html', {'post': post, 'index': count, 'post_categories': ''.join(categories)}))

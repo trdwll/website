@@ -5,7 +5,7 @@ from .models import Experiment
 class ExperimentAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title', )}
     search_fields = ['title', 'body']
-    list_display = ['title', 'published_date', 'is_published']
+    list_display = ['title', 'status', 'published_date', 'is_published']
     ordering = ('-published_date', )
     fieldsets = (
       ('Experiment Information', {
