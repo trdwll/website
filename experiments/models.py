@@ -12,7 +12,8 @@ experiment_status = (
     ('', 'Blank'),
     ('text-gray-500', 'Unmaintained'),
     ('text-green-500', 'Active'),
-    ('text-red-500', 'Abandoned')
+    ('text-red-500', 'Abandoned'),
+    ('text-blue-500', 'On-Hold'),
 )
 
 class Experiment(models.Model):
@@ -41,7 +42,7 @@ class Experiment(models.Model):
 
             for experiment in experiments:
                 description = experiment.description[0:117]+'...' if len(experiment.description) > 117 else experiment.description
-                formatted_experiments.append(render_to_string('experiments/extra/list_body.html', {'experiment': experiment}))
+                formatted_experiments.append(render_to_string('experiments/extra/list_body.html', {'experiment': experiment, 'description': description}))
             
             # end the row
             formatted_experiments.append(render_to_string('experiments/extra/list_end.html', {}))

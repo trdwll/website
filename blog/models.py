@@ -3,6 +3,7 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 from django.db.models.signals import pre_save
 from django.template.loader import render_to_string
+from django.db.models import Q, Count
 
 from TRDWLL.signals import create_redirect
 from TRDWLL.utils import get_formatted_data
@@ -29,20 +30,13 @@ class Category(models.Model):
         formatted_posts = []
 
         for i, (year,posts) in enumerate(queried_posts.items()):
-            formatted_posts.append(render_to_string('blog/extra/post-home/post_start.html', {'year': year, 'index': i}))
+            formatted_posts.append(render_to_string('blog/extra/post-home/post_start.html', {'year': year, 'index': i, 'post_count': len(posts)}))
 
             for count, post in enumerate(posts, 1):
                 formatted_posts.append(render_to_string('blog/extra/post-home/post_body.html', {'post': post, 'index': count}))
             
             formatted_posts.append('</ul>')
         return ''.join(formatted_posts)
-        #     formatted_posts.append()
-
-        #     for post in posts:
-        #         formatted_posts.append('<li><span class="post-date archive-date">'+str(post.published_date.strftime('%b %d'))+'</span><a href="'+post.get_absolute_url()+'" class="archive-title">'+post.title+'</a></li>')
-        #     formatted_posts.append('</ul>')
-        
-        # return ''.join(formatted_posts)
 
     class Meta:
         db_table = 'blog_category'
@@ -73,10 +67,8 @@ class Post(models.Model):
         cats = {}
 
         # sort through all categories and add them to a dictionary
-        for tmp in Category.objects.all():
-            count = tmp.post_set.filter(is_published=True).count()
-            if count >= 1:
-                cats.update({tmp:count})
+        for tmp in Category.objects.all().exclude(post__isnull=True).annotate(count=Count("id")).filter(count__gte=0, post__is_published=True):
+            cats.update({tmp:tmp.count})
 
         # sort the dictionary by value
         cats = dict(sorted(cats.items(), key=operator.itemgetter(1),reverse=True))
@@ -89,16 +81,6 @@ class Post(models.Model):
 
         return ''.join(categories)
 
-    def get_categories_formatted_post(self):
-        """ Get the categories and format them for display """
-        categories = [] 
-
-        for tmp in self.category.all():
-            categories.append(render_to_string('blog/extra/post-home/categories_list.html', {'category': tmp}))
-
-        categories.sort() # sort the categories to be alphabetical order
-        return ''.join(categories)
-
     def get_posts_formatted():
         """ Get the posts and format them for display """
         queried_posts = get_formatted_data(Post.objects.filter(is_published=True).order_by('-published_date'))
@@ -106,10 +88,16 @@ class Post(models.Model):
         formatted_posts = []
 
         for i, (year,posts) in enumerate(queried_posts.items()):
-            formatted_posts.append(render_to_string('blog/extra/post-home/post_start.html', {'year': year, 'index': i}))
+            formatted_posts.append(render_to_string('blog/extra/post-home/post_start.html', {'year': year, 'index': i, 'post_count': len(posts)}))
 
             for count, post in enumerate(posts, 1):
-                formatted_posts.append(render_to_string('blog/extra/post-home/post_body.html', {'post': post, 'index': count}))
+
+                categories = [] 
+                for tmp in post.category.all():
+                    categories.append(render_to_string('blog/extra/post-home/categories_list.html', {'category': tmp}))
+                # categories.sort() # sort the categories to be alphabetical order
+
+                formatted_posts.append(render_to_string('blog/extra/post-home/post_body.html', {'post': post, 'index': count, 'post_categories': ''.join(categories)}))
             
             formatted_posts.append('</ul>')
         return ''.join(formatted_posts)
