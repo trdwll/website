@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import View
+from django.template.loader import render_to_string
 
 from .models import Post, Category
 
@@ -12,7 +13,7 @@ class BlogPostView(View):
         preview = q is not None and q == 'true'
         post = get_object_or_404(Post.objects.filter(slug=slug))
         if preview or request.user.is_authenticated and request.user.is_superuser and post.is_published == False:
-            msg = 'You\'re viewing this post as a preview. Please don\'t share the post with anyone.' if preview else 'This post is not published. Only staff can view this post currently.'
+            msg = render_to_string('utils/warning-alert.html', {'title': 'Hold up!', 'content': 'You\'re viewing this post as a preview. Please don\'t share the post with anyone.' if preview else 'This post is not published. Only staff can view this post currently.'})
         else:
             post = get_object_or_404(Post.objects.filter(slug=slug, is_published=True))
             msg = ''
