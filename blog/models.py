@@ -72,7 +72,7 @@ class Post(models.Model):
             cats.update({tmp:tmp.count})
 
         # sort the dictionary by value
-        cats = dict(sorted(cats.items(), key=operator.itemgetter(1),reverse=True))
+        cats = dict(sorted(cats.items(), key=operator.itemgetter(1), reverse=True))
 
         # create the html format for the sidebar
         categories.append(render_to_string('blog/extra/sidebar/categories_start.html', {}))
