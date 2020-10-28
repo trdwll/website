@@ -13,9 +13,13 @@
 {% endblock %}
 
 {% block head_include %}
+{% if 'hljs' in POST.body or 'code class="language-' in POST.body %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/fonts.css' %}">
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.3.1/styles/vs.min.css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.3.1/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
+{% endif %}
 {% endblock %}
 
 {% block content %}
