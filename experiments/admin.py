@@ -12,7 +12,7 @@ class ExperimentAdmin(admin.ModelAdmin):
           'fields': ('published_date', 'is_published', 'status', 'title', 'description', 'slug', 'body', )
       }),
       ('Sidebar Information', {
-          'fields': ('tech_used', ('learned_list', 'struggled_list', ))
+          'fields': ('download_link', 'tech_used',  ('learned_list', 'struggled_list', ))
       }),
    )
 
