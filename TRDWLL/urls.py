@@ -15,7 +15,7 @@ urlpatterns = [
 
     path('admin/', admin.site.urls),
 
-    path('ckeditor/', include('ckeditor_uploader.urls')),
+    path('tinymce/', include('tinymce.urls')),
 ]
 
 if settings.DEBUG:

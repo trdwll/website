@@ -8,7 +8,7 @@ from django.db.models import Q, Count
 from TRDWLL.signals import create_redirect
 from TRDWLL.utils import get_formatted_data
 
-from ckeditor_uploader.fields import RichTextUploadingField
+from tinymce.models import HTMLField
 
 import operator
 
@@ -49,7 +49,7 @@ class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blog_author')
     published_date = models.DateTimeField()
     title = models.CharField(max_length=200, help_text='Title of the post.')
-    body = RichTextUploadingField()
+    body = HTMLField()
     description = models.CharField(max_length=100, help_text='A short tagline that describes what the reader will be reading about.')
     keywords = models.CharField(max_length=512, help_text='SEO keywords to help get more exposure.', blank=True, null=True)
     category = models.ManyToManyField(Category, help_text='The category that the post will be listed under.')

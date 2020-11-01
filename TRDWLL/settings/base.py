@@ -30,8 +30,10 @@ INSTALLED_APPS = [
     # 3rd party
     'django_otp',
     'django_otp.plugins.otp_totp',
-    'ckeditor',
-    'ckeditor_uploader',
+    'tinymce',
+    'easy_thumbnails',
+    'filer',
+    'mptt',
 ]
 
 MIDDLEWARE = [
@@ -43,14 +45,13 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.contrib.redirects.middleware.RedirectFallbackMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
 
-    'django_analytics.middleware.PageViewsMiddleware',
 
     # 3rd party
+    'django_analytics.middleware.PageViewsMiddleware',
     'htmlmin.middleware.HtmlMinifyMiddleware',
     'htmlmin.middleware.MarkRequestMiddleware',
-
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django_otp.middleware.OTPMiddleware',
 ]
 
@@ -140,40 +141,34 @@ FILE_UPLOAD_PERMISSIONS = 0o644
 
 OTP_TOTP_ISSUER = 'TRDWLL'
 
-CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"
-CKEDITOR_UPLOAD_PATH = "uploads/"
-CKEDITOR_IMAGE_BACKEND = "pillow"
-CKEDITOR_THUMBNAIL_SIZE = (350, 350) #300, 300
-CKEDITOR_IMAGE_QUALITY = 75 #40
-CKEDITOR_BROWSE_SHOW_DIRS = True
-CKEDITOR_ALLOW_NONIMAGE_FILES = True
+TINYMCE_DEFAULT_CONFIG = {
+    'plugins': "table,insertdatetime,spellchecker,paste,searchreplace,link,image,preview,codesample,table,code,autoresize,autolink,emoticons,hr,autosave,charmap,media,toc,help",
+    'toolbar1': 'bold italic underline hr charmap insertdatetime | alignleft aligncenter alignright alignjustify | bullist numlist | outdent indent | table emoticons | link image media toc | codesample | preview code | help',
+}
 
+THUMBNAIL_HIGH_RESOLUTION = True
 
-CKEDITOR_CONFIGS = {
-    'default': {
-        'toolbar': 'Custom',
-        'toolbar_Custom': [
-            ['Styles', 'Format', 'Bold', 'Italic', 'Underline', 'Strike', '-', 'NumberedList', 'BulletedList', '-', 'Blockquote', 'ShowBlocks', 'Templates'],
-            ['Image', 'Table', 'HorizontalRule'],
-            ['TextColor', 'BGColor'],
-            ['Outdent', 'Indent', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
-            ['Link', 'Unlink', 'Html5video', 'Youtube'], ['CodeSnippet'],
-            ['Emojione', 'SpecialChar'], 
-            ['Source', 'Preview'], # can replace Emojione with Smiley
-        ],
-        'height': 300,
-        'width': 1200, # probably not the smartest as this breaks mobile
-        'extraPlugins': ','.join(['codesnippet', 'emojione', 'autolink', 'autogrow', 'blockquote', 'showblocks', 'templates', 'uploadfile', 'preview', 'html5video', 'youtube']),
-    },
-    'experiments_sidebar': {
-        'toolbar': 'Custom',
-        'toolbar_Custom': [
-            ['Bold', 'Italic', 'Underline', 'Strike', '-', 'NumberedList', 'BulletedList'],
-            ['Link', 'Unlink', 'HorizontalRule'],
-            ['TextColor', 'BGColor'],
-            ['CodeSnippet'],
-            ['Source'],
-        ],
-        'width': 600,
+FILER_STORAGES = {
+    'public': {
+        'main': {
+            'ENGINE': 'filer.storage.PublicFileSystemStorage',
+            'OPTIONS': {
+                'location': os.path.abspath(os.path.join(MEDIA_ROOT, '../media/uploads')),
+                'base_url': '/media/uploads/',
+            },
+            'UPLOAD_TO': 'filer.utils.generate_filename.by_date',
+            'UPLOAD_TO_PREFIX': '',
+        },
+        'thumbnails': {
+            'ENGINE': 'filer.storage.PublicFileSystemStorage',
+            'OPTIONS': {
+                'location': os.path.abspath(os.path.join(MEDIA_ROOT, '../media/uploads/thumbs')),
+                'base_url': '/media/uploads/thumbs/',
+            },
+            'THUMBNAIL_OPTIONS': {
+                'base_dir': '',
+            },
+            'UPLOAD_TO': 'filer.utils.generate_filename.by_date',
+        },
     }
 }

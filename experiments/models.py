@@ -5,8 +5,7 @@ from TRDWLL.signals import create_redirect
 from TRDWLL.utils import get_formatted_data
 from django.template.loader import render_to_string
 
-from ckeditor_uploader.fields import RichTextUploadingField
-from ckeditor.fields import RichTextField
+from tinymce.models import HTMLField
 
 def parse_status_to_string(experiment):
     if experiment.get_status_display() == 'Unmaintained':
@@ -31,7 +30,7 @@ class Experiment(models.Model):
     published_date = models.DateTimeField(help_text='When was this experiment created?')
     title = models.CharField(max_length=100, help_text='Title of the post.')
     description = models.CharField(max_length=500, help_text='The description of the experiment.')
-    body = RichTextUploadingField()
+    body = HTMLField()
     is_published = models.BooleanField(default=True, help_text='Do you want this post to be published publicly?')
     status = models.CharField(max_length=32, choices=experiment_status, help_text='What\'s the status of this experiment?', default='Blank')
     slug = models.SlugField(unique=True)
@@ -39,8 +38,8 @@ class Experiment(models.Model):
     # sidebar
     download_link = models.URLField(null=True, blank=True, help_text='A link to download this experiment. (should really be just a link to the repo if any)')
     tech_used = models.CharField(max_length=250, help_text='Tech that was used for this experiment.')
-    learned_list = RichTextField(blank=True, help_text='Things that I learned during the development of this experiment?', config_name='experiments_sidebar')
-    struggled_list = RichTextField(blank=True, help_text='Things that I struggled with during the development of this experiment?', config_name='experiments_sidebar')
+    learned_list = HTMLField(blank=True, help_text='Things that I learned during the development of this experiment?')
+    struggled_list = HTMLField(blank=True, help_text='Things that I struggled with during the development of this experiment?')
 
     def get_absolute_url(self):
         return reverse('experiment_post_page', kwargs={'slug': self.slug})

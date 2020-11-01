@@ -4,7 +4,8 @@ django-htmlmin
 markdown
 Pillow
 django-otp
+django-filer
 qrcode
 tweepy
 git+https://github.com/trdwll/django-analytics
-git+https://github.com/django-ckeditor/django-ckeditor
+git+https://github.com/jazzband/django-tinymce
