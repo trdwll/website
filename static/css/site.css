@@ -11,6 +11,7 @@ code {font-size: .75em;}
 .post-content a { opacity: .5; font-size: 1rem; }
 .post-content a:hover { opacity: 1; font-size: 1rem; }
 a[href$=jpg], a[href$=jpeg], a[href$=png], a[href$=gif] { opacity: 1; }
+ol {display: block; list-style-type: decimal; margin-top: 1em; margin-bottom: 1em; margin-left: 0; margin-right: 0; padding-left: 40px;}
 /* -------------------------------------------------------------------
   Microtip
 
