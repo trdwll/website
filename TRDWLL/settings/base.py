@@ -142,8 +142,8 @@ FILE_UPLOAD_PERMISSIONS = 0o644
 OTP_TOTP_ISSUER = 'TRDWLL'
 
 TINYMCE_DEFAULT_CONFIG = {
-    'plugins': "table,insertdatetime,spellchecker,paste,searchreplace,link,image,preview,codesample,table,code,autoresize,autolink,emoticons,hr,autosave,charmap,media,toc,help",
-    'toolbar1': 'bold italic underline hr charmap insertdatetime | alignleft aligncenter alignright alignjustify | bullist numlist | outdent indent | table emoticons | link image media toc | codesample | preview code | help',
+    'plugins': "table,insertdatetime,spellchecker,paste,searchreplace,link,image,preview,codesample,table,code,lists,imagetools,autoresize,autolink,emoticons,hr,autosave,charmap,media,toc,help",
+    'toolbar1': 'bold italic underline hr charmap insertdatetime | alignleft aligncenter alignright alignjustify | formatselect fontselect fontsizeselect | bullist numlist | outdent indent | table emoticons | link image media toc | codesample | preview code | help',
 }
 
 THUMBNAIL_HIGH_RESOLUTION = True
