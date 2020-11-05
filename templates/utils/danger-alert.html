@@ -5,7 +5,7 @@
 
     <div class="flex-1">
         <div class="text-xl text-red-900 font-semibold mb-1">{% if title == '' %}Computer says No{% else %}{{ title }}{% endif %}</div>
-        <div class="text-red-800">{{ content }}</div>
+        <div class="text-red-800">{{ content|safe }}</div>
     </div>
 </div>
 <div class="pb-5"></div>

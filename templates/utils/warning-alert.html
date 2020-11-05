@@ -5,7 +5,7 @@
 
     <div class="flex-1">
         <div class="text-xl text-yellow-900 font-semibold mb-1">{% if title == '' %}B R U H{% else %}{{ title }}{% endif %}</div>
-        <div class="text-yellow-800">{{ content }}</div>
+        <div class="text-yellow-800">{{ content|safe }}</div>
     </div>
 </div>
 <div class="pb-5"></div>
