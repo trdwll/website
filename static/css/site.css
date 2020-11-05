@@ -13,6 +13,17 @@ code {font-size: .75em;}
 a[href$=jpg], a[href$=jpeg], a[href$=png], a[href$=gif] { opacity: 1; }
 ol {display: block; list-style-type: decimal; margin-top: 1em; margin-bottom: 1em; margin-left: 0; margin-right: 0; padding-left: 40px;}
 .language-markup {overflow-x: auto;background:#fff;display:block;padding:.5em;}
+.cardyboi a::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+
+
 /* -------------------------------------------------------------------
   Microtip
 
