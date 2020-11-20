@@ -7,6 +7,8 @@ PROJECT_ROOT = dirname(dirname(abspath(__file__)))
 SITE_ROOT = dirname(PROJECT_ROOT)
 
 SITE_ID = 1
+MATOMO_SITE_ID = '1'
+MATOMO_DOMAIN_PATH = 'matomo.trdwll.com'
 
 # Application definition
 
@@ -22,6 +24,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
 
     'django_analytics',
+    'analytical',
 
     'TRDWLL',
     'blog',
