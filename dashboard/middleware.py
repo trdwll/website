@@ -27,18 +27,20 @@ class PageViewsMiddleware(object):
             visitor_exists = Visitor.objects.filter(ip_address=visitor_ip[0])
 
             # if the ip is not localhost then do a lookup of the country for the ip and the visitor doesn't already exist
-            if visitor_ip[0] not in ('localhost', '127.0.0.1') and not visitor_exists.exists():
-                handler = ipinfo.getHandler(settings.IPINFO_API_KEY)
-                details = handler.getDetails(str(visitor_ip[0]))
-                if details.country_name is not None:
-                    visitor.ip_country = details.country_name
-                if details.country is not None:
-                    visitor.country_code = details.country
-            else:
-                visitor.ip_country = visitor_exists[0].ip_country
-                visitor.country_code = visitor_exists[0].country_code
+            if visitor_ip[0] not in ('localhost', '127.0.0.1'):
+                if not visitor_exists.exists():
+                    handler = ipinfo.getHandler(settings.IPINFO_API_KEY)
+                    details = handler.getDetails(str(visitor_ip[0]))
+                    if details.country_name is not None:
+                        visitor.ip_country = details.country_name
+                    if details.country is not None:
+                        visitor.country_code = details.country
+                else:
+                    visitor.ip_country = visitor_exists[0].ip_country
+                    visitor.country_code = visitor_exists[0].country_code
+                    print('=====', visitor_exists[0].ip_country)
             
-            visitor.user_agent = request.META['HTTP_USER_AGENT']
+                visitor.user_agent = request.META['HTTP_USER_AGENT']
             visitor.save()
 
             if not 'favicon' in requested_url:
