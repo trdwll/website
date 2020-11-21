@@ -12,7 +12,7 @@
 {% comment %} Hard coding the url here isn't ideal {% endcomment %}
 {% endblock %}
 
-{% block head_include %}
+{% block extrahead %}
 {% if 'hljs' in POST.body or 'code class="language-' in POST.body or 'language-' in POST.body %}
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/fonts.css' %}">

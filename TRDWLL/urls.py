@@ -12,7 +12,8 @@ urlpatterns = [
     path('about/', AboutView.as_view(), name='about_page'),
     path('blog/', include('blog.urls'), name='blog_page'),
     path('experiments/', include('experiments.urls'), name='experiments_home_page'),
-
+    path('dashboard/', include('dashboard.urls'), name='dashboard_home_page'),
+    
     path('admin/', admin.site.urls),
 
     path('tinymce/', include('tinymce.urls')),

@@ -1,0 +1,57 @@
+{% extends 'dashboard/_dashboardbase.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block extrahead %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+
+{% endblock %}
+
+{% block content %}
+<div class="flex">
+    <div class="flex-initial mx-auto p-4">
+        <h3>Top 10 Pages</h3>
+        <table class="min-w-full divide-y divide-gray-200">
+            <thead>
+                <tr>
+                <th class="px-6 py-3 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Page</th>
+                <th class="px-6 py-3 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Hits</th>
+                </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+            {% for entry in global_entries %}
+            <tr {% if forloop.counter|divisibleby:2 %}class="bg-gray-200"{% endif %}>
+                <td class="px-6 py-4 whitespace-no-wrap"><a href="{{ entry.page_url }}">{{ entry.page_url }}</a></td>
+                <td class="px-6 py-4 whitespace-no-wrap">{{ entry.hit_count }}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="flex-initial mx-auto p-4">
+        <h3>Top 10 Countries</h3>
+        <table class="min-w-full divide-y divide-gray-200">
+            <thead>
+                <tr>
+                <th class="px-6 py-3 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Country</th>
+                <th class="px-6 py-3 bg-white text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Hits</th>
+                </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+            {% for entry in top_ten_countries %}
+            <tr {% if forloop.counter|divisibleby:2 %}class="bg-gray-200"{% endif %}>
+                <td class="px-6 py-4 whitespace-no-wrap">{{ entry.visitor__ip_country }}</td>
+                <td class="px-6 py-4 whitespace-no-wrap">{{ entry.total }}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="flex-initial mx-auto p-4">
+      MAP HERE
+    </div>
+</div>
+
+
+
+{% endblock %}

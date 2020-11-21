@@ -8,17 +8,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         {% load static %}
-        <meta property="og:image" content="https://trdwll.com{% static 'img/trdwll_logo_128.png' %}" />
-        
-        <meta name="twitter:card" content="summary" />
-        <meta name="twitter:creator" content="@trdwll" />
-        <meta name="twitter:site" content="https://trdwll.com" />
-        <meta name="twitter:image" content="https://trdwll.com{% static 'img/trdwll_logo_128.png' %}">
-
-        {% block meta_tags %}
-        <meta name="twitter:description" content="Russ 'trdwll' Treadwell's personal website. A software engineer with an interest in web development and game development. C++, C#, and Python.">
-        <meta name="keywords" content="C++, C#, Python, UE4, Unreal Engine 4, Unreal Engine, Gamedev, Game Development, Gaming, Programming, Code">
-        {% endblock %}
 
         <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.9.5/tailwind.min.css" rel="stylesheet">
         <link href="{% static 'css/site.min.css' %}" rel="stylesheet">
@@ -31,11 +20,10 @@
         <div id="app" class="flex flex-col h-screen">
             {% include '_navbar.html' %}
         
-            <main role="main" class="mt-12 flex-auto container mx-auto px-6">
+            <main role="main" class="mt-12 flex-auto px-6">
             {{ ALERTS|safe }}
             {% block content %}{% endblock %}
             </main>
-
             {% include '_footer.html' %}
         </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js" integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>

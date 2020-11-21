@@ -21,11 +21,10 @@ INSTALLED_APPS = [
     'django.contrib.redirects',
     'django.contrib.humanize',
 
-    'django_analytics',
-
     'TRDWLL',
     'blog',
     'experiments',
+    'dashboard',
 
     # 3rd party
     'django_otp',
@@ -47,9 +46,9 @@ MIDDLEWARE = [
     'django.contrib.redirects.middleware.RedirectFallbackMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
 
+    'dashboard.middleware.PageViewsMiddleware',
 
     # 3rd party
-    'django_analytics.middleware.PageViewsMiddleware',
     'htmlmin.middleware.HtmlMinifyMiddleware',
     'htmlmin.middleware.MarkRequestMiddleware',
     'django_otp.middleware.OTPMiddleware',

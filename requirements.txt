@@ -1,11 +1,13 @@
 Django>=3.1
-bcrypt
 django-htmlmin
-markdown
-Pillow
 django-otp
 django-filer
+django-ipware
+bcrypt
+markdown
+Pillow
 qrcode
 tweepy
-git+https://github.com/trdwll/django-analytics
+bleach
+ipinfo
 git+https://github.com/jazzband/django-tinymce
