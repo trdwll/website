@@ -24,7 +24,7 @@ class PageViewsMiddleware(object):
             visitor_ip = get_client_ip(request)
 
             visitor = Visitor.objects.create(ip_address=visitor_ip[0]) 
-            visitor_exists = Visitor.objects.filter(ip_address=visitor_ip[0])
+            visitor_exists = Visitor.objects.filter(ip_address=visitor_ip[0]).exclude(ip_country='')
 
             # if the ip is not localhost then do a lookup of the country for the ip and the visitor doesn't already exist
             if visitor_ip[0] not in ('localhost', '127.0.0.1'):
@@ -36,12 +36,11 @@ class PageViewsMiddleware(object):
                     if details.country is not None:
                         visitor.country_code = details.country
                 else:
-                    visitor.ip_country = visitor_exists[0].ip_country
-                    visitor.country_code = visitor_exists[0].country_code
-                    print('=====', visitor_exists[0].ip_country)
-            
+                    visitor.ip_country = visitor_exists.first().ip_country
+                    visitor.country_code = visitor_exists.first().country_code
+
                 visitor.user_agent = request.META['HTTP_USER_AGENT']
-            visitor.save()
+                visitor.save()
 
             if not 'favicon' in requested_url:
                 # Create the VisitorPageHit (adds a new entry for each visitor that visits a page)
