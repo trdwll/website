@@ -7,6 +7,5 @@ django-otp
 django-filer
 qrcode
 tweepy
-django-analytical
 git+https://github.com/trdwll/django-analytics
 git+https://github.com/jazzband/django-tinymce
