@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,10 +20,10 @@
         <meta name="keywords" content="C++, C#, Python, UE4, Unreal Engine 4, Unreal Engine, Gamedev, Game Development, Gaming, Programming, Code">
         {% endblock %}
 
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.9.5/tailwind.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.9.6/tailwind.min.css" integrity="sha512-l7qZAq1JcXdHei6h2z8h8sMe3NbMrmowhOl+QkP3UhifPpCW2MC4M0i26Y8wYpbz1xD9t61MLT9L1N773dzlOA==" crossorigin="anonymous" />
         <link href="{% static 'css/site.min.css' %}" rel="stylesheet">
         <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" />
-        <script src="https://kit.fontawesome.com/a5a441f411.js" crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/a5a441f411.js" crossorigin="anonymous" defer></script>
 
         {% block extrahead %}{% endblock %}
     </head>
@@ -38,7 +38,7 @@
 
             {% include '_footer.html' %}
         </div>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js" integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
-        <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.js" integrity="sha512-1lagjLfnC1I0iqH9plHYIUq3vDMfjhZsLy9elfK89RBcpcRcx4l+kRJBSnHh2Mh6kLxRHoObD1M5UTUbgFy6nA==" crossorigin="anonymous" defer></script>
+        <script type="text/javascript" src="{% static 'js/script.js' %}" defer></script>
     </body>
 </html>
