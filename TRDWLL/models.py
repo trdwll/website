@@ -46,3 +46,20 @@ class Alert(models.Model):
         ordering = ['type']
         verbose_name = 'Alert'
         verbose_name_plural = 'Alerts'
+
+
+# A page that the visitor has viewed.
+class VisitorPageHit(models.Model):
+    created = models.DateTimeField(auto_now_add=True, help_text='When the visitor viewed the page.')
+    ip_address = models.GenericIPAddressField(help_text='The IP address of the visitor.')
+    ip_country = models.CharField(max_length=100, help_text='The country location of the ip address.')
+    page_url = models.CharField(max_length=200, help_text='The url that was accessed.')
+    user_agent = models.CharField(max_length=300, help_text='The useragent that the visitor is using.')
+    referer = models.CharField(max_length=150, help_text='The page that this visitor came from.', default='', blank=True)
+
+    class Meta:
+        db_table = 'analytics_visitorpagehit'
+        ordering = ['-created']
+
+    def __str__(self):
+        return str(self.page_url)
