@@ -1,5 +1,4 @@
 Django>=3.1
-django-htmlmin
 django-otp
 django-filer
 django-ipware
