@@ -13,6 +13,16 @@ class PageViewsMiddleware(object):
 
     def __call__(self, request):
         requested_url = bleach.clean(request.path)
+
+        # lastSeenId = float('-Inf')
+        # rows = Visitor.objects.all().order_by('ip_address')
+
+        # for row in rows:
+        #     if row.ip_address == lastSeenId:
+        #         print('Deleting: ', row)
+        #         row.delete() # We've seen this id in a previous row
+        #     else: # New id found, save it and check future rows for duplicates.
+        #         lastSeenId = row.ip_address 
         
         if reverse('admin:index') in requested_url or \
             reverse('admin:index') + 'login/' in requested_url or \
