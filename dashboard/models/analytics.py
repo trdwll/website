@@ -14,6 +14,7 @@ class GlobalPageHit(models.Model):
     def __str__(self):
         return str(self.page_url)
 
+
 # The actual visitor of the website.
 class Visitor(models.Model):
     created = models.DateTimeField(auto_now_add=True, help_text='When the visitor viewed the site for the first time.')
@@ -36,7 +37,7 @@ class VisitorPageHit(models.Model):
     created = models.DateTimeField(auto_now_add=True, help_text='When the visitor viewed the page.')
     visitor = models.ForeignKey(Visitor, on_delete=models.CASCADE, help_text='The visitor that has visited this page.')
     page_url = models.CharField(max_length=200, help_text='The url that was accessed.')
-    user_agent = models.TextField(help_text='The useragent that the visitor is using.')
+    user_agent = models.CharField(max_length=300, help_text='The useragent that the visitor is using.')
     referer = models.CharField(max_length=150, help_text='The page that this visitor came from.', default='', blank=True)
 
     class Meta:
