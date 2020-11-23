@@ -48,6 +48,8 @@ MIDDLEWARE = [
     'TRDWLL.middleware.PageViewsMiddleware',
 
     # 3rd party
+    'htmlmin.middleware.HtmlMinifyMiddleware',
+    'htmlmin.middleware.MarkRequestMiddleware',
     'django_otp.middleware.OTPMiddleware',
 ]
 
