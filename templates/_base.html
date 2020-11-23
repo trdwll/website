@@ -20,7 +20,12 @@
         <meta name="keywords" content="C++, C#, Python, UE4, Unreal Engine 4, Unreal Engine, Gamedev, Game Development, Gaming, Programming, Code">
         {% endblock %}
 
+        {% url 'home_page' as home_url %}
+        {% if request.path == home_url %}
+        <link rel="stylesheet" href="{% static 'css/home.min.css' %}" />
+        {% else %}
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.9.6/tailwind.min.css" integrity="sha512-l7qZAq1JcXdHei6h2z8h8sMe3NbMrmowhOl+QkP3UhifPpCW2MC4M0i26Y8wYpbz1xD9t61MLT9L1N773dzlOA==" crossorigin="anonymous" />
+        {% endif %}
         <link href="{% static 'css/site.min.css' %}" rel="stylesheet">
         <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" />
         <script src="https://kit.fontawesome.com/a5a441f411.js" crossorigin="anonymous" defer></script>
