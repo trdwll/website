@@ -30,6 +30,7 @@ class Experiment(models.Model):
     published_date = models.DateTimeField(help_text='When was this experiment created?')
     title = models.CharField(max_length=100, help_text='Title of the post.')
     description = models.CharField(max_length=500, help_text='The description of the experiment.')
+    keywords = models.CharField(max_length=512, help_text='SEO keywords to help get more exposure.', blank=True, null=True)
     body = HTMLField()
     is_published = models.BooleanField(default=True, help_text='Do you want this post to be published publicly?')
     status = models.CharField(max_length=32, choices=experiment_status, help_text='What\'s the status of this experiment?', default='Blank')

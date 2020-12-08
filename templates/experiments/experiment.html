@@ -2,6 +2,16 @@
 
 {% block title %}Experiments / {{ EXPERIMENT.title }}{% endblock %}
 
+{% block meta_tags %}
+<meta name="twitter:description" content="{{ EXPERIMENT.description }}">
+<meta name="keywords" content="C++, C#, Python, UE4, Unreal Engine 4, Unreal Engine, Gamedev, Game Development, Gaming, Programming, Code{% if EXPERIMENT.keywords %}, {{ EXPERIMENT.keywords }}{% endif %}">
+
+<meta property="og:title" content="{{ EXPERIMENT.title }}" />
+<meta property="og:description" content="{{ EXPERIMENT.description }}" />
+<meta property="og:url" content="https://trdwll.com{{ request.get_full_path }}" />
+{% comment %} Hard coding the url here isn't ideal {% endcomment %}
+{% endblock %}
+
 {% block content %}
 {% load general_tags %}
 <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 pb-10">
