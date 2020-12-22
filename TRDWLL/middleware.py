@@ -19,12 +19,13 @@ class PageViewsMiddleware(object):
             requested_url is reverse('admin:index') or \
             'dashboard' in requested_url or \
             'favicon' in requested_url or \
-            'robots.txt' in requested_url:
+            'robots.txt' in requested_url or \
+            '__debug__' in requested_url:
             return self.get_response(request)
 
         # Create the VisitorPageHit (adds a new entry for each visitor that visits a page)
         visitor_ip = get_client_ip(request)[0]
-        visitor_page_hit = VisitorPageHit.objects.create(page_url=requested_url, ip_address=visitor_ip)
+        visitor_page_hit = VisitorPageHit(page_url=requested_url, ip_address=visitor_ip, user_agent=request.META['HTTP_USER_AGENT'], referer=request.META.get('HTTP_REFERER', ''))
 
         if visitor_ip not in ('localhost', '127.0.0.1'):
             handler = ipinfo.getHandler(settings.IPINFO_API_KEY)
@@ -34,8 +35,6 @@ class PageViewsMiddleware(object):
             if details.country is not None:
                 visitor_page_hit.country_code = details.country
 
-        visitor_page_hit.user_agent = request.META['HTTP_USER_AGENT']
-        visitor_page_hit.referer = request.META.get('HTTP_REFERER', '')
         visitor_page_hit.save() 
 
         return self.get_response(request)
