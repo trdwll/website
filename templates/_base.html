@@ -22,9 +22,9 @@
 
         {% url 'home_page' as home_url %}
         {% if request.path == home_url %}
-        <link rel="stylesheet" href="{% static 'css/home.min.css' %}" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.0.2/tailwind.min.css" integrity="sha512-+WF6UMXHki/uCy0vATJzyA9EmAcohIQuwpNz0qEO+5UeE5ibPejMRdFuARSrl1trs3skqie0rY/gNiolfaef5w==" crossorigin="anonymous" />
         {% else %}
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.9.6/tailwind.min.css" integrity="sha512-l7qZAq1JcXdHei6h2z8h8sMe3NbMrmowhOl+QkP3UhifPpCW2MC4M0i26Y8wYpbz1xD9t61MLT9L1N773dzlOA==" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.0.2/tailwind.min.css" integrity="sha512-+WF6UMXHki/uCy0vATJzyA9EmAcohIQuwpNz0qEO+5UeE5ibPejMRdFuARSrl1trs3skqie0rY/gNiolfaef5w==" crossorigin="anonymous" />
         {% endif %}
         <link href="{% static 'css/site.min.css' %}" rel="stylesheet">
         <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" />
@@ -32,9 +32,10 @@
 
         {% block extrahead %}{% endblock %}
     </head>
-    <body class="flex flex-col justify-between bg-gray-100 text-grey-darkest leading-normal font-sans">
+    <body class="flex flex-col justify-between bg-gray-50 text-grey-darkest leading-normal font-sans">
         <div id="app" class="flex flex-col h-screen">
             {% include '_navbar.html' %}
+            {{ NOTICES|safe }}
         
             <main role="main" class="mt-12 flex-auto container mx-auto px-6">
             {{ ALERTS|safe }}
