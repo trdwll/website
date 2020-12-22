@@ -3,7 +3,7 @@
 {% url 'experiments_home_page' as experiments_home %}
 {% url 'about_page' as about_url %}
 
-<header role="banner" class="relative bg-white py-6">
+<header role="banner" class="relative bg-white py-6 dark:bg-black">
     <div class="container mx-auto px-4 lg:px-6">
         <nav class="flex items-center justify-between flex-wrap w-full text-sm">
             <div class="flex items-center">
@@ -18,6 +18,7 @@
                     <a rel="noopener" href="{% url 'experiments_home_page' %}" class="{% if request.path == experiments_home %}text-blue font-bold {% endif %}py-2 md:py-0 md:ml-6 font-normal text-grey-darker hover:text-blue hover:no-underline">Experiments</a>
                     <a rel="noopener" href="{% url 'about_page' %}" class="{% if request.path == about_url %}text-blue font-bold {% endif %}py-2 md:py-0 md:ml-6 font-normal text-grey-darker hover:text-blue hover:no-underline">About</a>
                     {% if request.user.is_authenticated %}<a rel="noopener" href="{% url 'admin:index' %}" class="py-2 md:py-0 md:ml-6 font-normal text-grey-darker hover:text-blue hover:no-underline">Admin</a>{% endif %}
+                    <a id="theme-toggle" href="#" class="py-2 md:py-0 md:ml-6 font-normal hover:no-underline"><i id="theme-icon" class="fas fa-moon text-xl"></i></a>
                 </div>
             </div>
         </nav>

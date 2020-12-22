@@ -108,3 +108,5 @@ ENV/
 .idea/
 TRDWLL/settings/prod.py
 static/debug_toolbar
+
+node_modules/

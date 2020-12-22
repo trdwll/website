@@ -7,4 +7,5 @@ def global_settings(request):
     return {
         'ALERTS': Alert.print_alerts(request),
         'NOTICES': Alert.print_alerts(request, True),
+        'theme': request.COOKIES.get('theme', 'light')
     }

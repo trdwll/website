@@ -1,0 +1,17 @@
+{
+  "name": "tailwind",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tailwind build ../static/css/tailwind.css -o ../static/css/tailwind-style.css && cleancss -o ../static/css/style.min.css ../static/css/tailwind-style.css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "autoprefixer": "^10.1.0",
+    "clean-css-cli": "^4.3.0",
+    "tailwindcss": "^2.0.2"
+  }
+}

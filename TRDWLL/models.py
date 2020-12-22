@@ -50,12 +50,12 @@ class Alert(models.Model):
             d = [alert_defs['Success'], alert_defs['Danger'], alert_defs['Warning'], alert_defs['Info']]
             for tmp in Alert.objects.filter(Q(type__in=d)):
                 if request.get_full_path() == tmp.url or tmp.url == None or tmp.url == '':
-                    alerts.append(render_to_string('utils/'+tmp.get_type_display().lower()+'-alert.html', {'title': tmp.title, 'content': tmp.body}))
+                    alerts.append(render_to_string('utils/alerts/alert_'+tmp.get_type_display().lower()+'.html', {'title': tmp.title, 'content': tmp.body}))
         else:
             d = [alert_defs['Indigo Notice'], alert_defs['Green Notice'], alert_defs['Red Notice'], alert_defs['Yellow Notice'], alert_defs['Blue Notice'], alert_defs['Purple Notice'], alert_defs['Pink Notice']]
             for tmp in Alert.objects.filter(Q(type__in=d)):
                 if request.get_full_path() == tmp.url or tmp.url == None or tmp.url == '':
-                    alerts.append(render_to_string('utils/notice.html', { 'notice': tmp }))
+                    alerts.append(render_to_string('utils/notices/notice_'+tmp.type.lower()+'.html', { 'notice': tmp }))
 
         return ''.join(alerts)
 

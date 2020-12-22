@@ -18,10 +18,11 @@ class BlogPostView(View):
             post = get_object_or_404(Post.objects.filter(slug=slug, is_published=True))
             msg = ''
 
-        return render(request, self.template_name, {'POST': post, 'msg': msg})
+        result = 'hljs' in post.body or 'code class="language-' in post.body or 'language-' in post.body
+        return render(request, self.template_name, {'POST': post, 'msg': msg, 'has_hljs': result})
 
 
 class BlogCategoryPostView(View):
-    template_name = 'blog/category-posts.html'
+    template_name = 'blog/category_posts.html'
     def get(self, request, slug):
         return render(request, self.template_name, {'POSTS': Category.get_posts_formatted(slug), 'POSTS_CATEGORY': Category.objects.filter(slug__iexact=slug).first()})

@@ -16,7 +16,7 @@
 {% load general_tags %}
 <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 pb-10">
     <div class="lg:text-center">
-		<h3 class="mt-2 text-3xl leading-8 font-normal tracking-tight text-gray-900 sm:text-4xl sm:leading-10">{{ EXPERIMENT.title }}</h3>
+		<h3 class="mt-2 text-3xl leading-8 font-normal tracking-tight text-gray-900 sm:text-4xl sm:leading-10 dark:text-white">{{ EXPERIMENT.title }}</h3>
 		<p class="mt-4 max-w-2xl text-xl leading-7 text-gray-500 lg:mx-auto">{{ EXPERIMENT.description }}</p>
     </div>
 </div>
@@ -25,7 +25,7 @@
     
     <div class="w-full md:w-3/4 p-4">
         <div class="w-full mb-4 px-2">
-            <div class="relative bg-white rounded border h-full">
+            <div class="relative bg-white rounded border h-full dark:bg-black dark:border-gray-700">
                 <div class="p-4"><p>{{ EXPERIMENT.body|markdown|safe }}</p></div>
             </div>
         </div>
@@ -38,7 +38,7 @@
         </div>
         {% endif %}
         <div class="w-full mb-4 px-2">
-            <div class="relative bg-white rounded border h-full">
+            <div class="relative bg-white rounded border h-full dark:bg-black dark:border-gray-700">
                 <div class="p-4">
                     <h3 class="text-lg font-bold">Tech Used</h3>
                     <p>{{ EXPERIMENT.tech_used }}</p>
