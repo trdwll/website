@@ -31,9 +31,12 @@ ul {
   margin-right: 0;
   padding-left: 40px;
 }
-.list-none {
+.list-none, .list-none-padding {
   list-style: none;
   margin: 0;
+  padding: 0;
+}
+.list-none li {
   padding: 0;
 }
 /** In tailwindcss 2.x they changed the container width so this is from tailwind 1.9.6. */
