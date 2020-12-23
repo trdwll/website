@@ -914,10 +914,6 @@ video {
   font-weight: 300;
 }
 
-.font-normal {
-  font-weight: 400;
-}
-
 .font-medium {
   font-weight: 500;
 }
@@ -1049,10 +1045,6 @@ video {
   margin-bottom: 1rem;
 }
 
-.mr-6 {
-  margin-right: 1.5rem;
-}
-
 .mb-10 {
   margin-bottom: 2.5rem;
 }
@@ -1093,12 +1085,12 @@ video {
   opacity: 0.75;
 }
 
-.hover\:opacity-50:hover {
-  opacity: 0.5;
+.opacity-100 {
+  opacity: 1;
 }
 
-.hover\:opacity-100:hover {
-  opacity: 1;
+.hover\:opacity-50:hover {
+  opacity: 0.5;
 }
 
 .outline-none {
