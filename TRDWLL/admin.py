@@ -13,8 +13,8 @@ class AlertAdmin(admin.ModelAdmin):
 
 
 class VisitorPageHitAdmin(admin.ModelAdmin):
-    list_display = ('page_url', 'ip_address', 'ip_country', 'created', 'referer', )
-    list_filter = ('ip_country', )
+    list_display = ('page_url', 'ip_address', 'ip_country', 'created', 'referer', 'theme', )
+    list_filter = ('ip_country', 'theme', )
     search_fields = ['page_url', 'ip_address', 'ip_country', 'created', 'user_agent']
 
 admin.site.register(About, AboutAdmin)

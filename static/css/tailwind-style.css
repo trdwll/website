@@ -842,10 +842,6 @@ video {
   border-bottom-width: 1px;
 }
 
-.box-content {
-  box-sizing: content-box;
-}
-
 .block {
   display: block;
 }

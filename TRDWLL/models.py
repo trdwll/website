@@ -74,6 +74,7 @@ class VisitorPageHit(models.Model):
     page_url = models.CharField(max_length=200, help_text='The url that was accessed.')
     user_agent = models.CharField(max_length=300, help_text='The useragent that the visitor is using.')
     referer = models.CharField(max_length=150, help_text='The page that this visitor came from.', default='', blank=True)
+    theme = models.CharField(max_length=32, help_text='What theme is this visitor using?', blank=True)
 
     class Meta:
         db_table = 'analytics_visitorpagehit'

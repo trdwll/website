@@ -25,7 +25,7 @@ class PageViewsMiddleware(object):
 
         # Create the VisitorPageHit (adds a new entry for each visitor that visits a page)
         visitor_ip = get_client_ip(request)[0]
-        visitor_page_hit = VisitorPageHit(page_url=requested_url, ip_address=visitor_ip, user_agent=request.META['HTTP_USER_AGENT'], referer=request.META.get('HTTP_REFERER', ''))
+        visitor_page_hit = VisitorPageHit(page_url=requested_url, ip_address=visitor_ip, user_agent=request.META['HTTP_USER_AGENT'], referer=request.META.get('HTTP_REFERER', ''), theme=request.COOKIES.get('theme', 'light'))
 
         if visitor_ip not in ('localhost', '127.0.0.1'):
             handler = ipinfo.getHandler(settings.IPINFO_API_KEY)
