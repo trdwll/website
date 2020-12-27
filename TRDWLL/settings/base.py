@@ -7,6 +7,7 @@ PROJECT_ROOT = dirname(dirname(abspath(__file__)))
 SITE_ROOT = dirname(PROJECT_ROOT)
 
 SITE_ID = 1
+INTERNAL_IPS = ('127.0.0.1', '0.0.0.0', 'localhost',)
 
 # Application definition
 
@@ -32,6 +33,7 @@ INSTALLED_APPS = [
     'easy_thumbnails',
     'filer',
     'mptt',
+    'debug_toolbar',
 ]
 
 MIDDLEWARE = [
@@ -45,7 +47,7 @@ MIDDLEWARE = [
     'django.contrib.redirects.middleware.RedirectFallbackMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
 
-    'TRDWLL.middleware.PageViewsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 
     # 3rd party
     'htmlmin.middleware.HtmlMinifyMiddleware',
@@ -58,14 +60,14 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [os.path.join(SITE_ROOT, 'templates')],
-        'APP_DIRS': False,
+        'APP_DIRS': True,
         'OPTIONS': {
-            'loaders': [
-                ('django.template.loaders.cached.Loader', [
-                    'django.template.loaders.filesystem.Loader',
-                    'django.template.loaders.app_directories.Loader',
-                ]),
-            ],
+            # 'loaders': [
+            #     ('django.template.loaders.cached.Loader', [
+            #         'django.template.loaders.filesystem.Loader',
+            #         'django.template.loaders.app_directories.Loader',
+            #     ]),
+            # ],
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',

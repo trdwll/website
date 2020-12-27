@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import About, Alert, VisitorPageHit
+from .models import About, Alert
 
 class AboutAdmin(admin.ModelAdmin):
     
@@ -12,11 +12,5 @@ class AlertAdmin(admin.ModelAdmin):
     list_display = ('type', 'url')
 
 
-class VisitorPageHitAdmin(admin.ModelAdmin):
-    list_display = ('page_url', 'ip_address', 'ip_country', 'created', 'referer', 'theme', )
-    list_filter = ('ip_country', 'theme', )
-    search_fields = ['page_url', 'ip_address', 'ip_country', 'created', 'user_agent']
-
 admin.site.register(About, AboutAdmin)
 admin.site.register(Alert, AlertAdmin)
-admin.site.register(VisitorPageHit, VisitorPageHitAdmin)

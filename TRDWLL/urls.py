@@ -7,6 +7,8 @@ from django_otp.admin import OTPAdminSite
 
 from .views import HomeView, AboutView
 
+import debug_toolbar
+
 urlpatterns = [
     path('', HomeView.as_view(), name='home_page'),
     path('about/', AboutView.as_view(), name='about_page'),
@@ -16,6 +18,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('tinymce/', include('tinymce.urls')),
+    path('__debug__/', include(debug_toolbar.urls)),
 ]
 
 if settings.DEBUG:
