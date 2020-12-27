@@ -15,7 +15,7 @@ module.exports = {
         '../templates/**/*.html'
     ],
     options: {
-      safelist: ['dark', /^text-(red|blue|gray|green)-500/]
+      safelist: ['dark', /^text-(red|blue|gray|green)-500/, /^border-gray-(300|700)/, 'text-sm', 'bg-gray-200', 'border', 'border-solid', 'border-collapse']
     }
   },
 }
