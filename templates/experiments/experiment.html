@@ -13,7 +13,6 @@
 {% endblock %}
 
 {% block content %}
-{% load general_tags %}
 <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 pb-10">
     <div class="lg:text-center">
 		<h3 class="mt-2 text-3xl leading-8 tracking-tight text-gray-900 sm:text-4xl sm:leading-10 dark:text-white">{{ EXPERIMENT.title }}</h3>
@@ -26,7 +25,7 @@
     <div class="w-full md:w-3/4 p-4">
         <div class="w-full mb-4 px-2">
             <div class="relative bg-white rounded border h-full dark:bg-black dark:border-gray-700">
-                <div class="p-4"><p>{{ EXPERIMENT.body|markdown|safe }}</p></div>
+                <div class="p-4"><p>{{ EXPERIMENT.body|safe }}</p></div>
             </div>
         </div>
     </div>
@@ -50,7 +49,7 @@
             <div class="relative bg-white rounded border h-full">
                 <div class="p-4">
                     <h3 class="text-lg font-bold">Things that I learned</h3>
-                    <p>{{ EXPERIMENT.learned_list|markdown|safe }}</p>
+                    <p>{{ EXPERIMENT.learned_list|safe }}</p>
                 </div>
             </div>
         </div>
@@ -60,7 +59,7 @@
             <div class="relative bg-white rounded border h-full">
                 <div class="p-4">
                     <h3 class="text-lg font-bold">Things I struggled with</h3>
-                    <p>{{ EXPERIMENT.struggled_list|markdown|safe }}</p>
+                    <p>{{ EXPERIMENT.struggled_list|safe }}</p>
                 </div>
             </div>
         </div>

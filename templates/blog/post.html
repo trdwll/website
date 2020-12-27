@@ -41,8 +41,7 @@
 		<p class="text-lg">{{ POST.published_date }}</p>
 	</div>
 
-	{% load general_tags %}
-    <p>{{ POST.body|markdown|safe }}</p>
+    <p>{{ POST.body|safe }}</p>
 </div>
 
 {% if msg %}
