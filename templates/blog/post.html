@@ -16,11 +16,9 @@
 {% if has_hljs %}
 {% load static %}
 <link rel="stylesheet" href="{% static 'css/fonts.css' %}">
-<link id="dark-hljs" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/styles/atom-one-dark.min.css" integrity="sha512-Fcqyubi5qOvl+yCwSJ+r7lli+CO1eHXMaugsZrnxuU4DVpLYWXTVoHy55+mCb4VZpMgy7PBhV7IiymC0yu9tkQ==" crossorigin="anonymous" {% if theme != 'dark' %}disabled="disabled"{% endif %} />
-<link id="light-hljs" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/styles/vs.min.css" integrity="sha512-aWjgJTbdG4imzxTxistV5TVNffcYGtIQQm2NBNahV6LmX14Xq9WwZTL1wPjaSglUuVzYgwrq+0EuI4+vKvQHHw==" crossorigin="anonymous" {% if theme != 'light' %}disabled="disabled"{% endif %} />
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/highlight.min.js" integrity="sha512-DrpaExP2d7RJqNhXB41Q/zzzQrtb6J0zfnXD5XeVEWE8d9Hj54irCLj6dRS3eNepPja7DvKcV+9PnHC7A/g83A==" crossorigin="anonymous"></script>
-<script>hljs.initHighlightingOnLoad();</script>
+<link id="dark-hljs" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/{{HIGHLIGHT_JS_VERSION}}/styles/atom-one-dark.min.css" integrity="{{HIGHLIGHT_JS_DARK_SHA}}" crossorigin="anonymous" />
+<link id="light-hljs" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/{{HIGHLIGHT_JS_VERSION}}/styles/vs.min.css" integrity="{{HIGHLIGHT_JS_LIGHT_SHA}}" crossorigin="anonymous" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/{{HIGHLIGHT_JS_VERSION}}/highlight.min.js" integrity="{{HIGHLIGHT_JS_SHA}}" crossorigin="anonymous"></script><script>hljs.initHighlightingOnLoad();</script>
 {% endif %}
 {% endblock %}
 

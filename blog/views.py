@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import View
 from django.template.loader import render_to_string
+from django.conf import settings
 
 from .models import Post, Category
 
@@ -18,8 +19,11 @@ class BlogPostView(View):
             post = get_object_or_404(Post.objects.filter(slug=slug, is_published=True))
             msg = ''
 
-        result = 'hljs' in post.body or 'code class="language-' in post.body or 'language-' in post.body
-        return render(request, self.template_name, {'POST': post, 'msg': msg, 'has_hljs': result})
+        has_hljs = 'hljs' in post.body or 'code class="language-' in post.body or 'language-' in post.body
+        context = {'POST': post, 'msg': msg, 'has_hljs': has_hljs}
+        if has_hljs:
+            context.update({'HIGHLIGHT_JS_VERSION': settings.HIGHLIGHT_JS_VERSION, 'HIGHLIGHT_JS_SHA': settings.HIGHLIGHT_JS_SHA, 'HIGHLIGHT_JS_LIGHT_SHA': settings.HIGHLIGHT_JS_LIGHT_SHA, 'HIGHLIGHT_JS_DARK_SHA': settings.HIGHLIGHT_JS_DARK_SHA})
+        return render(request, self.template_name, context=context)
 
 
 class BlogCategoryPostView(View):

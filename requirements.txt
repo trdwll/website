@@ -2,12 +2,10 @@ Django>=3.1
 django-htmlmin
 django-otp
 django-filer
-django-ipware
+django-debug-toolbar
 bcrypt
 markdown
 Pillow
 qrcode
 tweepy
-bleach
-ipinfo
 git+https://github.com/jazzband/django-tinymce
