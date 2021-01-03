@@ -46,7 +46,7 @@ a {
 a:hover {
   opacity: 1;
 }
-a.navbar-link, a#navbar-logo {
+a.navbar-link, a#navbar-logo, a.link-no-opacity {
   opacity: 1;
   color:inherit;
 }
