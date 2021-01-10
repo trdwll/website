@@ -1,10 +1,8 @@
 Django>=3.1
 django-htmlmin
 django-otp
-django-filer
 django-debug-toolbar
 bcrypt
-markdown
 Pillow
 qrcode
 tweepy

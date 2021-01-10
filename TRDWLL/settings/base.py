@@ -30,9 +30,6 @@ INSTALLED_APPS = [
     'django_otp',
     'django_otp.plugins.otp_totp',
     'tinymce',
-    'easy_thumbnails',
-    'filer',
-    'mptt',
     'debug_toolbar',
 ]
 
@@ -145,34 +142,6 @@ TINYMCE_DEFAULT_CONFIG = {
     'plugins': "table,insertdatetime,spellchecker,paste,searchreplace,link,image,preview,codesample,table,code,lists,imagetools,autoresize,autolink,emoticons,hr,autosave,charmap,media,toc,help",
     'toolbar1': 'bold italic underline hr charmap insertdatetime | alignleft aligncenter alignright alignjustify | formatselect fontselect fontsizeselect | bullist numlist | outdent indent | table emoticons | link image media toc | codesample | preview code | help',
 }
-
-THUMBNAIL_HIGH_RESOLUTION = True
-
-FILER_STORAGES = {
-    'public': {
-        'main': {
-            'ENGINE': 'filer.storage.PublicFileSystemStorage',
-            'OPTIONS': {
-                'location': os.path.abspath(os.path.join(MEDIA_ROOT, '../media/uploads')),
-                'base_url': '/media/uploads/',
-            },
-            'UPLOAD_TO': 'filer.utils.generate_filename.by_date',
-            'UPLOAD_TO_PREFIX': '',
-        },
-        'thumbnails': {
-            'ENGINE': 'filer.storage.PublicFileSystemStorage',
-            'OPTIONS': {
-                'location': os.path.abspath(os.path.join(MEDIA_ROOT, '../media/uploads/thumbs')),
-                'base_url': '/media/uploads/thumbs/',
-            },
-            'THUMBNAIL_OPTIONS': {
-                'base_dir': '',
-            },
-            'UPLOAD_TO': 'filer.utils.generate_filename.by_date',
-        },
-    }
-}
-
 
 HIGHLIGHT_JS_VERSION = '10.5.0'
 HIGHLIGHT_JS_SHA = 'sha512-9GIHU4rPKUMvNOHFOer5Zm2zHnZOjayOO3lZpokhhCtgt8FNlNiW/bb7kl0R5ZXfCDVPcQ8S4oBdNs92p5Nm2w=='
