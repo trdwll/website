@@ -131,10 +131,10 @@ STATICFILES_DIRS = [
 # STATIC_ROOT = os.path.join(SITE_ROOT, "static")
 
 # MEDIA_ROOT = '/var/www/mydomain.com/public_html/media/'
-MEDIA_ROOT = os.path.join(SITE_ROOT, "media")
-MEDIA_URL = '/media/'
+# MEDIA_ROOT = os.path.join(SITE_ROOT, "media")
+# MEDIA_URL = '/media/'
 
-FILE_UPLOAD_PERMISSIONS = 0o644
+# FILE_UPLOAD_PERMISSIONS = 0o644
 
 OTP_TOTP_ISSUER = 'TRDWLL'
 
