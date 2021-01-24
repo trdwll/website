@@ -32,8 +32,8 @@
             {% include '_navbar.html' %}
             {{ NOTICES|safe }}
 
-            <main role="main" class="mt-12 flex-auto container mx-auto px-6 bg-white dark:bg-black rounded-lg pt-12">
-            {{ ALERTS|safe }}
+            <div class="mx-auto container">{{ ALERTS|safe }}</div>
+            <main role="main" class="mt-8 flex-auto container mx-auto px-6 bg-white dark:bg-black rounded-lg pt-12">
             {% block content %}{% endblock %}
             </main>
 

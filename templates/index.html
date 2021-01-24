@@ -5,14 +5,14 @@
 {% block content %}
 <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 pb-10">
     <div class="lg:text-center">
-		<h3 class="mt-12 text-3xl leading-8 tracking-tight text-gray-900 sm:text-4xl sm:leading-10 dark:text-white" id="home-title"></h3>
+		<h3 class="mt-8 text-3xl leading-8 tracking-tight text-gray-900 sm:text-4xl sm:leading-10 dark:text-white" id="home-title"></h3>
 		<p class="mt-4 max-w-2xl text-xl leading-7 text-gray-500 lg:mx-auto">
 			<small id="home-tagline"></small> 
 		</p>
     </div>
 </div>
 
-<div class="flex md:flex-row-reverse flex-wrap">
+<div class="flex md:flex-row-reverse flex-wrap mb-8">
 	<div class="w-full md:w-3/4 py-4 pl-4">{{ POSTS|safe }}</div>
 	<div class="w-full md:w-1/4 py-4 pr-4">{{ CATEGORIES|safe }}</div>
 </div>
