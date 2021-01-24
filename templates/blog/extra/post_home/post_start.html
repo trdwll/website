@@ -1,2 +1,2 @@
-<h3 class="text-xl uppercase font-light{% if index > 0 %} mt-4{% endif %}">{{ year }} <span class="text-sm">({{ post_count }})</span></h3>
+<h3 class="text-xl uppercase font-light{% if index > 0 %} mt-4{% endif %}"><a href="{% url 'blog_posts_year_page' year %}">{{ year }}</a> <span class="text-sm">({{ post_count }})</span></h3>
 <ul class="list-none-padding pt-2 pb-2">

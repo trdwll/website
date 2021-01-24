@@ -30,3 +30,8 @@ class BlogCategoryPostView(View):
     template_name = 'blog/category_posts.html'
     def get(self, request, slug):
         return render(request, self.template_name, {'POSTS': Category.get_posts_formatted(slug), 'POSTS_CATEGORY': Category.objects.filter(slug__iexact=slug).first()})
+
+class BlogPostsFromYear(View):
+    template_name = 'blog/year_posts.html'
+    def get(self, request, year):
+        return render(request, self.template_name, {'POSTS': Category.get_posts_formatted(None, year), 'year': year})

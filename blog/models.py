@@ -11,6 +11,7 @@ from TRDWLL.utils import get_formatted_data
 from tinymce.models import HTMLField
 
 import operator
+from datetime import datetime
 
 class Category(models.Model):
     title = models.CharField(max_length=100, help_text='Title of the category.')
@@ -23,9 +24,12 @@ class Category(models.Model):
     def __str__(self):
         return self.title
 
-    def get_posts_formatted(slug):
+    def get_posts_formatted(slug, year=None):
         """ Get the posts and format them for display """
-        queried_posts = get_formatted_data(Post.objects.filter(is_published=True, category=Category.objects.filter(slug__iexact=slug).first()))
+        if year == None:
+            queried_posts = get_formatted_data(Post.objects.filter(is_published=True, category=Category.objects.filter(slug__iexact=slug).first()))
+        else:
+            queried_posts = get_formatted_data(Post.objects.filter(is_published=True, published_date__year=year))
         
         formatted_posts = []
 
@@ -99,7 +103,9 @@ class Post(models.Model):
                 #     categories.append(render_to_string('blog/extra/post_home/categories_list.html', {'category': tmp}))
                 # categories.sort() # sort the categories to be alphabetical order
 
+               # if post.published_date.year == datetime.today().year:
                 formatted_posts.append(render_to_string('blog/extra/post_home/post_body.html', {'post': post, 'index': count, 'post_categories': ''.join(categories)}))
+                
             
             formatted_posts.append('</ul>')
         return ''.join(formatted_posts)
