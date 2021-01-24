@@ -1224,6 +1224,10 @@ video {
   padding-bottom: 2.5rem;
 }
 
+.pt-12 {
+  padding-top: 3rem;
+}
+
 .pl-12 {
   padding-left: 3rem;
 }
