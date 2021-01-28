@@ -33,9 +33,11 @@
             {{ NOTICES|safe }}
 
             <div class="mx-auto container">{{ ALERTS|safe }}</div>
+            <div class="mx-auto container">{% block content_start %}{% endblock %}</div>
             <main role="main" class="mt-8 flex-auto container mx-auto px-6 bg-white dark:bg-black rounded-lg pt-12">
             {% block content %}{% endblock %}
             </main>
+            <div class="mx-auto container">{% block content_end %}{% endblock %}</div>
 
             {% include '_footer.html' %}
         </div>
