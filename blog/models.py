@@ -100,17 +100,19 @@ class Post(models.Model):
 
         for i, (year,posts) in enumerate(queried_posts.items()):
             formatted_posts.append(render_to_string('blog/extra/post_home/post_start.html', {'year': year, 'index': i, 'post_count': len(posts)}))
+            
+            # filter out previous years content, but display the year/archive link
+            if year == datetime.today().year:
+                for count, post in enumerate(posts, 1):
+                    categories = [] 
+                    # TODO: By doing this query we're adding a query per post 
+                    # at the time of writing this we do 5 queries on home
+                    # for tmp in post.category.all():
+                    #     categories.append(render_to_string('blog/extra/post_home/categories_list.html', {'category': tmp}))
+                    # categories.sort() # sort the categories to be alphabetical order
 
-            for count, post in enumerate(posts, 1):
-                categories = [] 
-                # TODO: By doing this query we're adding a query per post 
-                # at the time of writing this we do 5 queries on home
-                # for tmp in post.category.all():
-                #     categories.append(render_to_string('blog/extra/post_home/categories_list.html', {'category': tmp}))
-                # categories.sort() # sort the categories to be alphabetical order
-
-               # if post.published_date.year == datetime.today().year:
-                formatted_posts.append(render_to_string('blog/extra/post_home/post_body.html', {'post': post, 'index': count, 'post_categories': ''.join(categories)}))
+                # if post.published_date.year == datetime.today().year:
+                    formatted_posts.append(render_to_string('blog/extra/post_home/post_body.html', {'post': post, 'index': count, 'post_categories': ''.join(categories)}))
                 
             
             formatted_posts.append('</ul>')
