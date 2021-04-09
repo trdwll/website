@@ -11,7 +11,7 @@ class PostAdmin(admin.ModelAdmin):
     list_display = ['title', 'categories', 'published_date', 'is_published']
     fieldsets = (
         ('Post Information', {
-            'fields': ('published_date', 'is_published', 'keywords', 'title', 'description', 'category', 'slug', 'body', )
+            'fields': ('published_date', 'difficulty', 'is_published', 'keywords', 'title', 'description', 'category', 'slug', 'body', )
         }),
     )
 

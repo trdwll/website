@@ -69,4 +69,6 @@
     font-style: normal;
     font-display: swap;
   }
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
 code {font-family: "JetBrains Mono", Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace !important;}
+.difficulty { font-family: "Noto Sans", "Segoe UI", "Roboto", "Open Sans", Arial, sans-serif; }

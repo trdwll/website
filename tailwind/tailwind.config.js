@@ -2,7 +2,14 @@ module.exports = {
   purge: [],
   darkMode: 'class', // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+      minWidth: {
+        '2': '2rem',
+      },
+      maxWidth: {
+        '2': '2rem',
+      },
+    },
   },
   variants: {
     extend: {},

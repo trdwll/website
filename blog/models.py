@@ -50,10 +50,16 @@ class Category(models.Model):
 
 
 class Post(models.Model):
+    DIFFICULTIES = (
+        ('beginner', 'Beginner'),
+        ('intermediate', 'Intermediate'),
+        ('advanced', 'Advanced'),
+    )
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blog_author')
     published_date = models.DateTimeField()
     title = models.CharField(max_length=200, help_text='Title of the post.')
     body = HTMLField()
+    difficulty = models.CharField(max_length=64, choices=DIFFICULTIES, blank=True, null=True, help_text='If this is a guide/tutorial then what difficulty level is this?')
     description = models.CharField(max_length=100, help_text='A short tagline that describes what the reader will be reading about.')
     keywords = models.CharField(max_length=512, help_text='SEO keywords to help get more exposure.', blank=True, null=True)
     category = models.ManyToManyField(Category, help_text='The category that the post will be listed under.')

@@ -41,8 +41,18 @@
 
 <div class="post-content mb-8">
 	<div class="pb-10">
-		<p class="text-lg">{{ POST.published_date }}</p>
+		<p class="text-lg">{{ POST.published_date }} // {% for category in POST.category.all %}<a href="{{ category.get_absolute_url }}">{{ category }}</a> {% if not forloop.last%} / {% endif %}{% endfor %}</p>
 	</div>
+	{% if POST.difficulty %}
+	<div class="m-auto text-center border border-transparent rounded p-2 m-4 bg-gray-100 dark:bg-gray-800 w-96">
+		<div class="pb-2">
+			<p class="difficulty uppercase font-bold text-black dark:text-white pb-2">Difficulty</p>
+			<span class="text-white dark:text-white difficulty bg-green-500 min-w-2 max-w-2 align-top p-2{% if POST.difficulty == 'beginner' %} opacity-100{% else %} opacity-25{% endif %}">Beginner</span>
+			<span class="text-white dark:text-white difficulty bg-yellow-500 min-w-2 max-w-2 align-top p-2{% if POST.difficulty == 'intermediate' %} opacity-100{% else %} opacity-25{% endif %}">Intermediate</span>
+			<span class="text-white dark:text-white difficulty bg-red-500 min-w-2 max-w-2 align-top p-2{% if POST.difficulty == 'advanced' %} opacity-100{% else %} opacity-25{% endif %}">Advanced</span>
+		</div>
+	</div>
+	{% endif %}
 
     <p>{{ POST.body|safe }}</p>
 </div>
