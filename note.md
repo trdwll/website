@@ -2,7 +2,7 @@ Add to init_tinymce.js
 ```
       mce_conf.relative_urls = false;
       mce_conf.remove_script_host = false;
-      mce_conf.document_base_url = 'https://www.trdwll.com/media/';
+      mce_conf.document_base_url = 'https://www.trdwll.com/';
       mce_conf.codesample_languages = [
         { text: 'None ', value : 'no-highlighting'},
         { text: '1C ', value : '1c'},
