@@ -89,7 +89,7 @@ class Post(models.Model):
         categories.append(render_to_string('blog/extra/sidebar/categories_start.html', {}))
         for k,v in cats.items():
             categories.append(render_to_string('blog/extra/sidebar/categories_body.html', {'category': k, 'category_count': v}))
-        categories.append(render_to_string('blog/extra/sidebar/categories_end.html', {}))
+        categories.append(render_to_string('blog/extra/sidebar/categories_end.html', {})) # lol it's just a </ul>
 
         return ''.join(categories)
 
@@ -100,10 +100,10 @@ class Post(models.Model):
         formatted_posts = []
 
         for i, (year,posts) in enumerate(queried_posts.items()):
-            formatted_posts.append(render_to_string('blog/extra/post_home/post_start.html', {'year': year, 'index': i, 'post_count': len(posts)}))
-            
             # filter out previous years content, but display the year/archive link
             if year == datetime.today().year:
+                formatted_posts.append(render_to_string('blog/extra/post_home/post_start.html', {'year': year, 'index': i, 'post_count': len(posts)}))
+                
                 for count, post in enumerate(posts, 1):
                     categories = [] 
                     # TODO: By doing this query we're adding a query per post 
@@ -114,10 +114,23 @@ class Post(models.Model):
 
                 # if post.published_date.year == datetime.today().year:
                     formatted_posts.append(render_to_string('blog/extra/post_home/post_body.html', {'post': post, 'index': count, 'post_categories': ''.join(categories)}))
-                
-            
-            formatted_posts.append('</ul>')
+                    
+                formatted_posts.append('</ul>')
         return ''.join(formatted_posts)
+
+    def get_archive_posts_sidebar():
+        queried_posts = get_formatted_data(Post.objects.filter(is_published=True))
+
+        formatted_archive = []
+        
+        formatted_archive.append(render_to_string('blog/extra/sidebar/archive_start.html'))
+        for i, (year,posts) in enumerate(queried_posts.items()):
+            # filter out previous years content, but display the year/archive link
+            if year != datetime.today().year:
+                formatted_archive.append(render_to_string('blog/extra/sidebar/archive_body.html', {'year': year, 'index': i, 'post_count': len(posts)}))
+        
+        formatted_archive.append('</ul>')
+        return ''.join(formatted_archive)
 
     def categories(self):
         return ", ".join([str(p.title) for p in self.category.all()])
