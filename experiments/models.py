@@ -4,6 +4,7 @@ from django.db.models.signals import pre_save
 from TRDWLL.signals import create_redirect
 from TRDWLL.utils import get_formatted_data
 from django.template.loader import render_to_string
+from django.contrib.sitemaps import ping_google
 
 from tinymce.models import HTMLField
 
@@ -62,6 +63,13 @@ class Experiment(models.Model):
             formatted_experiments.append(render_to_string('experiments/extra/list_end.html', {}))
 
         return ''.join(formatted_experiments)
+
+    def save(self, force_insert=False, force_update=False):
+        super().save(force_insert, force_update)
+        try:
+            ping_google()
+        except Exception:
+            pass
 
     def __str__(self):
         return self.title

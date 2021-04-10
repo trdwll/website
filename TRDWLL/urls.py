@@ -9,16 +9,28 @@ from django_otp.admin import OTPAdminSite
 
 from .views import HomeView, AboutView
 from blog.models import Post
+from experiments.models import Experiment
 
 import debug_toolbar
 
 class BlogSitemap(Sitemap):
-    changefreq = "weekly"
-    priority = 0.5
+    changefreq = 'weekly'
+    priority = 0.6
     protocol = 'https'
 
     def items(self):
         return Post.objects.filter(is_published=True)
+
+    def lastmod(self, obj):
+        return obj.published_date
+
+class ExperimentsSitemap(Sitemap):
+    changefreq = ''
+    priority = 0.4
+    protocol = 'https'
+
+    def items(self):
+        return Experiment.objects.filter(is_published=True)
 
     def lastmod(self, obj):
         return obj.published_date
@@ -35,7 +47,8 @@ class StaticViewSitemap(Sitemap):
 
 sitemaps = {
     'static': StaticViewSitemap,
-    'blog': BlogSitemap
+    'blog': BlogSitemap,
+    'experiments': ExperimentsSitemap
 }
 
 urlpatterns = [

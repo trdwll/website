@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.db.models.signals import pre_save
 from django.template.loader import render_to_string
 from django.db.models import Q, Count
+from django.contrib.sitemaps import ping_google
 
 from TRDWLL.signals import create_redirect
 from TRDWLL.utils import get_formatted_data
@@ -120,6 +121,14 @@ class Post(models.Model):
 
     def categories(self):
         return ", ".join([str(p.title) for p in self.category.all()])
+
+
+    def save(self, force_insert=False, force_update=False):
+        super().save(force_insert, force_update)
+        try:
+            ping_google()
+        except Exception:
+            pass
 
     class Meta: 
         db_table = 'blog_post'
