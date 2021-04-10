@@ -1,13 +1,42 @@
 from django.contrib import admin
 from django.conf import settings
-from django.urls import path, include
+from django.urls import path, include, reverse
 from django.conf.urls.static import static
+from django.contrib.sitemaps.views import sitemap
+from django.contrib.sitemaps import Sitemap, GenericSitemap
 
 from django_otp.admin import OTPAdminSite
 
 from .views import HomeView, AboutView
+from blog.models import Post
 
 import debug_toolbar
+
+class BlogSitemap(Sitemap):
+    changefreq = "weekly"
+    priority = 0.5
+    protocol = 'https'
+
+    def items(self):
+        return Post.objects.filter(is_published=True)
+
+    def lastmod(self, obj):
+        return obj.published_date
+
+class StaticViewSitemap(Sitemap):
+    priority = 0.7
+    changefreq = 'daily'
+
+    def items(self):
+        return ['']
+
+    def location(self, item):
+        return item
+
+sitemaps = {
+    'static': StaticViewSitemap,
+    'blog': BlogSitemap
+}
 
 urlpatterns = [
     path('', HomeView.as_view(), name='home_page'),
@@ -16,6 +45,7 @@ urlpatterns = [
     path('experiments/', include('experiments.urls'), name='experiments_home_page'),
     
     path('admin/', admin.site.urls),
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
 
     path('tinymce/', include('tinymce.urls')),
     path('__debug__/', include(debug_toolbar.urls)),

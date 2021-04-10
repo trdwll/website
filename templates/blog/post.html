@@ -41,7 +41,8 @@
 
 <div class="post-content mb-8">
 	<div class="pb-10">
-		<p class="text-lg">{{ POST.published_date }} // {% for category in POST.category.all %}<a href="{{ category.get_absolute_url }}">{{ category }}</a> {% if not forloop.last%} / {% endif %}{% endfor %}</p>
+		{% load humanize %}
+		<p class="text-lg">{% for category in POST.category.all %}<a href="{{ category.get_absolute_url }}">{{ category }}</a> {% if not forloop.last%} / {% endif %}{% endfor %} <span aria-label="{{ POST.published_date|naturaltime }}" data-microtip-position="right" role="tooltip" class="float-right" title="{{ POST.published_date|naturaltime }}"><span class="opacity-50 text-base"> // Published on {{ POST.published_date }}</span></span></p>
 	</div>
 	{% if POST.difficulty %}
 	<div class="m-auto text-center border border-transparent rounded p-2 m-4 bg-gray-100 dark:bg-gray-800 w-96">
@@ -52,6 +53,7 @@
 			<span class="text-white dark:text-white difficulty bg-red-500 min-w-2 max-w-2 align-top p-2{% if POST.difficulty == 'advanced' %} opacity-100{% else %} opacity-25{% endif %}">Advanced</span>
 		</div>
 	</div>
+	&nbsp;
 	{% endif %}
 
     <p>{{ POST.body|safe }}</p>
