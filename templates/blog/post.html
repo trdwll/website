@@ -42,7 +42,7 @@
 <div class="post-content mb-8">
 	<div class="pb-10">
 		{% load humanize %}
-		<p class="text-lg">{% for category in POST.category.all %}<a href="{{ category.get_absolute_url }}">{{ category }}</a> {% if not forloop.last%} / {% endif %}{% endfor %} <span aria-label="{{ POST.published_date|naturaltime }}" data-microtip-position="right" role="tooltip" class="float-right" title="{{ POST.published_date|naturaltime }}"><span class="opacity-50 text-base"> // Published on {{ POST.published_date }}</span></span></p>
+		<p class="text-lg">{% for category in POST.category.all %}<a href="{{ category.get_absolute_url }}">{{ category }}</a> {% if not forloop.last%} / {% endif %}{% endfor %} <span aria-label="{{ POST.published_date|naturaltime }}" data-microtip-position="right" role="tooltip" class="float-right" title="{{ POST.published_date }}"><span class="opacity-50 text-base"> // Published on {{ POST.published_date }}</span></span></p>
 	</div>
 	{% if POST.difficulty %}
 	<div class="m-auto text-center border border-transparent rounded p-2 m-4 bg-gray-100 dark:bg-gray-800 w-96">
