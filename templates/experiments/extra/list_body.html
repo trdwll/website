@@ -3,7 +3,7 @@
         <div class="p-4">
             <h3 class="text-lg font-bold">
             <a class="stretched-link opacity-100 hover:opacity-50" href="{{ experiment.get_absolute_url }}">{{ experiment.title }}</a>
-            {% if experiment.status == "Blank" %}</h3>{% else %}<small class="float-right" aria-label="{{ status_message }}" data-microtip-position="top" data-microtip-size="medium" role="tooltip"><span class="opacity-75 uppercase text-xs {{ experiment.status }}">{{ experiment.get_status_display }}</span></small></h3>{% endif %}
+            {% if experiment.status == "Blank" %}</h3>{% else %}<small class="float-right tooltipy" aria-label="{{ status_message }}" data-microtip-position="top" data-microtip-size="medium" role="tooltip"><span class="leading-7 opacity-75 uppercase text-xs {{ experiment.status }}">{{ experiment.get_status_display }}</span></small></h3>{% endif %}
             <span class="opacity-50">{{ description }}</span>
         </div>
     </div>

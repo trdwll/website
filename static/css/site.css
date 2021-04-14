@@ -53,6 +53,10 @@ a.navbar-link, a#navbar-logo, a.link-no-opacity {
 a.navbar-link:hover {
   opacity: .5;
 }
+.tooltipy {
+  line-height: normal;
+}
+
 /** In tailwindcss 2.x they changed the container width so this is from tailwind 1.9.6. */
 @media (min-width: 1280px) {
   .container {
