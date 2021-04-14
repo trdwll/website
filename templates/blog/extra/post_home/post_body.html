@@ -1,4 +1,4 @@
 {% load humanize %}
-<li class="p-1{% if index|divisibleby:2 == 0 %} bg-gray-100 dark:bg-gray-800{% else %}{% endif %}">{{ post_categories|safe }} 
+<li class="p-1 {% if post.is_published %}{% if index|divisibleby:2 == 0 %} bg-gray-100 dark:bg-gray-800{% else %}{% endif %}{% else %} bg-red-400{% endif %}">{{ post_categories|safe }} 
 <span aria-label="{{ post.published_date|naturaltime }}" data-microtip-position="right" role="tooltip" class="float-right" title="{{ post.published_date }}"><span class="opacity-50 text-base">{{ post.published_date|date:"M d" }}</span></span>
 <a href="{{ post.get_absolute_url }}">{{ post.title }}</a></li>
