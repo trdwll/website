@@ -21,7 +21,7 @@ ol {display: block; list-style-type: decimal; margin-top: 1em; margin-bottom: 1e
   width: 100%;
   height: 100%;
 }
-li { display: list-item; padding-top: 10px;  }
+li { display: list-item; padding-top: 2px;  }
 ul {
   display: block;
   list-style-type: disc;
