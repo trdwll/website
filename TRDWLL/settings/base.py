@@ -144,7 +144,7 @@ TINYMCE_DEFAULT_CONFIG = {
     'toolbar1': 'bold italic underline hr charmap insertdatetime | alignleft aligncenter alignright alignjustify | formatselect fontselect fontsizeselect | bullist numlist | outdent indent | table emoticons | link image media toc | codesample | preview code | help',
 }
 
-HIGHLIGHT_JS_VERSION = '10.5.0'
-HIGHLIGHT_JS_SHA = 'sha512-9GIHU4rPKUMvNOHFOer5Zm2zHnZOjayOO3lZpokhhCtgt8FNlNiW/bb7kl0R5ZXfCDVPcQ8S4oBdNs92p5Nm2w=='
+HIGHLIGHT_JS_VERSION = '10.7.2'
+HIGHLIGHT_JS_SHA = 'sha512-s+tOYYcC3Jybgr9mVsdAxsRYlGNq4mlAurOrfNuGMQ/SCofNPu92tjE7YRZCsdEtWL1yGkqk15fU/ark206YTg=='
 HIGHLIGHT_JS_LIGHT_SHA = 'sha512-11xYl5MU0/AMaYnuBOXDDQdZnl5WGtLVidxqa0XUAXYf6cGnJShNpgtbmB/0MW6ypeev+9Bwj7I/J8wexX8ePw==' # atom-one-light
 HIGHLIGHT_JS_DARK_SHA = 'sha512-Fcqyubi5qOvl+yCwSJ+r7lli+CO1eHXMaugsZrnxuU4DVpLYWXTVoHy55+mCb4VZpMgy7PBhV7IiymC0yu9tkQ==' # atom-one-dark
