@@ -1,5 +1,4 @@
 module.exports = {
-  purge: [],
   darkMode: 'class', // or 'media' or 'class'
   theme: {
     extend: {
@@ -17,11 +16,14 @@ module.exports = {
   plugins: [],
   purge: {
     enabled: true, //true for production build
+    preserveHtmlElements: false,
     content: [
       '../templates/**/*.html',
     ],
     options: {
-      safelist: ['dark', /^text-(red|blue|gray|green)-500/, /^border-gray-(300|700)/, 'bg-gray-200', 'border-solid', 'border-collapse']
+      safelist: ['dark', /^text-(red|blue|gray|green)-500/, /^border-gray-(300|700)/, 'bg-gray-200', 'border-solid', 'border-collapse'],
+      keyframes: true,
+      fontFace: true,
     }
   },
 }
