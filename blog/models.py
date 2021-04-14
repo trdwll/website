@@ -132,9 +132,9 @@ class Post(models.Model):
         formatted_archive.append('</ul>')
         return ''.join(formatted_archive)
 
+    
     def categories(self):
         return ", ".join([str(p.title) for p in self.category.all()])
-
 
     def save(self, force_insert=False, force_update=False):
         super().save(force_insert, force_update)

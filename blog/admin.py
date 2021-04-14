@@ -9,6 +9,7 @@ class PostAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title', )}
     search_fields = ['title', 'category__title', 'body', 'keywords']
     list_display = ['title', 'categories', 'published_date', 'is_published']
+    select_related = ('category', )
     fieldsets = (
         ('Post Information', {
             'fields': ('published_date', 'difficulty', 'is_published', 'keywords', 'title', 'description', 'category', 'slug', 'body', )
@@ -21,6 +22,9 @@ class PostAdmin(admin.ModelAdmin):
 
         super().save_model(request, obj, form, change)
 
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        return qs.prefetch_related('category')    
 
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Post, PostAdmin)
