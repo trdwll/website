@@ -75,7 +75,7 @@ const setTheme = (theme) => {
   return theme;
 };
 
-$(document).ready(function () {
+document.addEventListener('DOMContentLoaded', function (event) {
   let theme = setTheme(getInitialTheme());
   const toggleBtn = document.getElementById('theme-toggle');
 
@@ -83,12 +83,12 @@ $(document).ready(function () {
     theme = setTheme(theme === 'dark' ? 'light' : 'dark');
   });
 
-  $('.year').append(new Date().getFullYear());
+  document.getElementById('cur-year').innerHTML = new Date().getFullYear().toString();
 
   var tag = tags[Math.floor(Math.random() * tags.length)];
-  $('#home-tagline').html(tag);
+  document.getElementById('home-tagline').innerHTML = tag;
   var heading = headings[Math.floor(Math.random() * headings.length)];
-  $('#home-title').html(heading);
+  document.getElementById('home-title').innerHTML = heading;
 
   const menuBtn = document.getElementById('menu-btn');
   const menuNav = document.getElementById('menu-nav');
