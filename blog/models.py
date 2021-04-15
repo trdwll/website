@@ -93,9 +93,9 @@ class Post(models.Model):
 
         return ''.join(categories)
 
-    def get_posts_formatted(request):
+    def get_posts_formatted(is_authenticated):
         """ Get the posts and format them for display """
-        if request.user.is_authenticated:
+        if is_authenticated:
             queried_posts = get_formatted_data(Post.objects.all())
         else:
             queried_posts = get_formatted_data(Post.objects.filter(is_published=True))
