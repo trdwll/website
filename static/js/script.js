@@ -85,10 +85,13 @@ document.addEventListener('DOMContentLoaded', function (event) {
 
   document.getElementById('cur-year').innerHTML = new Date().getFullYear().toString();
 
-  var tag = tags[Math.floor(Math.random() * tags.length)];
-  document.getElementById('home-tagline').innerHTML = tag;
-  var heading = headings[Math.floor(Math.random() * headings.length)];
-  document.getElementById('home-title').innerHTML = heading;
+  if (document.getElementById('home-tagline'))
+  {
+    var tag = tags[Math.floor(Math.random() * tags.length)];
+    document.getElementById('home-tagline').innerHTML = tag;
+    var heading = headings[Math.floor(Math.random() * headings.length)];
+    document.getElementById('home-title').innerHTML = heading;
+  }
 
   const menuBtn = document.getElementById('menu-btn');
   const menuNav = document.getElementById('menu-nav');
