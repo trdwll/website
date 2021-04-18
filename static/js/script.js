@@ -26,14 +26,6 @@ var tags = [
   '"The way to get started is to quit talking and begin doing." - Walt Disney'
 ];
 
-var headings = [
-  'Blog',
-  'TRDWLL Blog',
-  'Gamedev Blog',
-  'Blawg',
-  'Russ\' Blog'
-];
-
 const getInitialTheme = () => {
   const row = document.cookie.split('; ').find((row) => row.startsWith('theme='));
   if (row && row.split('=')[1]) {
@@ -89,8 +81,6 @@ document.addEventListener('DOMContentLoaded', function (event) {
   {
     var tag = tags[Math.floor(Math.random() * tags.length)];
     document.getElementById('home-tagline').innerHTML = tag;
-    var heading = headings[Math.floor(Math.random() * headings.length)];
-    document.getElementById('home-title').innerHTML = heading;
   }
 
   const menuBtn = document.getElementById('menu-btn');

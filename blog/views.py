@@ -5,6 +5,12 @@ from django.conf import settings
 
 from .models import Post, Category
 
+class BlogHomeView(View):
+    template_name = 'blog/index.html'
+
+    def get(self, request):
+        return render(request, self.template_name, {'POSTS': Post.get_posts_formatted(request.user.is_authenticated), 'CATEGORIES': Post.get_categories_formatted_sidebar(), 'ARCHIVE': Post.get_archive_posts_sidebar()})
+
 class BlogPostView(View):
     template_name = 'blog/post.html'
 

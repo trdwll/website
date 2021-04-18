@@ -1,6 +1,7 @@
 {% load static %}
 {% url 'home_page' as home_url %}
-{% url 'experiments_home_page' as experiments_home %}
+{% url 'blog_home_page' as blog_url %}
+{% url 'experiments_page' as experiments_url %}
 {% url 'about_page' as about_url %}
 
 <header role="banner" class="relative bg-white py-6 dark:bg-black">
@@ -15,7 +16,8 @@
             <div id="menu-nav" class="w-full md:flex md:items-center md:w-auto hidden">
                 <div class="flex flex-col md:flex-row text-sm md:flex-grow mt-2 md:mt-0">
                     <a rel="noopener" href="{% url 'home_page' %}" class="navbar-link {% if request.path == home_url %}font-bold {% endif %}py-2 md:py-0 md:ml-6 text-gray-600 hover:text-blue hover:no-underline">Home</a>
-                    <a rel="noopener" href="{% url 'experiments_home_page' %}" class="navbar-link {% if request.path == experiments_home %}font-bold {% endif %}py-2 md:py-0 md:ml-6 text-gray-600 hover:text-blue hover:no-underline">Experiments</a>
+                    <a rel="noopener" href="{% url 'blog_home_page' %}" class="navbar-link {% if request.path == blog_url %}font-bold {% endif %}py-2 md:py-0 md:ml-6 text-gray-600 hover:text-blue hover:no-underline">Blog</a>
+                    <a rel="noopener" href="{% url 'experiments_page' %}" class="navbar-link {% if request.path == experiments_url %}font-bold {% endif %}py-2 md:py-0 md:ml-6 text-gray-600 hover:text-blue hover:no-underline">Experiments</a>
                     <a rel="noopener" href="{% url 'about_page' %}" class="navbar-link {% if request.path == about_url %}font-bold {% endif %}py-2 md:py-0 md:ml-6 text-gray-600 hover:text-blue hover:no-underline">About</a>
                     {% if request.user.is_authenticated %}<a rel="noopener" href="{% url 'admin:index' %}" class="navbar-link py-2 md:py-0 md:ml-6 text-gray-600 hover:text-blue hover:no-underline"><i class="fas fa-crown"></i></a>{% endif %}
                     <a id="theme-toggle" href="#" class="navbar-link py-2 md:py-0 md:ml-6 hover:no-underline"><i id="theme-icon" class="fas fa-moon text-xl"></i></a>
