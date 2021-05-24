@@ -3,11 +3,11 @@
 {% block title %}{{ POST.title }}{% endblock %}
 
 {% block meta_tags %}
-<meta name="twitter:description" content="{{ POST.description }}">
+<meta name="twitter:description" content="{{ POST.description }}{% if POST.difficulty %} Difficulty: {{ POST.difficulty }}.{% endif %} Published on {{ POST.published_date }}">
 <meta name="keywords" content="C++, C#, Python, UE4, Unreal Engine 4, Unreal Engine, Gamedev, Game Development, Gaming, Programming, Code{% if POST.keywords %}, {{ POST.keywords }}{% endif %}">
 
 <meta property="og:title" content="{{ POST.title }}" />
-<meta property="og:description" content="{{ POST.description }}" />
+<meta property="og:description" content="{{ POST.description }}{% if POST.difficulty %} Difficulty: {{ POST.difficulty }}.{% endif %} Published on {{ POST.published_date }}" />
 <meta property="og:url" content="https://trdwll.com{{ request.get_full_path }}" />
 {% comment %} Hard coding the url here isn't ideal {% endcomment %}
 {% endblock %}
