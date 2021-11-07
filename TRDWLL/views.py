@@ -9,7 +9,8 @@ class HomeView(View):
     template_name = 'index.html'
 
     def get(self, request):
-        return render(request, self.template_name)
+        latest_posts = Post.objects.filter(is_published=True)[:2]
+        return render(request, self.template_name, {'latest_posts': latest_posts})
 
 
 class AboutView(View):

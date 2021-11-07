@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     'TRDWLL',
     'blog',
     'experiments',
+    'work',
 
     # 3rd party
     'django_otp',
@@ -144,7 +145,9 @@ TINYMCE_DEFAULT_CONFIG = {
     'toolbar1': 'bold italic underline hr charmap insertdatetime | alignleft aligncenter alignright alignjustify | formatselect fontselect fontsizeselect | bullist numlist | outdent indent | table emoticons | link image media toc | codesample | preview code | help',
 }
 
-HIGHLIGHT_JS_VERSION = '10.7.2'
-HIGHLIGHT_JS_SHA = 'sha512-s+tOYYcC3Jybgr9mVsdAxsRYlGNq4mlAurOrfNuGMQ/SCofNPu92tjE7YRZCsdEtWL1yGkqk15fU/ark206YTg=='
-HIGHLIGHT_JS_LIGHT_SHA = 'sha512-11xYl5MU0/AMaYnuBOXDDQdZnl5WGtLVidxqa0XUAXYf6cGnJShNpgtbmB/0MW6ypeev+9Bwj7I/J8wexX8ePw==' # atom-one-light
-HIGHLIGHT_JS_DARK_SHA = 'sha512-Fcqyubi5qOvl+yCwSJ+r7lli+CO1eHXMaugsZrnxuU4DVpLYWXTVoHy55+mCb4VZpMgy7PBhV7IiymC0yu9tkQ==' # atom-one-dark
+HIGHLIGHT_JS_VERSION = '11.3.1'
+HIGHLIGHT_JS_SHA = 'sha512-Pbb8o120v5/hN/a6LjF4N4Lxou+xYZ0QcVF8J6TWhBbHmctQWd8O6xTDmHpE/91OjPzCk4JRoiJsexHYg4SotQ=='
+HIGHLIGHT_JS_LIGHT_SHA = 'sha512-o5v54Kh5PH0dgnf9ei0L+vMRsbm5fvIvnR/XkrZZjN4mqdaeH7PW66tumBoQVIaKNVrLCZiBEfHzRY4JJSMK/Q==' # atom-one-light
+HIGHLIGHT_JS_DARK_SHA = 'sha512-Jk4AqjWsdSzSWCSuQTfYRIF84Rq/eV0G2+tu07byYwHcbTGfdmLrHjUSwvzp5HvbiqK4ibmNwdcG49Y5RGYPTg==' # atom-one-dark
+
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'

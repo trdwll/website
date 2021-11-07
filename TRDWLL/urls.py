@@ -56,6 +56,7 @@ urlpatterns = [
     path('about/', AboutView.as_view(), name='about_page'),
     path('blog/', include('blog.urls'), name='blog_page'),
     path('experiments/', include('experiments.urls'), name='experiments_page'),
+    path('work/', include('work.urls'), name='work_page'),
     
     path('admin/', admin.site.urls),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),

@@ -1,6 +1,8 @@
 var tags = [
+  'Am I even good enough to have imposter syndrome?',
   'The writings of a Software Engineer and Chief Executive.',
   'The writings of a Software Engineer.',
+  'The writings of a Game Engineer.',
   'The writings of a Chief Executive.',
   'The writings of a Programmer.',
   'The blog of a guy that writes code.',
