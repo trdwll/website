@@ -1,10 +1,21 @@
 from django.contrib import admin
 from .models import Category, Post
+from datetime import datetime, timedelta
 
 class CategoryAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title', )}
 
+@admin.action(description='Add a year')
+def add_year(modeladmin, request, queryset):
+    time = queryset.values('published_date')[0]['published_date'] + timedelta(weeks=52)
+    queryset.update(published_date=time)
+
+@admin.action(description='Unpublish')
+def unpublish(modeladmin, request, queryset):
+    queryset.update(is_published=False)
+
 class PostAdmin(admin.ModelAdmin):
+    actions = [add_year, unpublish]
     exclude = ['author']
     prepopulated_fields = {'slug': ('title', )}
     search_fields = ['title', 'category__title', 'body', 'keywords']
