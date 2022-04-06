@@ -1,3 +1,5 @@
+__Archived in favor of using Hugo for the site.__
+
 # TRDWLL
 This is my personal website built in Django. 
 
