@@ -20,8 +20,7 @@ singleDateFormat = "Mon, Jan 2, 2006"
 indexDateFormat = "Mon, Jan 2, 2006"
 listDateFormat = "Jan 2"
 copyright = """
-2014-{{ YEAR }} Russ 'trdwll' Treadwell. All rights reserved. <br />
-Made & Hosted in USA!
+2014-{{ YEAR }} Russ 'trdwll' Treadwell. All rights reserved.
 """
 oldContentWarning = true
 oldContentDuration = 365
