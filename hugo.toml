@@ -1,4 +1,4 @@
-baseURL = 'https://test.trdwll.com/'
+baseURL = 'https://trdwll.com/'
 languageCode = 'en-us'
 title = 'TRDWLL'
 theme = 'anatole'
