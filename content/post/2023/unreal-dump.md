@@ -100,6 +100,7 @@ old_content_duration = 0
 <li>#include UE_INLINE_GENERATED_CPP_BY_NAME(ClassFileName) in cpp files</li>
 <li>ULineBatchComponent - useful for drawing debug (DrawDebug*)</li>
 <li>UE_DISABLE_OPTIMIZATION & UE_ENABLE_OPTIMIZATION</li>
+<li>FMessageLog("MapCheck").*</li>
 </ul>
 
 <p>&nbsp;</p>
