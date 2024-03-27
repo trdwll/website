@@ -101,6 +101,7 @@ old_content_duration = 0
 <li>ULineBatchComponent - useful for drawing debug (DrawDebug*)</li>
 <li>UE_DISABLE_OPTIMIZATION & UE_ENABLE_OPTIMIZATION</li>
 <li>FMessageLog("MapCheck").*</li>
+<li>[/Script/EngineSettings.GameMapsSettings] - EditorTemplateMapOverrides</li>
 </ul>
 
 <p>&nbsp;</p>
